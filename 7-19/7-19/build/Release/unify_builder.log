@@ -1,0 +1,996 @@
+[2023-07-19 22:30:28]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\LCD1602.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\LCD1602.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\LCD1602.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\LCD1602.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C318 IN LINE 1 OF .\SRC\LCD1602.C: can't open file 'REGX52.H'
+*** ERROR C202 IN LINE 4 OF .\SRC\LCD1602.C: 'P2': undefined identifier
+*** ERROR C202 IN LINE 5 OF .\SRC\LCD1602.C: 'P2': undefined identifier
+*** ERROR C202 IN LINE 6 OF .\SRC\LCD1602.C: 'P2': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\LCD1602.C: 'LCD_RS': undefined identifier
+*** ERROR C202 IN LINE 35 OF .\SRC\LCD1602.C: 'LCD_RW': undefined identifier
+*** ERROR C202 IN LINE 36 OF .\SRC\LCD1602.C: 'P0': undefined identifier
+*** ERROR C202 IN LINE 37 OF .\SRC\LCD1602.C: 'LCD_EN': undefined identifier
+*** ERROR C202 IN LINE 39 OF .\SRC\LCD1602.C: 'LCD_EN': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\LCD1602.C: 'LCD_RS': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\LCD1602.C: 'LCD_RW': undefined identifier
+*** ERROR C202 IN LINE 52 OF .\SRC\LCD1602.C: 'P0': undefined identifier
+*** ERROR C202 IN LINE 53 OF .\SRC\LCD1602.C: 'LCD_EN': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\LCD1602.C: 'LCD_EN': undefined identifier
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  13 ERROR(S)
+
+[2023-07-19 22:31:51]	[done]
+	build successfully !
+
+[2023-07-19 22:47:57]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 19 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 23 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 26 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 30 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 33 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 39 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 43 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 47 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 54 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 57 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 61 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 71 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 75 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 79 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 82 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 86 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 89 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 93 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 111 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 125 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 128 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:48:07]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 19 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 23 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 26 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 30 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 33 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 39 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 43 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 47 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 54 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 57 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 61 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 71 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 75 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 79 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 82 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 86 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 89 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 93 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 111 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 125 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 128 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:49:09]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 19 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 23 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 26 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 30 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 33 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 39 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 43 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 47 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 54 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 57 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 61 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 71 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 75 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 79 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 82 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 86 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 89 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 93 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 111 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 125 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 128 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:50:15]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C309 IN LINE 3 OF .\SRC\MATIXKEY.C: bad or missing filename
+*** WARNING C318 IN LINE 3 OF .\SRC\MATIXKEY.C: can't open file ''
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  37 ERROR(S)
+
+[2023-07-19 22:52:38]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 19 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 23 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 26 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 30 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 33 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 39 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 43 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 47 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 54 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 57 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 61 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 71 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 75 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 79 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 82 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 86 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 89 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 93 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 103 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 111 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 118 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 125 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 128 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:53:05]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:53:14]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:55:35]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:57:02]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:57:22]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:58:10]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:58:20]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 22:59:34]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 9 OF .\SRC\MATIXKEY.C: syntax error near '='
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 23:00:03]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 9 OF .\SRC\MATIXKEY.C: syntax error near '='
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  34 ERROR(S)
+
+[2023-07-19 23:00:34]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 9 OF .\SRC\MATIXKEY.C: syntax error near '='
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  28 ERROR(S)
+
+[2023-07-19 23:01:08]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 9 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 24 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 31 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 34 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 40 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 44 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 48 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 51 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 55 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 58 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 62 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 65 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 72 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 76 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 80 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 83 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 87 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 90 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 94 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 97 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 104 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 108 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 112 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 115 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 119 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 122 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 126 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 129 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 23:02:38]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C318 IN LINE 2 OF .\SRC\MATIXKEY.C: can't open file 'AT89X51.H'
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 18 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 21 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 25 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 28 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 32 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 35 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 42 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 45 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 49 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 52 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 56 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 59 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 63 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 66 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 74 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 77 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 81 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 84 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 88 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 91 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 95 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 98 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 109 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 113 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 116 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 120 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 123 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 127 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 130 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  36 ERROR(S)
+
+[2023-07-19 23:07:23]	[done]
+	build successfully !
+
+[2023-07-19 23:08:13]	[done]
+	build successfully !
+
+[2023-07-20 09:14:08]	[done]
+	build successfully !
+
+[2023-07-20 09:14:28]	[done]
+	build successfully !
+
+[2023-07-20 09:19:51]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 10 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 18 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 21 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 25 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 28 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 32 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 35 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 41 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 42 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 45 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 49 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 52 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 56 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 59 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 63 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 66 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 73 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 74 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 77 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 81 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 84 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 88 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 91 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 95 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 98 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 105 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 109 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 113 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 116 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 120 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 123 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 127 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 130 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  36 ERROR(S)
+
+[2023-07-20 09:21:38]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C318 IN LINE 3 OF .\SRC\MATIXKEY.C: can't open file 'msp430.h'
+*** ERROR C202 IN LINE 11 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 19 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 22 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 26 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 29 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 33 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 36 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 42 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 43 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 46 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 53 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 57 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 60 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 67 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 74 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 75 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 78 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 82 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 85 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 89 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 92 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 99 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 110 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 117 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 124 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 128 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 131 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  36 ERROR(S)
+
+[2023-07-20 09:22:13]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-19\7-19\src\MatixKey.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\MatixKey.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\MatixKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\MatixKey.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C318 IN LINE 3 OF .\SRC\MATIXKEY.C: can't open file 'msp430.h'
+*** ERROR C202 IN LINE 11 OF .\SRC\MATIXKEY.C: 'P1_3': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 19 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 22 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 26 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 29 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 33 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 36 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 42 OF .\SRC\MATIXKEY.C: 'P1_2': undefined identifier
+*** ERROR C202 IN LINE 43 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 46 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 50 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 53 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 57 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 60 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 67 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 74 OF .\SRC\MATIXKEY.C: 'P1_1': undefined identifier
+*** ERROR C202 IN LINE 75 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 78 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 82 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 85 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 89 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 92 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 96 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 99 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 106 OF .\SRC\MATIXKEY.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 107 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 110 OF .\SRC\MATIXKEY.C: 'P1_7': undefined identifier
+*** ERROR C202 IN LINE 114 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 117 OF .\SRC\MATIXKEY.C: 'P1_6': undefined identifier
+*** ERROR C202 IN LINE 121 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 124 OF .\SRC\MATIXKEY.C: 'P1_5': undefined identifier
+*** ERROR C202 IN LINE 128 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+*** ERROR C202 IN LINE 131 OF .\SRC\MATIXKEY.C: 'P1_4': undefined identifier
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  36 ERROR(S)
+
+[2023-07-20 09:30:29]	[done]
+	build successfully !
+
+[2023-07-20 09:30:32]	[done]
+	build successfully !
+
+[2023-07-20 21:37:26]	[done]
+	build successfully !
+
+[2023-07-20 21:37:46]	[done]
+	build successfully !
+
+[2023-07-20 21:40:15]	[done]
+	build successfully !
+
+[2023-07-20 21:42:18]	[done]
+	build successfully !
+
+[2023-07-20 21:44:51]	[done]
+	build successfully !
+
+[2023-07-20 21:45:31]	[done]
+	build successfully !
+
+[2023-07-20 21:45:36]	[done]
+	build successfully !
+
+[2023-07-20 21:46:48]	[done]
+	build successfully !
+
+[2023-07-20 21:48:20]	[done]
+	build successfully !
+
+[2023-07-20 21:52:03]	[done]
+	build successfully !
+
+[2023-07-20 21:54:13]	[done]
+	build successfully !
+
+[2023-07-21 21:08:28]	[done]
+	build successfully !
+
