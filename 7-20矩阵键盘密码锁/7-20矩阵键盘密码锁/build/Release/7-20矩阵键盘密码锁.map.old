@@ -1,0 +1,286 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          07/20/2023  21:38:28  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\DELAY.O, .\BUILD\RELEASE\SRC\LCD1602.O, .\BUILD\RELEASE\SRC\MATIXKEY.O, .\B
+>> UILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\7-20������������� PRINT (.\build\Release\7-20�������������.map) REMOVEUN
+>> USED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\DELAY.O (DELAY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\LCD1602.O (LCD1602)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\MATIXKEY.O (MATIXKEY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?IMUL)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\7-20������������� (DELAY)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   00035AH   CODE
+I:000000H   I:000000H   I:00007FH   000014H   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\7-20������������� (DELAY)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000010H   000009H   BYTE   UNIT     DATA           _DATA_GROUP_
+000011H   000013H   000003H   BYTE   UNIT     DATA           ?DT?MAIN
+000014H   000014H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   00018BH   000189H   BYTE   UNIT     CODE           ?PR?MATRIXKEY?MATIXKEY
+00018CH   00021FH   000094H   BYTE   UNIT     CODE           ?C?LIB_CODE
+000220H   00025BH   00003CH   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+00025CH   00028EH   000033H   BYTE   UNIT     CODE           ?PR?_LCD_POW?LCD1602
+00028FH   0002B1H   000023H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWSTRING?LCD1602
+0002B2H   0002CFH   00001EH   BYTE   UNIT     CODE           ?PR?_LCD_WRITEDATA?LCD1602
+0002D0H   0002ECH   00001DH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWNUM?LCD1602
+0002EDH   000302H   000016H   BYTE   UNIT     CODE           ?PR?_LCD_SETCURSOR?LCD1602
+000303H   000317H   000015H   BYTE   UNIT     CODE           ?PR?_DELAY?DELAY
+000318H   00032BH   000014H   BYTE   UNIT     CODE           ?PR?LCD_INIT?LCD1602
+00032CH   00033AH   00000FH   BYTE   UNIT     CODE           ?PR?LCD_DELAY?LCD1602
+00033BH   000346H   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+000347H   000350H   00000AH   BYTE   UNIT     CODE           ?PR?_LCD_WRITECOMMAND?LCD1602
+000351H   000359H   000009H   BYTE   UNIT     CODE           ?CO?MAIN
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/20/2023  21:38:28  PAGE 2
+
+
+
+* * * * * * * * *   R E M O V E D     S E G M E N T S   * * * * * * * *
+   *DEL*:           00000AH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWCHAR?LCD1602
+   *DEL*:           00003AH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWSIGNEDNUM?LCD1602
+   *DEL*:           000007H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWSIGNEDNUM?LCD1602
+   *DEL*:           000039H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWHEXNUM?LCD1602
+   *DEL*:           000005H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWHEXNUM?LCD1602
+   *DEL*:           000038H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWBINNUM?LCD1602
+   *DEL*:           000005H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWBINNUM?LCD1602
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\7-20������������� (DELAY)
+
+
+FUNCTION/MODULE                  BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE      START  STOP  START  STOP
+========================================================
+?C_C51STARTUP                   ----- -----  ----- -----
+  +--> MAIN/MAIN
+
+MAIN/MAIN                       ----- -----  ----- -----
+  +--> LCD_INIT/LCD1602
+  +--> ?CO?MAIN
+  +--> _LCD_SHOWSTRING/LCD1602
+  +--> MATRIXKEY/MATIXKEY
+  +--> _LCD_SHOWNUM/LCD1602
+
+LCD_INIT/LCD1602                ----- -----  ----- -----
+  +--> _LCD_WRITECOMMAND/LCD1602
+
+_LCD_WRITECOMMAND/LCD1602       ----- -----  ----- -----
+  +--> LCD_DELAY/LCD1602
+
+LCD_DELAY/LCD1602               ----- -----  ----- -----
+
+?CO?MAIN                        ----- -----  ----- -----
+
+_LCD_SHOWSTRING/LCD1602         ----- -----  0008H 000AH
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_LCD_SETCURSOR/LCD1602          ----- -----  ----- -----
+  +--> _LCD_WRITECOMMAND/LCD1602
+
+_LCD_WRITEDATA/LCD1602          ----- -----  ----- -----
+  +--> LCD_DELAY/LCD1602
+
+MATRIXKEY/MATIXKEY              ----- -----  0008H 0008H
+  +--> _DELAY/DELAY
+
+_DELAY/DELAY                    ----- -----  ----- -----
+
+_LCD_SHOWNUM/LCD1602            ----- -----  0008H 000CH
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_POW/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_LCD_POW/LCD1602                ----- -----  000DH 0010H
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\7-20������������� (DELAY)
+
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/20/2023  21:38:28  PAGE 3
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowBinNum?BYTE
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowHexNum?BYTE
+      00000008H   DATA     BYTE      ?_LCD_ShowNum?BYTE
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowSignedNum?BYTE
+      0100018CH   CODE     ---       ?C?CLDOPTR
+      00000000H   NUMBER   ---       ?C?CODESEG
+      010001B9H   CODE     ---       ?C?IMUL
+      010001CBH   CODE     ---       ?C?UIDIV
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      01000220H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000303H   CODE     ---       _Delay
+      01000268H   CODE     ---       _LCD_Pow
+      010002EDH   CODE     ---       _LCD_SetCursor
+*DEL*:00000000H   CODE     ---       _LCD_ShowBinNum
+*DEL*:00000000H   CODE     ---       _LCD_ShowChar
+*DEL*:00000000H   CODE     ---       _LCD_ShowHexNum
+      010002D0H   CODE     ---       _LCD_ShowNum
+*DEL*:00000000H   CODE     ---       _LCD_ShowSignedNum
+      0100028FH   CODE     ---       _LCD_ShowString
+      01000347H   CODE     ---       _LCD_WriteCommand
+      010002C6H   CODE     ---       _LCD_WriteData
+      00000013H   DATA     BYTE      KeyNum
+      01000332H   CODE     ---       LCD_Delay
+      01000318H   CODE     ---       LCD_Init
+      01000220H   CODE     ---       main
+      01000003H   CODE     ---       MatrixKey
+      00000011H   DATA     WORD      Password
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\7-20������������� (DELAY)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       DELAY
+      01000303H   PUBLIC    CODE     ---       _Delay
+
+      01000303H   BLOCK     CODE     ---       LVL=0
+      01000303H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      00000004H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       LCD1602
+      00000008H   PUBLIC    DATA     BYTE      ?_LCD_ShowNum?BYTE
+      010002D0H   PUBLIC    CODE     ---       _LCD_ShowNum
+      01000268H   PUBLIC    CODE     ---       _LCD_Pow
+      0100028FH   PUBLIC    CODE     ---       _LCD_ShowString
+      01000318H   PUBLIC    CODE     ---       LCD_Init
+      010002EDH   PUBLIC    CODE     ---       _LCD_SetCursor
+      010002C6H   PUBLIC    CODE     ---       _LCD_WriteData
+      01000347H   PUBLIC    CODE     ---       _LCD_WriteCommand
+      01000332H   PUBLIC    CODE     ---       LCD_Delay
+
+      0100032CH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000332H   BLOCK     CODE     ---       LVL=0
+      01000332H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      j
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/20/2023  21:38:28  PAGE 4
+
+
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000347H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010002B2H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010002C6H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010002EDH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000318H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100028FH   BLOCK     CODE     ---       LVL=0
+      01000295H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100025CH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000268H   BLOCK     CODE     ---       LVL=0
+      01000270H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      Result
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010002D0H   BLOCK     CODE     ---       LVL=0
+      010002D4H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000002H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+      00000002H   SYMBOL    DATA     VOID      i
+      00000002H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      SingleNumber
+      00000002H   SYMBOL    DATA     VOID      i
+
+      ---         MODULE    ---      ---       MATIXKEY
+      01000003H   PUBLIC    CODE     ---       MatrixKey
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      01000003H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000008H   SYMBOL    DATA     VOID      KeyNumber
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       MAIN
+      00000013H   PUBLIC    DATA     BYTE      KeyNum
+      00000011H   PUBLIC    DATA     WORD      Password
+      01000220H   PUBLIC    CODE     ---       main
+
+      01000220H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C?CLDOPTR
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/20/2023  21:38:28  PAGE 5
+
+
+      0100018CH   PUBLIC    CODE     ---       ?C?CLDOPTR
+
+      ---         MODULE    ---      ---       ?C?IMUL
+      010001B9H   PUBLIC    CODE     ---       ?C?IMUL
+
+      ---         MODULE    ---      ---       ?C?UIDIV
+      010001CBH   PUBLIC    CODE     ---       ?C?UIDIV
+
+Program Size: data=21.0 xdata=0 const=0 code=858
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
