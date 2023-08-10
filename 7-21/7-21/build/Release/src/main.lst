@@ -1,0 +1,319 @@
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          #include"Delay.h"
+   3          #include"LCD1602.h"
+   4          #include"MatixKey.h"
+   5          
+   6          unsigned char KeyNum;
+   7          unsigned int  Password,count;
+   8          
+   9          
+  10          void main()
+  11          {
+  12   1          LCD_Init();
+  13   1          LCD_ShowString(1,1,"Password");
+  14   1          while (1)
+  15   1          {
+  16   2             KeyNum=MatrixKey();
+  17   2             if(KeyNum)
+  18   2             {
+  19   3              if(KeyNum <=10)//如果s1~s10按键按下,输入密码
+  20   3              {
+  21   4                  if(count<4)
+  22   4                  {
+  23   5                  Password*=10;
+  24   5                  Password+=KeyNum%10;
+  25   5                  count++;
+  26   5                  }
+  27   4                  
+  28   4              } 
+  29   3              LCD_ShowNum(2,1,Password,4);
+  30   3             }
+  31   2             if(KeyNum==11)
+  32   2             {
+  33   3              if(Password==2345)
+  34   3              {
+  35   4                  LCD_ShowString(1,14,"OK");
+  36   4                  Password=0;
+  37   4                  count=0;
+  38   4                  LCD_ShowNum(2,1,Password,4);
+  39   4              }
+  40   3              else{
+  41   4                  LCD_ShowString(1,14,"ERR");
+  42   4                  Password=0;
+  43   4                  count=0;
+  44   4                  LCD_ShowNum(2,1,Password,4);
+  45   4              }
+  46   3             }
+  47   2             if(KeyNum==12)
+  48   2             {
+  49   3                  Password=0;
+  50   3                  count=0;
+  51   3                  LCD_ShowNum(2,1,Password,4);
+  52   3             }
+  53   2          }
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 2   
+
+  54   1      }
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 3   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 10
+                                           ; SOURCE LINE # 11
+                                           ; SOURCE LINE # 12
+0000 120000      E     LCALL   LCD_Init
+                                           ; SOURCE LINE # 13
+0003 7BFF              MOV     R3,#0FFH
+0005 7A00        R     MOV     R2,#HIGH ?SC_0
+0007 7900        R     MOV     R1,#LOW ?SC_0
+0009 7D01              MOV     R5,#01H
+000B 7F01              MOV     R7,#01H
+000D 120000      E     LCALL   _LCD_ShowString
+0010         ?C0001:
+                                           ; SOURCE LINE # 14
+                                           ; SOURCE LINE # 15
+                                           ; SOURCE LINE # 16
+0010 120000      E     LCALL   MatrixKey
+0013 8F00        R     MOV     KeyNum,R7
+                                           ; SOURCE LINE # 17
+0015 E500        R     MOV     A,KeyNum
+0017 6046              JZ      ?C0003
+                                           ; SOURCE LINE # 18
+                                           ; SOURCE LINE # 19
+0019 D3                SETB    C
+001A 940A              SUBB    A,#0AH
+001C 5033              JNC     ?C0004
+                                           ; SOURCE LINE # 20
+                                           ; SOURCE LINE # 21
+001E C3                CLR     C
+001F E500        R     MOV     A,count+01H
+0021 9404              SUBB    A,#04H
+0023 E500        R     MOV     A,count
+0025 9400              SUBB    A,#00H
+0027 5028              JNC     ?C0004
+                                           ; SOURCE LINE # 22
+                                           ; SOURCE LINE # 23
+0029 AE00        R     MOV     R6,Password
+002B AF00        R     MOV     R7,Password+01H
+002D 7C00              MOV     R4,#00H
+002F 7D0A              MOV     R5,#0AH
+0031 120000      E     LCALL   ?C?IMUL
+0034 8E00        R     MOV     Password,R6
+0036 8F00        R     MOV     Password+01H,R7
+                                           ; SOURCE LINE # 24
+0038 E500        R     MOV     A,KeyNum
+003A 75F00A            MOV     B,#0AH
+003D 84                DIV     AB
+003E E5F0              MOV     A,B
+0040 2500        R     ADD     A,Password+01H
+0042 F500        R     MOV     Password+01H,A
+0044 E4                CLR     A
+0045 3500        R     ADDC    A,Password
+0047 F500        R     MOV     Password,A
+                                           ; SOURCE LINE # 25
+0049 0500        R     INC     count+01H
+004B E500        R     MOV     A,count+01H
+004D 7002              JNZ     ?C0011
+004F 0500        R     INC     count
+0051         ?C0011:
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 4   
+
+                                           ; SOURCE LINE # 26
+                                           ; SOURCE LINE # 28
+0051         ?C0004:
+                                           ; SOURCE LINE # 29
+0051 750004      E     MOV     ?_LCD_ShowNum?BYTE+04H,#04H
+0054 AB00        R     MOV     R3,Password+01H
+0056 AA00        R     MOV     R2,Password
+0058 7D01              MOV     R5,#01H
+005A 7F02              MOV     R7,#02H
+005C 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 30
+005F         ?C0003:
+                                           ; SOURCE LINE # 31
+005F E500        R     MOV     A,KeyNum
+0061 640B              XRL     A,#0BH
+0063 7036              JNZ     ?C0006
+                                           ; SOURCE LINE # 32
+                                           ; SOURCE LINE # 33
+0065 E500        R     MOV     A,Password+01H
+0067 B4290D            CJNE    A,#029H,?C0007
+006A E500        R     MOV     A,Password
+006C B40908            CJNE    A,#09H,?C0007
+                                           ; SOURCE LINE # 34
+                                           ; SOURCE LINE # 35
+006F 7BFF              MOV     R3,#0FFH
+0071 7A00        R     MOV     R2,#HIGH ?SC_9
+0073 7900        R     MOV     R1,#LOW ?SC_9
+                                           ; SOURCE LINE # 36
+                                           ; SOURCE LINE # 37
+                                           ; SOURCE LINE # 38
+                                           ; SOURCE LINE # 39
+0075 8006              SJMP    ?C0013
+0077         ?C0007:
+                                           ; SOURCE LINE # 40
+                                           ; SOURCE LINE # 41
+0077 7BFF              MOV     R3,#0FFH
+0079 7A00        R     MOV     R2,#HIGH ?SC_12
+007B 7900        R     MOV     R1,#LOW ?SC_12
+007D         ?C0013:
+007D 7D0E              MOV     R5,#0EH
+007F 7F01              MOV     R7,#01H
+0081 120000      E     LCALL   _LCD_ShowString
+                                           ; SOURCE LINE # 42
+0084 E4                CLR     A
+0085 F500        R     MOV     Password,A
+0087 F500        R     MOV     Password+01H,A
+                                           ; SOURCE LINE # 43
+0089 F500        R     MOV     count,A
+008B F500        R     MOV     count+01H,A
+                                           ; SOURCE LINE # 44
+008D 750004      E     MOV     ?_LCD_ShowNum?BYTE+04H,#04H
+0090 AB00        R     MOV     R3,Password+01H
+0092 AA00        R     MOV     R2,Password
+0094 7D01              MOV     R5,#01H
+0096 7F02              MOV     R7,#02H
+0098 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 45
+                                           ; SOURCE LINE # 46
+009B         ?C0006:
+                                           ; SOURCE LINE # 47
+009B E500        R     MOV     A,KeyNum
+009D 640C              XRL     A,#0CH
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 5   
+
+009F 6003              JZ      $ + 5H
+00A1 020000      R     LJMP    ?C0001
+                                           ; SOURCE LINE # 48
+                                           ; SOURCE LINE # 49
+00A4 F500        R     MOV     Password,A
+00A6 F500        R     MOV     Password+01H,A
+                                           ; SOURCE LINE # 50
+00A8 F500        R     MOV     count,A
+00AA F500        R     MOV     count+01H,A
+                                           ; SOURCE LINE # 51
+00AC 750004      E     MOV     ?_LCD_ShowNum?BYTE+04H,#04H
+00AF AB00        R     MOV     R3,Password+01H
+00B1 AA00        R     MOV     R2,Password
+00B3 7D01              MOV     R5,#01H
+00B5 7F02              MOV     R7,#02H
+00B7 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 52
+                                           ; SOURCE LINE # 53
+00BA 020000      R     LJMP    ?C0001
+             ; FUNCTION main (END)
+
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 6   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+_LCD_ShowNum . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+MatrixKey. . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+count. . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_INT    0000H  2
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+LCD_Init . . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+_LCD_ShowString. . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+C51 COMPILER V9.54   MAIN                                                                  07/21/2023 21:20:36 PAGE 7   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+Password . . . . . . . . . . . . . . .  PUBLIC   DATA   U_INT    0002H  2
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+KeyNum . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0004H  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    189    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      5    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
