@@ -1,0 +1,131 @@
+[2023-07-22 21:55:35]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 6 OF .\SRC\MAIN.C: 'TF': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2023-07-22 21:55:45]	[done]
+	build successfully !
+
+[2023-07-22 21:57:47]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 26 OF .\SRC\MAIN.C: syntax error near '='
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2023-07-22 21:59:28]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 3 OF .\SRC\MAIN.C: syntax error near '^', expected '='
+*** ERROR C202 IN LINE 3 OF .\SRC\MAIN.C: 'P1_0': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MAIN.C: 'P2_0': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2023-07-22 21:59:44]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 3 OF .\SRC\MAIN.C: syntax error near '^', expected '='
+*** ERROR C202 IN LINE 3 OF .\SRC\MAIN.C: 'P2_0': undefined identifier
+*** ERROR C202 IN LINE 27 OF .\SRC\MAIN.C: 'P2_0': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2023-07-22 21:59:59]	[done]
+	build successfully !
+
+[2023-07-22 22:01:52]	[done]
+	build successfully !
+
+[2023-07-22 22:03:40]	[done]
+	build successfully !
+
+[2023-07-22 22:05:33]	[done]
+	build successfully !
+
+[2023-07-22 22:07:14]	[done]
+	build successfully !
+
+[2023-07-22 22:14:39]	[done]
+	build successfully !
+
+[2023-07-22 22:20:35]	[done]
+	build successfully !
+
+[2023-07-22 22:26:50]	[done]
+	build successfully !
+
+[2023-07-22 22:28:26]	[done]
+	build successfully !
+
+[2023-07-22 22:37:36]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\Key.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\Key.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\Key.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\Key.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\KEY.C: 'P2_1': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\KEY.C: 'P2_1': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\KEY.C: 'P2_0': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\KEY.C: 'P2_0': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\KEY.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 18 OF .\SRC\KEY.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\KEY.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 22 OF .\SRC\KEY.C: 'P2_3': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  8 ERROR(S)
+
+[2023-07-22 22:38:13]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\Key.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\Key.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\Key.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\Key.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 4 OF .\SRC\KEY.C: syntax error near '~', expected ';'
+*** ERROR C141 IN LINE 5 OF .\SRC\KEY.C: syntax error near '~', expected ';'
+*** ERROR C141 IN LINE 6 OF .\SRC\KEY.C: syntax error near '~', expected ';'
+*** ERROR C141 IN LINE 7 OF .\SRC\KEY.C: syntax error near '~', expected ';'
+*** ERROR C141 IN LINE 8 OF .\SRC\KEY.C: syntax error near '~', expected ';'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  5 ERROR(S)
+
+[2023-07-22 22:38:42]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C231 IN LINE 13 OF .\SRC\MAIN.C: 'P2_0': redefinition
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2023-07-22 22:38:53]	[done]
+	build successfully !
+
+[2023-07-22 22:40:17]	[done]
+	build successfully !
+
+[2023-07-23 22:15:59]	[done]
+	build successfully !
+

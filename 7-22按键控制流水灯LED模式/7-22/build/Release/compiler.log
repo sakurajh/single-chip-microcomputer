@@ -1,0 +1,14 @@
+>>> cc
+
+
+
+>>> ld
+
+
+LX51 LINKER/LOCATER V4.66.41.0 - SN: K1DZC-GDGGZC
+COPYRIGHT ARM Germany GmbH 1995 - 2015
+@c:\Users\赵建华\Desktop\keilvs\7-22按键控制流水灯LED模式\7-22\build\Release\7-22.lnp .\build\Release\src\Delay.o,.\build\Release\src\Key.o,.\build\Release\src\Timer0.o,.\build\Release\src\main.o TO .\build\Release\7-22
+PRINT(.\build\Release\7-22.map) REMOVEUNUSED
+
+Program Size: data=14.0 xdata=0 const=0 code=275
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
