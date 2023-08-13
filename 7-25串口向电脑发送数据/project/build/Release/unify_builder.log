@@ -1,0 +1,91 @@
+[2023-07-25 21:34:29]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-25串口向电脑发送数据\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 8 OF .\SRC\MAIN.C: 'AUXR': undefined identifier
+*** ERROR C202 IN LINE 9 OF .\SRC\MAIN.C: 'AUXR': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2023-07-25 21:35:29]	[done]
+	build successfully !
+
+[2023-07-25 21:39:42]	[done]
+	build successfully !
+
+[2023-07-25 21:45:15]	[done]
+	build successfully !
+
+[2023-07-25 21:45:50]	[done]
+	build successfully !
+
+[2023-07-25 21:46:10]	[done]
+	build successfully !
+
+[2023-07-25 21:47:08]	[done]
+	build successfully !
+
+[2023-07-25 21:52:01]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-25串口向电脑发送数据\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C206 IN LINE 10 OF .\SRC\MAIN.C: 'UART_Init': missing function-prototype
+*** WARNING C206 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': missing function-prototype
+*** ERROR C267 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2023-07-25 21:52:25]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-25串口向电脑发送数据\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C206 IN LINE 10 OF .\SRC\MAIN.C: 'UART_Init': missing function-prototype
+*** WARNING C206 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': missing function-prototype
+*** ERROR C267 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2023-07-25 21:52:37]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-25串口向电脑发送数据\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C206 IN LINE 10 OF .\SRC\MAIN.C: 'UART_Init': missing function-prototype
+*** WARNING C206 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': missing function-prototype
+*** ERROR C267 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2023-07-25 21:53:06]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-25串口向电脑发送数据\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C206 IN LINE 10 OF .\SRC\MAIN.C: 'UART_Init': missing function-prototype
+*** WARNING C206 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': missing function-prototype
+*** ERROR C267 IN LINE 13 OF .\SRC\MAIN.C: 'UART_SendByte': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  1 ERROR(S)
+
+[2023-07-25 21:53:31]	[done]
+	build successfully !
+
+[2023-07-25 21:53:51]	[done]
+	build successfully !
+
+[2023-07-25 21:54:21]	[done]
+	build successfully !
+
