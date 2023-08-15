@@ -1,0 +1,127 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          07/27/2023  22:01:10  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\DELAY.O, .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\PROJECT PRINT (.\bui
+>> ld\Release\project.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\DELAY.O (DELAY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\PROJECT (DELAY)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   0000C1H   CODE
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+I:000000H   I:000000H   I:00007FH   000008H   DATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\PROJECT (DELAY)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000008H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000050H   00004EH   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000051H   00007DH   00002DH   BYTE   UNIT     CODE           ?PR?__74HC595_WRITEBYTE?MAIN
+00007EH   00009FH   000022H   BYTE   UNIT     CODE           ?PR?_MATRIXLED_SHOWCOLUMN?MAIN
+0000A0H   0000B4H   000015H   BYTE   UNIT     CODE           ?PR?_DELAY?DELAY
+0000B5H   0000C0H   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\PROJECT (DELAY)
+
+
+FUNCTION/MODULE                  BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE      START  STOP  START  STOP
+========================================================
+?C_C51STARTUP                   ----- -----  ----- -----
+  +--> MAIN/MAIN
+
+MAIN/MAIN                       ----- -----  ----- -----
+  +--> _MATRIXLED_SHOWCOLUMN/MAIN
+
+_MATRIXLED_SHOWCOLUMN/MAIN      ----- -----  ----- -----
+  +--> __74HC595_WRITEBYTE/MAIN
+  +--> _DELAY/DELAY
+
+__74HC595_WRITEBYTE/MAIN        ----- -----  ----- -----
+
+_DELAY/DELAY                    ----- -----  ----- -----
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/27/2023  22:01:10  PAGE 2
+
+
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\PROJECT (DELAY)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000000H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      01000003H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000051H   CODE     ---       __74HC595_WriteByte
+      010000A0H   CODE     ---       _Delay
+      0100007EH   CODE     ---       _MatrixLED_ShowColumn
+      01000003H   CODE     ---       main
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\PROJECT (DELAY)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       DELAY
+      010000A0H   PUBLIC    CODE     ---       _Delay
+
+      010000A0H   BLOCK     CODE     ---       LVL=0
+      010000A0H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      00000004H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       MAIN
+      01000003H   PUBLIC    CODE     ---       main
+      0100007EH   PUBLIC    CODE     ---       _MatrixLED_ShowColumn
+      01000051H   PUBLIC    CODE     ---       __74HC595_WriteByte
+
+      01000051H   BLOCK     CODE     ---       LVL=0
+      01000053H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100007EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+Program Size: data=9.0 xdata=0 const=0 code=193
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

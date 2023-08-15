@@ -1,0 +1,2 @@
+.\build\Release\src\Delay.o,.\build\Release\src\main.o TO .\build\Release\project
+PRINT(.\build\Release\project.map) REMOVEUNUSED
