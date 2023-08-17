@@ -1,0 +1,2 @@
+.\build\Release\src\DS1302.o,.\build\Release\src\Delay.o,.\build\Release\src\LCD1602.o,.\build\Release\src\main.o TO .\build\Release\project
+PRINT(.\build\Release\project.map) REMOVEUNUSED
