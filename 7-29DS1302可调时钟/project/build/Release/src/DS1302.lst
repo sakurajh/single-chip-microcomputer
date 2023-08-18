@@ -1,0 +1,706 @@
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DS1302
+OBJECT MODULE PLACED IN .\build\Release\src\DS1302.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\DS1302.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\D
+                    -S1302.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\R
+                    -elease\src\DS1302.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          
+   3          //引脚定义
+   4          sbit DS1302_SCLK=P3^6;
+   5          sbit DS1302_IO=P3^4;
+   6          sbit DS1302_CE=P3^5;
+   7          
+   8          //寄存器写入地址/指令定义
+   9          #define DS1302_SECOND 0x80
+  10          #define DS1302_MINUTE 0x82
+  11          #define DS1302_HOUR 0x84
+  12          #define DS1302_DATE 0x86
+  13          #define DS1302_MONTH 0x88
+  14          #define DS1302_DAY 0x8A
+  15          #define DS1302_YEAR 0x8C
+  16          #define DS1302_WP 0x8E
+  17          
+  18          //时间数组，索引0~6分别为年、月、日、时、分、秒、星期
+  19          unsigned char DS1302_Time[]={23,7,29,21,52,56,6};
+  20          
+  21           //DS1302初始化
+  22          void DS1302_Init(void)
+  23          {
+  24   1          DS1302_CE=0;
+  25   1          DS1302_SCLK=0;
+  26   1      }
+  27          
+  28          /**
+  29            * @brief  DS1302写一个字节
+  30            * @param  Command 命令字/地址
+  31            * @param  Data 要写入的数据
+  32            * @retval 无
+  33            */
+  34          void DS1302_WriteByte(unsigned char Command,Data)
+  35          {
+  36   1          unsigned char i;
+  37   1          DS1302_CE=1;
+  38   1      
+  39   1          for(i=0;i<8;i++)
+  40   1          {
+  41   2              DS1302_IO=Command&(0x01<<i);
+  42   2              DS1302_SCLK=1;
+  43   2              DS1302_SCLK=0;
+  44   2          }
+  45   1      
+  46   1          for(i=0;i<8;i++)
+  47   1          {
+  48   2              DS1302_IO=Data&(0x01<<i);
+  49   2              DS1302_SCLK=1;
+  50   2              DS1302_SCLK=0;
+  51   2          }
+  52   1          DS1302_CE=0;
+  53   1      
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 2   
+
+  54   1      }
+  55          /**
+  56            * @brief  DS1302读一个字节
+  57            * @param  Command 命令字/地址
+  58            * @retval 读出的数据
+  59            */
+  60          
+  61          unsigned char DS1302_ReadByte(unsigned char Command)
+  62          {
+  63   1          unsigned char i,Data=0x00;
+  64   1          Command|=0x01;
+  65   1          DS1302_CE=1;
+  66   1      
+  67   1          for(i=0;i<8;i++)
+  68   1          {
+  69   2              DS1302_IO=Command&(0x01<<i);
+  70   2              DS1302_SCLK=0;
+  71   2              DS1302_SCLK=1;
+  72   2          }
+  73   1      
+  74   1          for(i=0;i<8;i++)
+  75   1          {
+  76   2      
+  77   2              DS1302_SCLK=1;
+  78   2              DS1302_SCLK=0;
+  79   2              if(DS1302_IO){Data=Data|(0x01<<i);}
+  80   2          }
+  81   1          DS1302_IO=0;
+  82   1          DS1302_CE=0;
+  83   1          return Data;
+  84   1      }
+  85          /**
+  86            * @brief  DS1302设置时间，调用之后，DS1302_Time数组的数字会被设置到DS1302中
+  87            * @param  无
+  88            * @retval 无
+  89            */
+  90          
+  91          void DS1302_SetTime(void)
+  92          {
+  93   1          DS1302_WriteByte(DS1302_WP,0x00);
+  94   1          DS1302_WriteByte(DS1302_YEAR,DS1302_Time[0]/10*16+DS1302_Time[0]%10);
+  95   1          DS1302_WriteByte(DS1302_MONTH,DS1302_Time[1]/10*16+DS1302_Time[1]%10);
+  96   1          DS1302_WriteByte(DS1302_DATE,DS1302_Time[2]/10*16+DS1302_Time[2]%10);
+  97   1          DS1302_WriteByte(DS1302_HOUR,DS1302_Time[3]/10*16+DS1302_Time[3]%10);
+  98   1          DS1302_WriteByte(DS1302_MINUTE,DS1302_Time[4]/10*16+DS1302_Time[4]%10);
+  99   1          DS1302_WriteByte(DS1302_SECOND,DS1302_Time[5]/10*16+DS1302_Time[5]%10);
+ 100   1          DS1302_WriteByte(DS1302_DAY,DS1302_Time[6]/10*16+DS1302_Time[6]%10);
+ 101   1          DS1302_WriteByte(DS1302_WP,0x80);
+ 102   1      }   
+ 103          /**
+ 104            * @brief  DS1302读取时间，调用之后，DS1302中的数据会被读取到DS1302_Time数组中
+ 105            * @param  无
+ 106            * @retval 无
+ 107            */
+ 108          void DS1302_ReadTime(void)
+ 109          {
+ 110   1          unsigned char Temp;
+ 111   1          Temp=DS1302_ReadByte(DS1302_YEAR);
+ 112   1          DS1302_Time[0]=Temp/16*10+Temp%16;//BCD码转十进制后读取
+ 113   1          Temp=DS1302_ReadByte(DS1302_MONTH);
+ 114   1          DS1302_Time[1]=Temp/16*10+Temp%16;
+ 115   1          Temp=DS1302_ReadByte(DS1302_DATE);
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 3   
+
+ 116   1          DS1302_Time[2]=Temp/16*10+Temp%16;
+ 117   1          Temp=DS1302_ReadByte(DS1302_HOUR);
+ 118   1          DS1302_Time[3]=Temp/16*10+Temp%16;
+ 119   1          Temp=DS1302_ReadByte(DS1302_MINUTE);
+ 120   1          DS1302_Time[4]=Temp/16*10+Temp%16;
+ 121   1          Temp=DS1302_ReadByte(DS1302_SECOND);
+ 122   1          DS1302_Time[5]=Temp/16*10+Temp%16;
+ 123   1          Temp=DS1302_ReadByte(DS1302_DAY);
+ 124   1          DS1302_Time[6]=Temp/16*10+Temp%16;
+ 125   1      }
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 4   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION DS1302_Init (BEGIN)
+                                           ; SOURCE LINE # 22
+                                           ; SOURCE LINE # 23
+                                           ; SOURCE LINE # 24
+0000 C2B5              CLR     DS1302_CE
+                                           ; SOURCE LINE # 25
+0002 C2B6              CLR     DS1302_SCLK
+                                           ; SOURCE LINE # 26
+0004 22                RET     
+             ; FUNCTION DS1302_Init (END)
+
+             ; FUNCTION L?0027 (BEGIN)
+0000 25F0              ADD     A,B
+0002 FD                MOV     R5,A
+0003 EC                MOV     A,R4
+0004 3E                ADDC    A,R6
+0005 FC                MOV     R4,A
+             ; FUNCTION _DS1302_WriteByte (BEGIN)
+                                           ; SOURCE LINE # 34
+0006 8C00        R     MOV     Data,R4
+0008 8D00        R     MOV     Data+01H,R5
+;---- Variable 'Command' assigned to Register 'R3' ----
+000A AB07              MOV     R3,AR7
+                                           ; SOURCE LINE # 35
+                                           ; SOURCE LINE # 37
+000C D2B5              SETB    DS1302_CE
+                                           ; SOURCE LINE # 39
+;---- Variable 'i' assigned to Register 'R5' ----
+000E E4                CLR     A
+000F FD                MOV     R5,A
+0010         ?C0002:
+                                           ; SOURCE LINE # 40
+                                           ; SOURCE LINE # 41
+0010 7401              MOV     A,#01H
+0012 7E00              MOV     R6,#00H
+0014 A805              MOV     R0,AR5
+0016 08                INC     R0
+0017 8005              SJMP    ?C0020
+0019         ?C0019:
+0019 C3                CLR     C
+001A 33                RLC     A
+001B CE                XCH     A,R6
+001C 33                RLC     A
+001D CE                XCH     A,R6
+001E         ?C0020:
+001E D8F9              DJNZ    R0,?C0019
+0020 FF                MOV     R7,A
+0021 EB                MOV     A,R3
+0022 F582              MOV     DPL,A
+0024 EF                MOV     A,R7
+0025 5582              ANL     A,DPL
+0027 24FF              ADD     A,#0FFH
+0029 92B4              MOV     DS1302_IO,C
+                                           ; SOURCE LINE # 42
+002B D2B6              SETB    DS1302_SCLK
+                                           ; SOURCE LINE # 43
+002D C2B6              CLR     DS1302_SCLK
+                                           ; SOURCE LINE # 44
+002F 0D                INC     R5
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 5   
+
+0030 BD08DD            CJNE    R5,#08H,?C0002
+0033         ?C0003:
+                                           ; SOURCE LINE # 46
+0033 E4                CLR     A
+0034 FD                MOV     R5,A
+0035         ?C0005:
+                                           ; SOURCE LINE # 47
+                                           ; SOURCE LINE # 48
+0035 7401              MOV     A,#01H
+0037 7E00              MOV     R6,#00H
+0039 A805              MOV     R0,AR5
+003B 08                INC     R0
+003C 8005              SJMP    ?C0022
+003E         ?C0021:
+003E C3                CLR     C
+003F 33                RLC     A
+0040 CE                XCH     A,R6
+0041 33                RLC     A
+0042 CE                XCH     A,R6
+0043         ?C0022:
+0043 D8F9              DJNZ    R0,?C0021
+0045 FF                MOV     R7,A
+0046 E500        R     MOV     A,Data
+0048 5E                ANL     A,R6
+0049 FE                MOV     R6,A
+004A E500        R     MOV     A,Data+01H
+004C 5F                ANL     A,R7
+004D 4E                ORL     A,R6
+004E 24FF              ADD     A,#0FFH
+0050 92B4              MOV     DS1302_IO,C
+                                           ; SOURCE LINE # 49
+0052 D2B6              SETB    DS1302_SCLK
+                                           ; SOURCE LINE # 50
+0054 C2B6              CLR     DS1302_SCLK
+                                           ; SOURCE LINE # 51
+0056 0D                INC     R5
+0057 BD08DB            CJNE    R5,#08H,?C0005
+005A         ?C0006:
+                                           ; SOURCE LINE # 52
+005A C2B5              CLR     DS1302_CE
+                                           ; SOURCE LINE # 54
+005C 22                RET     
+             ; FUNCTION _DS1302_WriteByte (END)
+
+             ; FUNCTION _DS1302_ReadByte (BEGIN)
+                                           ; SOURCE LINE # 61
+;---- Variable 'Command' assigned to Register 'R5' ----
+0000 AD07              MOV     R5,AR7
+                                           ; SOURCE LINE # 62
+                                           ; SOURCE LINE # 63
+;---- Variable 'Data' assigned to Register 'R1' ----
+0002 E4                CLR     A
+0003 F9                MOV     R1,A
+                                           ; SOURCE LINE # 64
+0004 430501            ORL     AR5,#01H
+                                           ; SOURCE LINE # 65
+0007 D2B5              SETB    DS1302_CE
+                                           ; SOURCE LINE # 67
+;---- Variable 'i' assigned to Register 'R3' ----
+0009 FB                MOV     R3,A
+000A         ?C0009:
+                                           ; SOURCE LINE # 68
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 6   
+
+                                           ; SOURCE LINE # 69
+000A 7401              MOV     A,#01H
+000C 7E00              MOV     R6,#00H
+000E A803              MOV     R0,AR3
+0010 08                INC     R0
+0011 8005              SJMP    ?C0024
+0013         ?C0023:
+0013 C3                CLR     C
+0014 33                RLC     A
+0015 CE                XCH     A,R6
+0016 33                RLC     A
+0017 CE                XCH     A,R6
+0018         ?C0024:
+0018 D8F9              DJNZ    R0,?C0023
+001A FF                MOV     R7,A
+001B ED                MOV     A,R5
+001C F582              MOV     DPL,A
+001E EF                MOV     A,R7
+001F 5582              ANL     A,DPL
+0021 24FF              ADD     A,#0FFH
+0023 92B4              MOV     DS1302_IO,C
+                                           ; SOURCE LINE # 70
+0025 C2B6              CLR     DS1302_SCLK
+                                           ; SOURCE LINE # 71
+0027 D2B6              SETB    DS1302_SCLK
+                                           ; SOURCE LINE # 72
+0029 0B                INC     R3
+002A BB08DD            CJNE    R3,#08H,?C0009
+002D         ?C0010:
+                                           ; SOURCE LINE # 74
+002D E4                CLR     A
+002E FB                MOV     R3,A
+002F         ?C0012:
+                                           ; SOURCE LINE # 75
+                                           ; SOURCE LINE # 77
+002F D2B6              SETB    DS1302_SCLK
+                                           ; SOURCE LINE # 78
+0031 C2B6              CLR     DS1302_SCLK
+                                           ; SOURCE LINE # 79
+0033 30B40D            JNB     DS1302_IO,?C0014
+0036 7401              MOV     A,#01H
+0038 A803              MOV     R0,AR3
+003A 08                INC     R0
+003B 8002              SJMP    ?C0026
+003D         ?C0025:
+003D C3                CLR     C
+003E 33                RLC     A
+003F         ?C0026:
+003F D8FC              DJNZ    R0,?C0025
+0041 4201              ORL     AR1,A
+                                           ; SOURCE LINE # 80
+0043         ?C0014:
+0043 0B                INC     R3
+0044 BB08E8            CJNE    R3,#08H,?C0012
+0047         ?C0013:
+                                           ; SOURCE LINE # 81
+0047 C2B4              CLR     DS1302_IO
+                                           ; SOURCE LINE # 82
+0049 C2B5              CLR     DS1302_CE
+                                           ; SOURCE LINE # 83
+004B AF01              MOV     R7,AR1
+                                           ; SOURCE LINE # 84
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 7   
+
+004D         ?C0016:
+004D 22                RET     
+             ; FUNCTION _DS1302_ReadByte (END)
+
+             ; FUNCTION DS1302_SetTime (BEGIN)
+                                           ; SOURCE LINE # 91
+                                           ; SOURCE LINE # 92
+                                           ; SOURCE LINE # 93
+0000 E4                CLR     A
+0001 FD                MOV     R5,A
+0002 FC                MOV     R4,A
+0003 7F8E              MOV     R7,#08EH
+0005 120000      R     LCALL   _DS1302_WriteByte
+                                           ; SOURCE LINE # 94
+0008 E500        R     MOV     A,DS1302_Time
+000A 75F00A            MOV     B,#0AH
+000D 84                DIV     AB
+000E 75F010            MOV     B,#010H
+0011 A4                MUL     AB
+0012 FF                MOV     R7,A
+0013 AEF0              MOV     R6,B
+0015 E500        R     MOV     A,DS1302_Time
+0017 75F00A            MOV     B,#0AH
+001A 84                DIV     AB
+001B EF                MOV     A,R7
+001C 7F8C              MOV     R7,#08CH
+001E 120000      R     LCALL   L?0027
+                                           ; SOURCE LINE # 95
+0021 E500        R     MOV     A,DS1302_Time+01H
+0023 75F00A            MOV     B,#0AH
+0026 84                DIV     AB
+0027 75F010            MOV     B,#010H
+002A A4                MUL     AB
+002B FF                MOV     R7,A
+002C AEF0              MOV     R6,B
+002E E500        R     MOV     A,DS1302_Time+01H
+0030 75F00A            MOV     B,#0AH
+0033 84                DIV     AB
+0034 7C00              MOV     R4,#00H
+0036 EF                MOV     A,R7
+0037 7F88              MOV     R7,#088H
+0039 120000      R     LCALL   L?0027
+                                           ; SOURCE LINE # 96
+003C E500        R     MOV     A,DS1302_Time+02H
+003E 75F00A            MOV     B,#0AH
+0041 84                DIV     AB
+0042 75F010            MOV     B,#010H
+0045 A4                MUL     AB
+0046 FF                MOV     R7,A
+0047 AEF0              MOV     R6,B
+0049 E500        R     MOV     A,DS1302_Time+02H
+004B 75F00A            MOV     B,#0AH
+004E 84                DIV     AB
+004F 7C00              MOV     R4,#00H
+0051 EF                MOV     A,R7
+0052 25F0              ADD     A,B
+0054 FD                MOV     R5,A
+0055 EC                MOV     A,R4
+0056 3E                ADDC    A,R6
+0057 FC                MOV     R4,A
+0058 7F86              MOV     R7,#086H
+005A 120000      R     LCALL   _DS1302_WriteByte
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 8   
+
+                                           ; SOURCE LINE # 97
+005D E500        R     MOV     A,DS1302_Time+03H
+005F 75F00A            MOV     B,#0AH
+0062 84                DIV     AB
+0063 75F010            MOV     B,#010H
+0066 A4                MUL     AB
+0067 FF                MOV     R7,A
+0068 AEF0              MOV     R6,B
+006A E500        R     MOV     A,DS1302_Time+03H
+006C 75F00A            MOV     B,#0AH
+006F 84                DIV     AB
+0070 7C00              MOV     R4,#00H
+0072 EF                MOV     A,R7
+0073 25F0              ADD     A,B
+0075 FD                MOV     R5,A
+0076 EC                MOV     A,R4
+0077 3E                ADDC    A,R6
+0078 FC                MOV     R4,A
+0079 7F84              MOV     R7,#084H
+007B 120000      R     LCALL   _DS1302_WriteByte
+                                           ; SOURCE LINE # 98
+007E E500        R     MOV     A,DS1302_Time+04H
+0080 75F00A            MOV     B,#0AH
+0083 84                DIV     AB
+0084 75F010            MOV     B,#010H
+0087 A4                MUL     AB
+0088 FF                MOV     R7,A
+0089 AEF0              MOV     R6,B
+008B E500        R     MOV     A,DS1302_Time+04H
+008D 75F00A            MOV     B,#0AH
+0090 84                DIV     AB
+0091 7C00              MOV     R4,#00H
+0093 EF                MOV     A,R7
+0094 25F0              ADD     A,B
+0096 FD                MOV     R5,A
+0097 EC                MOV     A,R4
+0098 3E                ADDC    A,R6
+0099 FC                MOV     R4,A
+009A 7F82              MOV     R7,#082H
+009C 120000      R     LCALL   _DS1302_WriteByte
+                                           ; SOURCE LINE # 99
+009F E500        R     MOV     A,DS1302_Time+05H
+00A1 75F00A            MOV     B,#0AH
+00A4 84                DIV     AB
+00A5 75F010            MOV     B,#010H
+00A8 A4                MUL     AB
+00A9 FF                MOV     R7,A
+00AA AEF0              MOV     R6,B
+00AC E500        R     MOV     A,DS1302_Time+05H
+00AE 75F00A            MOV     B,#0AH
+00B1 84                DIV     AB
+00B2 7C00              MOV     R4,#00H
+00B4 EF                MOV     A,R7
+00B5 25F0              ADD     A,B
+00B7 FD                MOV     R5,A
+00B8 EC                MOV     A,R4
+00B9 3E                ADDC    A,R6
+00BA FC                MOV     R4,A
+00BB 7F80              MOV     R7,#080H
+00BD 120000      R     LCALL   _DS1302_WriteByte
+                                           ; SOURCE LINE # 100
+00C0 E500        R     MOV     A,DS1302_Time+06H
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 9   
+
+00C2 75F00A            MOV     B,#0AH
+00C5 84                DIV     AB
+00C6 75F010            MOV     B,#010H
+00C9 A4                MUL     AB
+00CA FF                MOV     R7,A
+00CB AEF0              MOV     R6,B
+00CD E500        R     MOV     A,DS1302_Time+06H
+00CF 75F00A            MOV     B,#0AH
+00D2 84                DIV     AB
+00D3 7C00              MOV     R4,#00H
+00D5 EF                MOV     A,R7
+00D6 25F0              ADD     A,B
+00D8 FD                MOV     R5,A
+00D9 EC                MOV     A,R4
+00DA 3E                ADDC    A,R6
+00DB FC                MOV     R4,A
+00DC 7F8A              MOV     R7,#08AH
+00DE 120000      R     LCALL   _DS1302_WriteByte
+                                           ; SOURCE LINE # 101
+00E1 7D80              MOV     R5,#080H
+00E3 7C00              MOV     R4,#00H
+00E5 7F8E              MOV     R7,#08EH
+00E7 020000      R     LJMP    _DS1302_WriteByte
+             ; FUNCTION DS1302_SetTime (END)
+
+             ; FUNCTION DS1302_ReadTime (BEGIN)
+                                           ; SOURCE LINE # 108
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 111
+0000 7F8C              MOV     R7,#08CH
+0002 120000      R     LCALL   _DS1302_ReadByte
+;---- Variable 'Temp' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 112
+0005 EF                MOV     A,R7
+0006 C4                SWAP    A
+0007 540F              ANL     A,#0FH
+0009 75F00A            MOV     B,#0AH
+000C A4                MUL     AB
+000D FE                MOV     R6,A
+000E EF                MOV     A,R7
+000F 540F              ANL     A,#0FH
+0011 2E                ADD     A,R6
+0012 F500        R     MOV     DS1302_Time,A
+                                           ; SOURCE LINE # 113
+0014 7F88              MOV     R7,#088H
+0016 120000      R     LCALL   _DS1302_ReadByte
+                                           ; SOURCE LINE # 114
+0019 EF                MOV     A,R7
+001A C4                SWAP    A
+001B 540F              ANL     A,#0FH
+001D 75F00A            MOV     B,#0AH
+0020 A4                MUL     AB
+0021 FE                MOV     R6,A
+0022 EF                MOV     A,R7
+0023 540F              ANL     A,#0FH
+0025 2E                ADD     A,R6
+0026 F500        R     MOV     DS1302_Time+01H,A
+                                           ; SOURCE LINE # 115
+0028 7F86              MOV     R7,#086H
+002A 120000      R     LCALL   _DS1302_ReadByte
+                                           ; SOURCE LINE # 116
+002D EF                MOV     A,R7
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 10  
+
+002E C4                SWAP    A
+002F 540F              ANL     A,#0FH
+0031 75F00A            MOV     B,#0AH
+0034 A4                MUL     AB
+0035 FE                MOV     R6,A
+0036 EF                MOV     A,R7
+0037 540F              ANL     A,#0FH
+0039 2E                ADD     A,R6
+003A F500        R     MOV     DS1302_Time+02H,A
+                                           ; SOURCE LINE # 117
+003C 7F84              MOV     R7,#084H
+003E 120000      R     LCALL   _DS1302_ReadByte
+                                           ; SOURCE LINE # 118
+0041 EF                MOV     A,R7
+0042 C4                SWAP    A
+0043 540F              ANL     A,#0FH
+0045 75F00A            MOV     B,#0AH
+0048 A4                MUL     AB
+0049 FE                MOV     R6,A
+004A EF                MOV     A,R7
+004B 540F              ANL     A,#0FH
+004D 2E                ADD     A,R6
+004E F500        R     MOV     DS1302_Time+03H,A
+                                           ; SOURCE LINE # 119
+0050 7F82              MOV     R7,#082H
+0052 120000      R     LCALL   _DS1302_ReadByte
+                                           ; SOURCE LINE # 120
+0055 EF                MOV     A,R7
+0056 C4                SWAP    A
+0057 540F              ANL     A,#0FH
+0059 75F00A            MOV     B,#0AH
+005C A4                MUL     AB
+005D FE                MOV     R6,A
+005E EF                MOV     A,R7
+005F 540F              ANL     A,#0FH
+0061 2E                ADD     A,R6
+0062 F500        R     MOV     DS1302_Time+04H,A
+                                           ; SOURCE LINE # 121
+0064 7F80              MOV     R7,#080H
+0066 120000      R     LCALL   _DS1302_ReadByte
+                                           ; SOURCE LINE # 122
+0069 EF                MOV     A,R7
+006A C4                SWAP    A
+006B 540F              ANL     A,#0FH
+006D 75F00A            MOV     B,#0AH
+0070 A4                MUL     AB
+0071 FE                MOV     R6,A
+0072 EF                MOV     A,R7
+0073 540F              ANL     A,#0FH
+0075 2E                ADD     A,R6
+0076 F500        R     MOV     DS1302_Time+05H,A
+                                           ; SOURCE LINE # 123
+0078 7F8A              MOV     R7,#08AH
+007A 120000      R     LCALL   _DS1302_ReadByte
+                                           ; SOURCE LINE # 124
+007D EF                MOV     A,R7
+007E C4                SWAP    A
+007F 540F              ANL     A,#0FH
+0081 75F00A            MOV     B,#0AH
+0084 A4                MUL     AB
+0085 FE                MOV     R6,A
+0086 EF                MOV     A,R7
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 11  
+
+0087 540F              ANL     A,#0FH
+0089 2E                ADD     A,R6
+008A F500        R     MOV     DS1302_Time+06H,A
+                                           ; SOURCE LINE # 125
+008C 22                RET     
+             ; FUNCTION DS1302_ReadTime (END)
+
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 12  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+DS1302_SetTime . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+DS1302_CE. . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+DS1302_ReadTime. . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Temp . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+DS1302_Time. . . . . . . . . . . . . .  PUBLIC   DATA   ARRAY    0000H  7
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+_DS1302_ReadByte . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Command. . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0003H  1
+  Data . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0001H  1
+C51 COMPILER V9.54   DS1302                                                                07/29/2023 23:24:57 PAGE 13  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+DS1302_Init. . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+DS1302_IO. . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+_DS1302_WriteByte. . . . . . . . . . .  PUBLIC   CODE   PROC     0006H  -----
+  Command. . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0003H  1
+  Data . . . . . . . . . . . . . . . .  AUTO     DATA   INT      0000H  2
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+DS1302_SCLK. . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    551    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      7       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,59 @@
+[2023-07-29 22:41:06]	[done]
+	build successfully !
+
+[2023-07-29 22:45:55]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-29DS1302可调时钟\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C206 IN LINE 30 OF .\SRC\MAIN.C: 'IF': missing function-prototype
+*** ERROR C267 IN LINE 30 OF .\SRC\MAIN.C: 'IF': requires ANSI-style prototype
+*** ERROR C141 IN LINE 31 OF .\SRC\MAIN.C: syntax error near '{'
+*** ERROR C187 IN LINE 32 OF .\SRC\MAIN.C: not an lvalue
+*** ERROR C187 IN LINE 36 OF .\SRC\MAIN.C: not an lvalue
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  4 ERROR(S)
+
+[2023-07-29 22:46:56]	[done]
+	build successfully !
+
+[2023-07-29 22:53:39]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\7-29DS1302可调时钟\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 26 OF .\SRC\MAIN.C: syntax error near '='
+*** ERROR C141 IN LINE 27 OF .\SRC\MAIN.C: syntax error near ')'
+*** ERROR C141 IN LINE 31 OF .\SRC\MAIN.C: syntax error near 'else'
+*** ERROR C187 IN LINE 56 OF .\SRC\MAIN.C: not an lvalue
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)
+
+[2023-07-29 22:54:29]	[done]
+	build successfully !
+
+[2023-07-29 22:59:43]	[done]
+	build successfully !
+
+[2023-07-29 23:11:45]	[done]
+	build successfully !
+
+[2023-07-29 23:13:38]	[done]
+	build successfully !
+
+[2023-07-29 23:15:57]	[done]
+	build successfully !
+
+[2023-07-29 23:17:39]	[done]
+	build successfully !
+
+[2023-07-29 23:20:49]	[done]
+	build successfully !
+
+[2023-07-29 23:24:57]	[done]
+	build successfully !
+

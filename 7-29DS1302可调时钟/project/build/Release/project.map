@@ -1,0 +1,419 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          07/29/2023  23:24:57  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\DS1302.O, .\BUILD\RELEASE\SRC\DELAY.O, .\BUILD\RELEASE\SRC\KEY.O, .\BUILD\R
+>> ELEASE\SRC\LCD1602.O, .\BUILD\RELEASE\SRC\TIMER0.O, .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\PROJECT PRINT (.\bu
+>> ild\Release\project.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\DS1302.O (DS1302)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\DELAY.O (DELAY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\KEY.O (KEY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\LCD1602.O (LCD1602)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\TIMER0.O (TIMER0)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?SCDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?IMUL)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\PROJECT (DS1302)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   00089EH   CODE
+I:000000H   I:000000H   I:00007FH   00001EH   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\PROJECT (DS1302)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000010H   000009H   BYTE   UNIT     DATA           _DATA_GROUP_
+000011H   000017H   000007H   BYTE   UNIT     DATA           ?DT?DS1302
+000018H   00001DH   000006H   BYTE   UNIT     DATA           ?DT?MAIN
+00001EH   00001EH   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000007H   000005H   BYTE   UNIT     CODE           ?PR?DS1302_INIT?DS1302
+000008H   00000AH   000003H   ---    ---      **GAP**
+00000BH   00000DH   000003H   BYTE   OFFS..   CODE           ?MAIN?0000B
+00000EH   0002DCH   0002CFH   BYTE   UNIT     CODE           ?PR?TIMERSET?MAIN
+0002DDH   0003C6H   0000EAH   BYTE   UNIT     CODE           ?PR?DS1302_SETTIME?DS1302
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/29/2023  23:24:57  PAGE 2
+
+
+0003C7H   00047CH   0000B6H   BYTE   UNIT     CODE           ?C?LIB_CODE
+00047DH   000509H   00008DH   BYTE   UNIT     CODE           ?PR?DS1302_READTIME?DS1302
+00050AH   000595H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+000596H   0005FEH   000069H   BYTE   UNIT     CODE           ?PR?TIMERSHOW?MAIN
+0005FFH   00065FH   000061H   BYTE   UNIT     CODE           ?PR?KEY?KEY
+000660H   0006BCH   00005DH   BYTE   UNIT     CODE           ?PR?_DS1302_WRITEBYTE?DS1302
+0006BDH   000711H   000055H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000712H   00075FH   00004EH   BYTE   UNIT     CODE           ?PR?_DS1302_READBYTE?DS1302
+000760H   000798H   000039H   BYTE   UNIT     CODE           ?PR?TIMER0_ROUTINE?MAIN
+000799H   0007CBH   000033H   BYTE   UNIT     CODE           ?PR?_LCD_POW?LCD1602
+0007CCH   0007EEH   000023H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWSTRING?LCD1602
+0007EFH   00080CH   00001EH   BYTE   UNIT     CODE           ?PR?_LCD_WRITEDATA?LCD1602
+00080DH   000829H   00001DH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWNUM?LCD1602
+00082AH   00083FH   000016H   BYTE   UNIT     CODE           ?PR?_LCD_SETCURSOR?LCD1602
+000840H   000854H   000015H   BYTE   UNIT     CODE           ?PR?_DELAY?DELAY
+000855H   000869H   000015H   BYTE   UNIT     CODE           ?CO?MAIN
+00086AH   00087DH   000014H   BYTE   UNIT     CODE           ?PR?LCD_INIT?LCD1602
+00087EH   00088CH   00000FH   BYTE   UNIT     CODE           ?PR?LCD_DELAY?LCD1602
+00088DH   000896H   00000AH   BYTE   UNIT     CODE           ?C_INITSEG
+000897H   0008A0H   00000AH   BYTE   UNIT     CODE           ?PR?_LCD_WRITECOMMAND?LCD1602
+
+* * * * * * * * *   R E M O V E D     S E G M E N T S   * * * * * * * *
+   *DEL*:           00000AH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWCHAR?LCD1602
+   *DEL*:           00003AH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWSIGNEDNUM?LCD1602
+   *DEL*:           000007H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWSIGNEDNUM?LCD1602
+   *DEL*:           000039H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWHEXNUM?LCD1602
+   *DEL*:           000005H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWHEXNUM?LCD1602
+   *DEL*:           000038H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWBINNUM?LCD1602
+   *DEL*:           000005H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWBINNUM?LCD1602
+   *DEL*:           000017H   BYTE   UNIT     CODE           ?PR?TIMER0_INIT?TIMER0
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\PROJECT (DS1302)
+
+
+FUNCTION/MODULE                  BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE      START  STOP  START  STOP
+========================================================
+TIMER0_ROUTINE/MAIN             ----- -----  ----- -----
+
+*** NEW ROOT ******************
+
+?C_C51STARTUP                   ----- -----  ----- -----
+  +--> MAIN/MAIN
+  +--> ?C_INITSEG
+
+MAIN/MAIN                       ----- -----  ----- -----
+  +--> LCD_INIT/LCD1602
+  +--> DS1302_INIT/DS1302
+  +--> ?CO?MAIN
+  +--> _LCD_SHOWSTRING/LCD1602
+  +--> DS1302_SETTIME/DS1302
+  +--> KEY/KEY
+  +--> DS1302_READTIME/DS1302
+  +--> TIMERSHOW/MAIN
+  +--> TIMERSET/MAIN
+
+LCD_INIT/LCD1602                ----- -----  ----- -----
+  +--> _LCD_WRITECOMMAND/LCD1602
+
+_LCD_WRITECOMMAND/LCD1602       ----- -----  ----- -----
+  +--> LCD_DELAY/LCD1602
+
+LCD_DELAY/LCD1602               ----- -----  ----- -----
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/29/2023  23:24:57  PAGE 3
+
+
+
+DS1302_INIT/DS1302              ----- -----  ----- -----
+
+?CO?MAIN                        ----- -----  ----- -----
+
+_LCD_SHOWSTRING/LCD1602         ----- -----  0008H 000AH
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_LCD_SETCURSOR/LCD1602          ----- -----  ----- -----
+  +--> _LCD_WRITECOMMAND/LCD1602
+
+_LCD_WRITEDATA/LCD1602          ----- -----  ----- -----
+  +--> LCD_DELAY/LCD1602
+
+DS1302_SETTIME/DS1302           ----- -----  ----- -----
+  +--> _DS1302_WRITEBYTE/DS1302
+
+_DS1302_WRITEBYTE/DS1302        ----- -----  0008H 0009H
+
+KEY/KEY                         ----- -----  0008H 0008H
+  +--> _DELAY/DELAY
+
+_DELAY/DELAY                    ----- -----  ----- -----
+
+DS1302_READTIME/DS1302          ----- -----  ----- -----
+  +--> _DS1302_READBYTE/DS1302
+
+_DS1302_READBYTE/DS1302         ----- -----  ----- -----
+
+TIMERSHOW/MAIN                  ----- -----  ----- -----
+  +--> DS1302_READTIME/DS1302
+  +--> _LCD_SHOWNUM/LCD1602
+
+_LCD_SHOWNUM/LCD1602            ----- -----  0008H 000CH
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_POW/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_LCD_POW/LCD1602                ----- -----  000DH 0010H
+
+TIMERSET/MAIN                   ----- -----  ----- -----
+  +--> ?CO?MAIN
+  +--> _LCD_SHOWSTRING/LCD1602
+  +--> _LCD_SHOWNUM/LCD1602
+
+?C_INITSEG                      ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\PROJECT (DS1302)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowBinNum?BYTE
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowHexNum?BYTE
+      00000008H   DATA     BYTE      ?_LCD_ShowNum?BYTE
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowSignedNum?BYTE
+      010003E9H   CODE     ---       ?C?CLDOPTR
+      00000000H   NUMBER   ---       ?C?CODESEG
+      01000416H   CODE     ---       ?C?IMUL
+      010003C7H   CODE     ---       ?C?SCDIV
+      01000428H   CODE     ---       ?C?UIDIV
+      00000000H   NUMBER   ---       ?C?XDATASEG
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/29/2023  23:24:57  PAGE 4
+
+
+      01000551H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000840H   CODE     ---       _Delay
+      01000712H   CODE     ---       _DS1302_ReadByte
+      01000666H   CODE     ---       _DS1302_WriteByte
+      010007A5H   CODE     ---       _LCD_Pow
+      0100082AH   CODE     ---       _LCD_SetCursor
+*DEL*:00000000H   CODE     ---       _LCD_ShowBinNum
+*DEL*:00000000H   CODE     ---       _LCD_ShowChar
+*DEL*:00000000H   CODE     ---       _LCD_ShowHexNum
+      0100080DH   CODE     ---       _LCD_ShowNum
+*DEL*:00000000H   CODE     ---       _LCD_ShowSignedNum
+      010007CCH   CODE     ---       _LCD_ShowString
+      01000897H   CODE     ---       _LCD_WriteCommand
+      01000803H   CODE     ---       _LCD_WriteData
+      01000003H   CODE     ---       DS1302_Init
+      0100047DH   CODE     ---       DS1302_ReadTime
+      010002DDH   CODE     ---       DS1302_SetTime
+      00000011H   DATA     ---       DS1302_Time
+      010005FFH   CODE     ---       Key
+      0000001DH   DATA     BYTE      KeyNum
+      01000884H   CODE     ---       LCD_Delay
+      0100086AH   CODE     ---       LCD_Init
+      010006BDH   CODE     ---       main
+      0000001BH   DATA     BYTE      MODE
+*DEL*:00000000H   CODE     ---       Timer0_Init
+      01000760H   CODE     ---       Timer0_Routine
+      0100000EH   CODE     ---       TimerSet
+      01000596H   CODE     ---       TimerShow
+      0000001CH   DATA     BYTE      TimeSetFlashFlag
+      0000001AH   DATA     BYTE      TimeSetSelect
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\PROJECT (DS1302)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       DS1302
+      00000011H   PUBLIC    DATA     ---       DS1302_Time
+      0100047DH   PUBLIC    CODE     ---       DS1302_ReadTime
+      010002DDH   PUBLIC    CODE     ---       DS1302_SetTime
+      01000712H   PUBLIC    CODE     ---       _DS1302_ReadByte
+      01000666H   PUBLIC    CODE     ---       _DS1302_WriteByte
+      01000003H   PUBLIC    CODE     ---       DS1302_Init
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000660H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000666H   BLOCK     CODE     ---       LVL=0
+      0100066CH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000712H   BLOCK     CODE     ---       LVL=0
+      01000714H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      i
+      00000001H   SYMBOL    DATA     VOID      Data
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/29/2023  23:24:57  PAGE 5
+
+
+      010002DDH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100047DH   BLOCK     CODE     ---       LVL=0
+      0100047DH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      Temp
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       DELAY
+      01000840H   PUBLIC    CODE     ---       _Delay
+
+      01000840H   BLOCK     CODE     ---       LVL=0
+      01000840H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      00000004H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       KEY
+      010005FFH   PUBLIC    CODE     ---       Key
+
+      010005FFH   BLOCK     CODE     ---       LVL=0
+      010005FFH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000008H   SYMBOL    DATA     VOID      KeyNumer
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       LCD1602
+      00000008H   PUBLIC    DATA     BYTE      ?_LCD_ShowNum?BYTE
+      0100080DH   PUBLIC    CODE     ---       _LCD_ShowNum
+      010007A5H   PUBLIC    CODE     ---       _LCD_Pow
+      010007CCH   PUBLIC    CODE     ---       _LCD_ShowString
+      0100086AH   PUBLIC    CODE     ---       LCD_Init
+      0100082AH   PUBLIC    CODE     ---       _LCD_SetCursor
+      01000803H   PUBLIC    CODE     ---       _LCD_WriteData
+      01000897H   PUBLIC    CODE     ---       _LCD_WriteCommand
+      01000884H   PUBLIC    CODE     ---       LCD_Delay
+
+      0100087EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000884H   BLOCK     CODE     ---       LVL=0
+      01000884H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000897H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010007EFH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000803H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100082AH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100086AH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010007CCH   BLOCK     CODE     ---       LVL=0
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/29/2023  23:24:57  PAGE 6
+
+
+      010007D2H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000799H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010007A5H   BLOCK     CODE     ---       LVL=0
+      010007ADH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      Result
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100080DH   BLOCK     CODE     ---       LVL=0
+      01000811H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000002H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+      00000002H   SYMBOL    DATA     VOID      i
+      00000002H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      SingleNumber
+      00000002H   SYMBOL    DATA     VOID      i
+
+      ---         MODULE    ---      ---       TIMER0
+
+      ---         MODULE    ---      ---       MAIN
+      0000001DH   PUBLIC    DATA     BYTE      KeyNum
+      0000001CH   PUBLIC    DATA     BYTE      TimeSetFlashFlag
+      0000001BH   PUBLIC    DATA     BYTE      MODE
+      0000001AH   PUBLIC    DATA     BYTE      TimeSetSelect
+      01000760H   PUBLIC    CODE     ---       Timer0_Routine
+      010006BDH   PUBLIC    CODE     ---       main
+      0100000EH   PUBLIC    CODE     ---       TimerSet
+      01000596H   PUBLIC    CODE     ---       TimerShow
+
+      01000596H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100000EH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010006BDH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000760H   BLOCK     CODE     ---       LVL=0
+      01000769H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000018H   SYMBOL    DATA     VOID      T0Count
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C?SCDIV
+      010003C7H   PUBLIC    CODE     ---       ?C?SCDIV
+
+      ---         MODULE    ---      ---       ?C?CLDOPTR
+      010003E9H   PUBLIC    CODE     ---       ?C?CLDOPTR
+
+      ---         MODULE    ---      ---       ?C?IMUL
+      01000416H   PUBLIC    CODE     ---       ?C?IMUL
+
+      ---         MODULE    ---      ---       ?C?UIDIV
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/29/2023  23:24:57  PAGE 7
+
+
+      01000428H   PUBLIC    CODE     ---       ?C?UIDIV
+
+      ---         MODULE    ---      ---       ?C_INIT
+      01000551H   PUBLIC    CODE     ---       ?C_START
+
+Program Size: data=31.0 xdata=0 const=0 code=2206
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

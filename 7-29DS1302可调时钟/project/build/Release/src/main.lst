@@ -1,0 +1,960 @@
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          #include"LCD1602.h"
+   3          #include"DS1302.h"
+   4          #include"Delay.h"
+   5          #include"Key.h"
+   6          #include"Timer0.h"
+   7          
+   8          sbit P2_0=P2^0;
+   9          
+  10          unsigned char KeyNum,MODE,TimeSetSelect,TimeSetFlashFlag;
+  11          
+  12          
+  13          void TimerShow(void)
+  14          {
+  15   1              DS1302_ReadTime();//读取时间
+  16   1              LCD_ShowNum(1,1,DS1302_Time[0],2);//显示年
+  17   1              LCD_ShowNum(1,4,DS1302_Time[1],2);//显示月
+  18   1              LCD_ShowNum(1,7,DS1302_Time[2],2);//显示日
+  19   1              LCD_ShowNum(2,1,DS1302_Time[3],2);//显示时
+  20   1              LCD_ShowNum(2,4,DS1302_Time[4],2);//显示分
+  21   1              LCD_ShowNum(2,7,DS1302_Time[5],2);//显示秒
+  22   1              
+  23   1      }
+  24          void TimerSet(void)
+  25          {
+  26   1          if(KeyNum==2)//按键2按下
+  27   1          {
+  28   2              TimeSetSelect++;//设置选择位加1
+  29   2              TimeSetSelect%=6;//越界清零
+  30   2          }
+  31   1          if(KeyNum==3)//按键3按下
+  32   1          {
+  33   2              DS1302_Time[TimeSetSelect]++;//时间设置位数值加1
+  34   2              if(DS1302_Time[0]>99){DS1302_Time[0]=0;}//年越界判断
+  35   2              if(DS1302_Time[1]>12){DS1302_Time[1]=1;}//月越界判断
+  36   2              if( DS1302_Time[1]==1 || DS1302_Time[1]==3 || DS1302_Time[1]==5 || DS1302_Time[1]==7 || 
+  37   2                  DS1302_Time[1]==8 || DS1302_Time[1]==10 || DS1302_Time[1]==12)//日越界判断
+  38   2              {
+  39   3                  if(DS1302_Time[2]>31){DS1302_Time[2]=1;}//大月
+  40   3              }
+  41   2              else if(DS1302_Time[1]==4 || DS1302_Time[1]==6 || DS1302_Time[1]==9 || DS1302_Time[1]==11)
+  42   2              {
+  43   3                  if(DS1302_Time[2]>30){DS1302_Time[2]=1;}//小月
+  44   3              }
+  45   2              else if(DS1302_Time[1]==2)
+  46   2              {
+  47   3                  if(DS1302_Time[0]%4==0)
+  48   3                  {
+  49   4                      if(DS1302_Time[2]>29){DS1302_Time[2]=1;}//闰年2月
+  50   4                  }
+  51   3                  else
+  52   3                  {
+  53   4                      if(DS1302_Time[2]>28){DS1302_Time[2]=1;}//平年2月
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 2   
+
+  54   4                  }
+  55   3              }
+  56   2              if(DS1302_Time[3]>23){DS1302_Time[3]=0;}//时越界判断
+  57   2              if(DS1302_Time[4]>59){DS1302_Time[4]=0;}//分越界判断
+  58   2              if(DS1302_Time[5]>59){DS1302_Time[5]=0;}//秒越界判断
+  59   2          }
+  60   1          if(KeyNum==4)//按键3按下
+  61   1          {
+  62   2              DS1302_Time[TimeSetSelect]--;//时间设置位数值减1
+  63   2              if(DS1302_Time[0]<0){DS1302_Time[0]=99;}//年越界判断
+  64   2              if(DS1302_Time[1]<1){DS1302_Time[1]=12;}//月越界判断
+  65   2              if( DS1302_Time[1]==1 || DS1302_Time[1]==3 || DS1302_Time[1]==5 || DS1302_Time[1]==7 || 
+  66   2                  DS1302_Time[1]==8 || DS1302_Time[1]==10 || DS1302_Time[1]==12)//日越界判断
+  67   2              {
+  68   3                  if(DS1302_Time[2]<1){DS1302_Time[2]=31;}//大月
+  69   3                  if(DS1302_Time[2]>31){DS1302_Time[2]=1;}
+  70   3              }
+  71   2              else if(DS1302_Time[1]==4 || DS1302_Time[1]==6 || DS1302_Time[1]==9 || DS1302_Time[1]==11)
+  72   2              {
+  73   3                  if(DS1302_Time[2]<1){DS1302_Time[2]=30;}//小月
+  74   3                  if(DS1302_Time[2]>30){DS1302_Time[2]=1;}
+  75   3              }
+  76   2              else if(DS1302_Time[1]==2)
+  77   2              {
+  78   3                  if(DS1302_Time[0]%4==0)
+  79   3                  {
+  80   4                      if(DS1302_Time[2]<1){DS1302_Time[2]=29;}//闰年2月
+  81   4                      if(DS1302_Time[2]>29){DS1302_Time[2]=1;}
+  82   4                  }
+  83   3                  else
+  84   3                  {
+  85   4                      if(DS1302_Time[2]<1){DS1302_Time[2]=28;}//平年2月
+  86   4                      if(DS1302_Time[2]>28){DS1302_Time[2]=1;}
+  87   4                  }
+  88   3              }
+  89   2              if(DS1302_Time[3]<0){DS1302_Time[3]=23;}//时越界判断
+  90   2              if(DS1302_Time[4]<0){DS1302_Time[4]=59;}//分越界判断
+  91   2              if(DS1302_Time[5]<0){DS1302_Time[5]=59;}//秒越界判断
+  92   2          }
+  93   1          //更新显示，根据TimeSetSelect和TimeSetFlashFlag判断可完成闪烁功能
+  94   1          if(TimeSetSelect==0 && TimeSetFlashFlag==1){LCD_ShowString(1,1,"  ");}
+  95   1          else {LCD_ShowNum(1,1,DS1302_Time[0],2);}
+  96   1          if(TimeSetSelect==1 && TimeSetFlashFlag==1){LCD_ShowString(1,4,"  ");}
+  97   1          else {LCD_ShowNum(1,4,DS1302_Time[1],2);}
+  98   1          if(TimeSetSelect==2 && TimeSetFlashFlag==1){LCD_ShowString(1,7,"  ");}
+  99   1          else {LCD_ShowNum(1,7,DS1302_Time[2],2);}
+ 100   1          if(TimeSetSelect==3 && TimeSetFlashFlag==1){LCD_ShowString(2,1,"  ");}
+ 101   1          else {LCD_ShowNum(2,1,DS1302_Time[3],2);}
+ 102   1          if(TimeSetSelect==4 && TimeSetFlashFlag==1){LCD_ShowString(2,4,"  ");}
+ 103   1          else {LCD_ShowNum(2,4,DS1302_Time[4],2);}
+ 104   1          if(TimeSetSelect==5 && TimeSetFlashFlag==1){LCD_ShowString(2,7,"  ");}
+ 105   1          else {LCD_ShowNum(2,7,DS1302_Time[5],2);}
+ 106   1      
+ 107   1      }
+ 108          
+ 109          void main()
+ 110          {
+ 111   1          LCD_Init();
+ 112   1          DS1302_Init();
+ 113   1      
+ 114   1          LCD_ShowString(1,1,"  -  -  ");//静态字符初始化显示
+ 115   1          LCD_ShowString(2,1,"  :  :  ");
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 3   
+
+ 116   1      
+ 117   1          DS1302_SetTime();//设置时间
+ 118   1      
+ 119   1          while(1)
+ 120   1          {
+ 121   2              KeyNum=Key();
+ 122   2              if(KeyNum==1)
+ 123   2              {
+ 124   3                  if(MODE==0){MODE=1;TimeSetSelect=0;}
+ 125   3                  else if(MODE==1){MODE=0;DS1302_ReadTime();}
+ 126   3      
+ 127   3              }
+ 128   2              switch(MODE)
+ 129   2              {
+ 130   3                  case 0:TimerShow();break;
+ 131   3                  case 1:TimerSet();break;
+ 132   3              }
+ 133   2          }
+ 134   1      }
+ 135          void Timer0_Routine() interrupt 1
+ 136          {   
+ 137   1          static unsigned int T0Count;
+ 138   1          TL0 = 0x66;     //设置定时初值
+ 139   1          TH0 = 0xFC;     //设置定时初值
+ 140   1          T0Count++;
+ 141   1          if(T0Count>=500)
+ 142   1          {
+ 143   2               T0Count=0;
+ 144   2               P2_0=~P2_0;
+ 145   2               TimeSetFlashFlag=!TimeSetFlashFlag;
+ 146   2          }
+ 147   1         
+ 148   1      }
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 4   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION TimerShow (BEGIN)
+                                           ; SOURCE LINE # 13
+                                           ; SOURCE LINE # 14
+                                           ; SOURCE LINE # 15
+0000 120000      E     LCALL   DS1302_ReadTime
+                                           ; SOURCE LINE # 16
+0003 E500        E     MOV     A,DS1302_Time
+0005 FB                MOV     R3,A
+0006 33                RLC     A
+0007 95E0              SUBB    A,ACC
+0009 FA                MOV     R2,A
+000A 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+000D 7D01              MOV     R5,#01H
+000F 7F01              MOV     R7,#01H
+0011 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 17
+0014 E500        E     MOV     A,DS1302_Time+01H
+0016 FB                MOV     R3,A
+0017 33                RLC     A
+0018 95E0              SUBB    A,ACC
+001A FA                MOV     R2,A
+001B 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+001E 7D04              MOV     R5,#04H
+0020 7F01              MOV     R7,#01H
+0022 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 18
+0025 E500        E     MOV     A,DS1302_Time+02H
+0027 FB                MOV     R3,A
+0028 33                RLC     A
+0029 95E0              SUBB    A,ACC
+002B FA                MOV     R2,A
+002C 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+002F 7D07              MOV     R5,#07H
+0031 7F01              MOV     R7,#01H
+0033 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 19
+0036 E500        E     MOV     A,DS1302_Time+03H
+0038 FB                MOV     R3,A
+0039 33                RLC     A
+003A 95E0              SUBB    A,ACC
+003C FA                MOV     R2,A
+003D 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+0040 7D01              MOV     R5,#01H
+0042 7F02              MOV     R7,#02H
+0044 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 20
+0047 E500        E     MOV     A,DS1302_Time+04H
+0049 FB                MOV     R3,A
+004A 33                RLC     A
+004B 95E0              SUBB    A,ACC
+004D FA                MOV     R2,A
+004E 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+0051 7D04              MOV     R5,#04H
+0053 7F02              MOV     R7,#02H
+0055 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 21
+0058 E500        E     MOV     A,DS1302_Time+05H
+005A FB                MOV     R3,A
+005B 33                RLC     A
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 5   
+
+005C 95E0              SUBB    A,ACC
+005E FA                MOV     R2,A
+005F 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+0062 7D07              MOV     R5,#07H
+0064 7F02              MOV     R7,#02H
+0066 020000      E     LJMP    _LCD_ShowNum
+             ; FUNCTION TimerShow (END)
+
+             ; FUNCTION TimerSet (BEGIN)
+                                           ; SOURCE LINE # 24
+                                           ; SOURCE LINE # 25
+                                           ; SOURCE LINE # 26
+0000 E500        R     MOV     A,KeyNum
+0002 B4020B            CJNE    A,#02H,?C0002
+                                           ; SOURCE LINE # 27
+                                           ; SOURCE LINE # 28
+0005 0500        R     INC     TimeSetSelect
+                                           ; SOURCE LINE # 29
+0007 E500        R     MOV     A,TimeSetSelect
+0009 75F006            MOV     B,#06H
+000C 84                DIV     AB
+000D 85F000      R     MOV     TimeSetSelect,B
+                                           ; SOURCE LINE # 30
+0010         ?C0002:
+                                           ; SOURCE LINE # 31
+0010 E500        R     MOV     A,KeyNum
+0012 6403              XRL     A,#03H
+0014 6003              JZ      $ + 5H
+0016 020000      R     LJMP    ?C0003
+                                           ; SOURCE LINE # 32
+                                           ; SOURCE LINE # 33
+0019 7400        E     MOV     A,#LOW DS1302_Time
+001B 2500        R     ADD     A,TimeSetSelect
+001D F8                MOV     R0,A
+001E 06                INC     @R0
+                                           ; SOURCE LINE # 34
+001F D3                SETB    C
+0020 E500        E     MOV     A,DS1302_Time
+0022 6480              XRL     A,#080H
+0024 94E3              SUBB    A,#0E3H
+0026 4003              JC      ?C0004
+0028 E4                CLR     A
+0029 F500        E     MOV     DS1302_Time,A
+002B         ?C0004:
+                                           ; SOURCE LINE # 35
+002B D3                SETB    C
+002C E500        E     MOV     A,DS1302_Time+01H
+002E 6480              XRL     A,#080H
+0030 948C              SUBB    A,#08CH
+0032 4003              JC      ?C0005
+0034 750001      E     MOV     DS1302_Time+01H,#01H
+0037         ?C0005:
+                                           ; SOURCE LINE # 36
+0037 E500        E     MOV     A,DS1302_Time+01H
+0039 6401              XRL     A,#01H
+003B 6023              JZ      ?C0007
+003D E500        E     MOV     A,DS1302_Time+01H
+003F 6403              XRL     A,#03H
+0041 601D              JZ      ?C0007
+0043 E500        E     MOV     A,DS1302_Time+01H
+0045 6405              XRL     A,#05H
+0047 6017              JZ      ?C0007
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 6   
+
+0049 E500        E     MOV     A,DS1302_Time+01H
+004B 6407              XRL     A,#07H
+004D 6011              JZ      ?C0007
+004F E500        E     MOV     A,DS1302_Time+01H
+0051 6408              XRL     A,#08H
+0053 600B              JZ      ?C0007
+0055 E500        E     MOV     A,DS1302_Time+01H
+0057 640A              XRL     A,#0AH
+0059 6005              JZ      ?C0007
+005B E500        E     MOV     A,DS1302_Time+01H
+005D B40C0B            CJNE    A,#0CH,?C0006
+0060         ?C0007:
+                                           ; SOURCE LINE # 38
+                                           ; SOURCE LINE # 39
+0060 D3                SETB    C
+0061 E500        E     MOV     A,DS1302_Time+02H
+0063 6480              XRL     A,#080H
+0065 949F              SUBB    A,#09FH
+0067 404D              JC      ?C0009
+                                           ; SOURCE LINE # 40
+0069 8048              SJMP    ?C0075
+006B         ?C0006:
+                                           ; SOURCE LINE # 41
+006B E500        E     MOV     A,DS1302_Time+01H
+006D 6404              XRL     A,#04H
+006F 6011              JZ      ?C0011
+0071 E500        E     MOV     A,DS1302_Time+01H
+0073 6406              XRL     A,#06H
+0075 600B              JZ      ?C0011
+0077 E500        E     MOV     A,DS1302_Time+01H
+0079 6409              XRL     A,#09H
+007B 6005              JZ      ?C0011
+007D E500        E     MOV     A,DS1302_Time+01H
+007F B40B0B            CJNE    A,#0BH,?C0010
+0082         ?C0011:
+                                           ; SOURCE LINE # 42
+                                           ; SOURCE LINE # 43
+0082 D3                SETB    C
+0083 E500        E     MOV     A,DS1302_Time+02H
+0085 6480              XRL     A,#080H
+0087 949E              SUBB    A,#09EH
+0089 402B              JC      ?C0009
+008B         ?C0073:
+                                           ; SOURCE LINE # 44
+008B 8026              SJMP    ?C0075
+008D         ?C0010:
+                                           ; SOURCE LINE # 45
+008D E500        E     MOV     A,DS1302_Time+01H
+008F B40224            CJNE    A,#02H,?C0009
+                                           ; SOURCE LINE # 46
+                                           ; SOURCE LINE # 47
+0092 E500        E     MOV     A,DS1302_Time
+0094 75F004            MOV     B,#04H
+0097 120000      E     LCALL   ?C?SCDIV
+009A AFF0              MOV     R7,B
+009C EF                MOV     A,R7
+009D 700B              JNZ     ?C0015
+                                           ; SOURCE LINE # 48
+                                           ; SOURCE LINE # 49
+009F D3                SETB    C
+00A0 E500        E     MOV     A,DS1302_Time+02H
+00A2 6480              XRL     A,#080H
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 7   
+
+00A4 949D              SUBB    A,#09DH
+00A6 400E              JC      ?C0009
+00A8         ?C0074:
+                                           ; SOURCE LINE # 50
+00A8 8009              SJMP    ?C0075
+00AA         ?C0015:
+                                           ; SOURCE LINE # 52
+                                           ; SOURCE LINE # 53
+00AA D3                SETB    C
+00AB E500        E     MOV     A,DS1302_Time+02H
+00AD 6480              XRL     A,#080H
+00AF 949C              SUBB    A,#09CH
+00B1 4003              JC      ?C0009
+00B3         ?C0075:
+00B3 750001      E     MOV     DS1302_Time+02H,#01H
+                                           ; SOURCE LINE # 54
+                                           ; SOURCE LINE # 55
+00B6         ?C0009:
+                                           ; SOURCE LINE # 56
+00B6 D3                SETB    C
+00B7 E500        E     MOV     A,DS1302_Time+03H
+00B9 6480              XRL     A,#080H
+00BB 9497              SUBB    A,#097H
+00BD 4003              JC      ?C0019
+00BF E4                CLR     A
+00C0 F500        E     MOV     DS1302_Time+03H,A
+00C2         ?C0019:
+                                           ; SOURCE LINE # 57
+00C2 D3                SETB    C
+00C3 E500        E     MOV     A,DS1302_Time+04H
+00C5 6480              XRL     A,#080H
+00C7 94BB              SUBB    A,#0BBH
+00C9 4003              JC      ?C0020
+00CB E4                CLR     A
+00CC F500        E     MOV     DS1302_Time+04H,A
+00CE         ?C0020:
+                                           ; SOURCE LINE # 58
+00CE D3                SETB    C
+00CF E500        E     MOV     A,DS1302_Time+05H
+00D1 6480              XRL     A,#080H
+00D3 94BB              SUBB    A,#0BBH
+00D5 4003              JC      ?C0003
+00D7 E4                CLR     A
+00D8 F500        E     MOV     DS1302_Time+05H,A
+                                           ; SOURCE LINE # 59
+00DA         ?C0003:
+                                           ; SOURCE LINE # 60
+00DA E500        R     MOV     A,KeyNum
+00DC 6404              XRL     A,#04H
+00DE 6003              JZ      $ + 5H
+00E0 020000      R     LJMP    ?C0022
+                                           ; SOURCE LINE # 61
+                                           ; SOURCE LINE # 62
+00E3 7400        E     MOV     A,#LOW DS1302_Time
+00E5 2500        R     ADD     A,TimeSetSelect
+00E7 F8                MOV     R0,A
+00E8 16                DEC     @R0
+                                           ; SOURCE LINE # 63
+00E9 C3                CLR     C
+00EA E500        E     MOV     A,DS1302_Time
+00EC 6480              XRL     A,#080H
+00EE 9480              SUBB    A,#080H
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 8   
+
+00F0 5003              JNC     ?C0023
+00F2 750063      E     MOV     DS1302_Time,#063H
+00F5         ?C0023:
+                                           ; SOURCE LINE # 64
+00F5 C3                CLR     C
+00F6 E500        E     MOV     A,DS1302_Time+01H
+00F8 6480              XRL     A,#080H
+00FA 9481              SUBB    A,#081H
+00FC 5003              JNC     ?C0024
+00FE 75000C      E     MOV     DS1302_Time+01H,#0CH
+0101         ?C0024:
+                                           ; SOURCE LINE # 65
+0101 E500        E     MOV     A,DS1302_Time+01H
+0103 6401              XRL     A,#01H
+0105 6023              JZ      ?C0026
+0107 E500        E     MOV     A,DS1302_Time+01H
+0109 6403              XRL     A,#03H
+010B 601D              JZ      ?C0026
+010D E500        E     MOV     A,DS1302_Time+01H
+010F 6405              XRL     A,#05H
+0111 6017              JZ      ?C0026
+0113 E500        E     MOV     A,DS1302_Time+01H
+0115 6407              XRL     A,#07H
+0117 6011              JZ      ?C0026
+0119 E500        E     MOV     A,DS1302_Time+01H
+011B 6408              XRL     A,#08H
+011D 600B              JZ      ?C0026
+011F E500        E     MOV     A,DS1302_Time+01H
+0121 640A              XRL     A,#0AH
+0123 6005              JZ      ?C0026
+0125 E500        E     MOV     A,DS1302_Time+01H
+0127 B40C17            CJNE    A,#0CH,?C0025
+012A         ?C0026:
+                                           ; SOURCE LINE # 67
+                                           ; SOURCE LINE # 68
+012A C3                CLR     C
+012B E500        E     MOV     A,DS1302_Time+02H
+012D 6480              XRL     A,#080H
+012F 9481              SUBB    A,#081H
+0131 5003              JNC     ?C0027
+0133 75001F      E     MOV     DS1302_Time+02H,#01FH
+0136         ?C0027:
+                                           ; SOURCE LINE # 69
+0136 D3                SETB    C
+0137 E500        E     MOV     A,DS1302_Time+02H
+0139 6480              XRL     A,#080H
+013B 949F              SUBB    A,#09FH
+013D 4072              JC      ?C0029
+                                           ; SOURCE LINE # 70
+013F 806D              SJMP    ?C0078
+0141         ?C0025:
+                                           ; SOURCE LINE # 71
+0141 E500        E     MOV     A,DS1302_Time+01H
+0143 6404              XRL     A,#04H
+0145 6011              JZ      ?C0031
+0147 E500        E     MOV     A,DS1302_Time+01H
+0149 6406              XRL     A,#06H
+014B 600B              JZ      ?C0031
+014D E500        E     MOV     A,DS1302_Time+01H
+014F 6409              XRL     A,#09H
+0151 6005              JZ      ?C0031
+0153 E500        E     MOV     A,DS1302_Time+01H
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 9   
+
+0155 B40B17            CJNE    A,#0BH,?C0030
+0158         ?C0031:
+                                           ; SOURCE LINE # 72
+                                           ; SOURCE LINE # 73
+0158 C3                CLR     C
+0159 E500        E     MOV     A,DS1302_Time+02H
+015B 6480              XRL     A,#080H
+015D 9481              SUBB    A,#081H
+015F 5003              JNC     ?C0032
+0161 75001E      E     MOV     DS1302_Time+02H,#01EH
+0164         ?C0032:
+                                           ; SOURCE LINE # 74
+0164 D3                SETB    C
+0165 E500        E     MOV     A,DS1302_Time+02H
+0167 6480              XRL     A,#080H
+0169 949E              SUBB    A,#09EH
+016B 4044              JC      ?C0029
+016D         ?C0076:
+                                           ; SOURCE LINE # 75
+016D 803F              SJMP    ?C0078
+016F         ?C0030:
+                                           ; SOURCE LINE # 76
+016F E500        E     MOV     A,DS1302_Time+01H
+0171 6402              XRL     A,#02H
+0173 703C              JNZ     ?C0029
+                                           ; SOURCE LINE # 77
+                                           ; SOURCE LINE # 78
+0175 E500        E     MOV     A,DS1302_Time
+0177 75F004            MOV     B,#04H
+017A 120000      E     LCALL   ?C?SCDIV
+017D AFF0              MOV     R7,B
+017F EF                MOV     A,R7
+0180 7017              JNZ     ?C0036
+                                           ; SOURCE LINE # 79
+                                           ; SOURCE LINE # 80
+0182 C3                CLR     C
+0183 E500        E     MOV     A,DS1302_Time+02H
+0185 6480              XRL     A,#080H
+0187 9481              SUBB    A,#081H
+0189 5003              JNC     ?C0037
+018B 75001D      E     MOV     DS1302_Time+02H,#01DH
+018E         ?C0037:
+                                           ; SOURCE LINE # 81
+018E D3                SETB    C
+018F E500        E     MOV     A,DS1302_Time+02H
+0191 6480              XRL     A,#080H
+0193 949D              SUBB    A,#09DH
+0195 401A              JC      ?C0029
+0197         ?C0077:
+                                           ; SOURCE LINE # 82
+0197 8015              SJMP    ?C0078
+0199         ?C0036:
+                                           ; SOURCE LINE # 84
+                                           ; SOURCE LINE # 85
+0199 C3                CLR     C
+019A E500        E     MOV     A,DS1302_Time+02H
+019C 6480              XRL     A,#080H
+019E 9481              SUBB    A,#081H
+01A0 5003              JNC     ?C0040
+01A2 75001C      E     MOV     DS1302_Time+02H,#01CH
+01A5         ?C0040:
+                                           ; SOURCE LINE # 86
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 10  
+
+01A5 D3                SETB    C
+01A6 E500        E     MOV     A,DS1302_Time+02H
+01A8 6480              XRL     A,#080H
+01AA 949C              SUBB    A,#09CH
+01AC 4003              JC      ?C0029
+01AE         ?C0078:
+01AE 750001      E     MOV     DS1302_Time+02H,#01H
+                                           ; SOURCE LINE # 87
+                                           ; SOURCE LINE # 88
+01B1         ?C0029:
+                                           ; SOURCE LINE # 89
+01B1 C3                CLR     C
+01B2 E500        E     MOV     A,DS1302_Time+03H
+01B4 6480              XRL     A,#080H
+01B6 9480              SUBB    A,#080H
+01B8 5003              JNC     ?C0042
+01BA 750017      E     MOV     DS1302_Time+03H,#017H
+01BD         ?C0042:
+                                           ; SOURCE LINE # 90
+01BD C3                CLR     C
+01BE E500        E     MOV     A,DS1302_Time+04H
+01C0 6480              XRL     A,#080H
+01C2 9480              SUBB    A,#080H
+01C4 5003              JNC     ?C0043
+01C6 75003B      E     MOV     DS1302_Time+04H,#03BH
+01C9         ?C0043:
+                                           ; SOURCE LINE # 91
+01C9 C3                CLR     C
+01CA E500        E     MOV     A,DS1302_Time+05H
+01CC 6480              XRL     A,#080H
+01CE 9480              SUBB    A,#080H
+01D0 5003              JNC     ?C0022
+01D2 75003B      E     MOV     DS1302_Time+05H,#03BH
+                                           ; SOURCE LINE # 92
+01D5         ?C0022:
+                                           ; SOURCE LINE # 94
+01D5 E500        R     MOV     A,TimeSetSelect
+01D7 7014              JNZ     ?C0045
+01D9 E500        R     MOV     A,TimeSetFlashFlag
+01DB B4010F            CJNE    A,#01H,?C0045
+01DE 7BFF              MOV     R3,#0FFH
+01E0 7A00        R     MOV     R2,#HIGH ?SC_0
+01E2 7900        R     MOV     R1,#LOW ?SC_0
+01E4 7D01              MOV     R5,#01H
+01E6 7F01              MOV     R7,#01H
+01E8 120000      E     LCALL   _LCD_ShowString
+01EB 8011              SJMP    ?C0046
+01ED         ?C0045:
+                                           ; SOURCE LINE # 95
+01ED E500        E     MOV     A,DS1302_Time
+01EF FB                MOV     R3,A
+01F0 33                RLC     A
+01F1 95E0              SUBB    A,ACC
+01F3 FA                MOV     R2,A
+01F4 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+01F7 7D01              MOV     R5,#01H
+01F9 7F01              MOV     R7,#01H
+01FB 120000      E     LCALL   _LCD_ShowNum
+01FE         ?C0046:
+                                           ; SOURCE LINE # 96
+01FE E500        R     MOV     A,TimeSetSelect
+0200 B40114            CJNE    A,#01H,?C0047
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 11  
+
+0203 E500        R     MOV     A,TimeSetFlashFlag
+0205 B4010F            CJNE    A,#01H,?C0047
+0208 7BFF              MOV     R3,#0FFH
+020A 7A00        R     MOV     R2,#HIGH ?SC_0
+020C 7900        R     MOV     R1,#LOW ?SC_0
+020E 7D04              MOV     R5,#04H
+0210 7F01              MOV     R7,#01H
+0212 120000      E     LCALL   _LCD_ShowString
+0215 8011              SJMP    ?C0048
+0217         ?C0047:
+                                           ; SOURCE LINE # 97
+0217 E500        E     MOV     A,DS1302_Time+01H
+0219 FB                MOV     R3,A
+021A 33                RLC     A
+021B 95E0              SUBB    A,ACC
+021D FA                MOV     R2,A
+021E 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+0221 7D04              MOV     R5,#04H
+0223 7F01              MOV     R7,#01H
+0225 120000      E     LCALL   _LCD_ShowNum
+0228         ?C0048:
+                                           ; SOURCE LINE # 98
+0228 E500        R     MOV     A,TimeSetSelect
+022A B40214            CJNE    A,#02H,?C0049
+022D E500        R     MOV     A,TimeSetFlashFlag
+022F B4010F            CJNE    A,#01H,?C0049
+0232 7BFF              MOV     R3,#0FFH
+0234 7A00        R     MOV     R2,#HIGH ?SC_0
+0236 7900        R     MOV     R1,#LOW ?SC_0
+0238 7D07              MOV     R5,#07H
+023A 7F01              MOV     R7,#01H
+023C 120000      E     LCALL   _LCD_ShowString
+023F 8011              SJMP    ?C0050
+0241         ?C0049:
+                                           ; SOURCE LINE # 99
+0241 E500        E     MOV     A,DS1302_Time+02H
+0243 FB                MOV     R3,A
+0244 33                RLC     A
+0245 95E0              SUBB    A,ACC
+0247 FA                MOV     R2,A
+0248 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+024B 7D07              MOV     R5,#07H
+024D 7F01              MOV     R7,#01H
+024F 120000      E     LCALL   _LCD_ShowNum
+0252         ?C0050:
+                                           ; SOURCE LINE # 100
+0252 E500        R     MOV     A,TimeSetSelect
+0254 B40314            CJNE    A,#03H,?C0051
+0257 E500        R     MOV     A,TimeSetFlashFlag
+0259 B4010F            CJNE    A,#01H,?C0051
+025C 7BFF              MOV     R3,#0FFH
+025E 7A00        R     MOV     R2,#HIGH ?SC_0
+0260 7900        R     MOV     R1,#LOW ?SC_0
+0262 7D01              MOV     R5,#01H
+0264 7F02              MOV     R7,#02H
+0266 120000      E     LCALL   _LCD_ShowString
+0269 8011              SJMP    ?C0052
+026B         ?C0051:
+                                           ; SOURCE LINE # 101
+026B E500        E     MOV     A,DS1302_Time+03H
+026D FB                MOV     R3,A
+026E 33                RLC     A
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 12  
+
+026F 95E0              SUBB    A,ACC
+0271 FA                MOV     R2,A
+0272 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+0275 7D01              MOV     R5,#01H
+0277 7F02              MOV     R7,#02H
+0279 120000      E     LCALL   _LCD_ShowNum
+027C         ?C0052:
+                                           ; SOURCE LINE # 102
+027C E500        R     MOV     A,TimeSetSelect
+027E B40414            CJNE    A,#04H,?C0053
+0281 E500        R     MOV     A,TimeSetFlashFlag
+0283 B4010F            CJNE    A,#01H,?C0053
+0286 7BFF              MOV     R3,#0FFH
+0288 7A00        R     MOV     R2,#HIGH ?SC_0
+028A 7900        R     MOV     R1,#LOW ?SC_0
+028C 7D04              MOV     R5,#04H
+028E 7F02              MOV     R7,#02H
+0290 120000      E     LCALL   _LCD_ShowString
+0293 8011              SJMP    ?C0054
+0295         ?C0053:
+                                           ; SOURCE LINE # 103
+0295 E500        E     MOV     A,DS1302_Time+04H
+0297 FB                MOV     R3,A
+0298 33                RLC     A
+0299 95E0              SUBB    A,ACC
+029B FA                MOV     R2,A
+029C 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+029F 7D04              MOV     R5,#04H
+02A1 7F02              MOV     R7,#02H
+02A3 120000      E     LCALL   _LCD_ShowNum
+02A6         ?C0054:
+                                           ; SOURCE LINE # 104
+02A6 E500        R     MOV     A,TimeSetSelect
+02A8 B40512            CJNE    A,#05H,?C0055
+02AB E500        R     MOV     A,TimeSetFlashFlag
+02AD B4010D            CJNE    A,#01H,?C0055
+02B0 7BFF              MOV     R3,#0FFH
+02B2 7A00        R     MOV     R2,#HIGH ?SC_0
+02B4 7900        R     MOV     R1,#LOW ?SC_0
+02B6 7D07              MOV     R5,#07H
+02B8 7F02              MOV     R7,#02H
+02BA 020000      E     LJMP    _LCD_ShowString
+02BD         ?C0055:
+                                           ; SOURCE LINE # 105
+02BD E500        E     MOV     A,DS1302_Time+05H
+02BF FB                MOV     R3,A
+02C0 33                RLC     A
+02C1 95E0              SUBB    A,ACC
+02C3 FA                MOV     R2,A
+02C4 750002      E     MOV     ?_LCD_ShowNum?BYTE+04H,#02H
+02C7 7D07              MOV     R5,#07H
+02C9 7F02              MOV     R7,#02H
+02CB 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 107
+02CE         ?C0057:
+02CE 22                RET     
+             ; FUNCTION TimerSet (END)
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 110
+                                           ; SOURCE LINE # 111
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 13  
+
+0000 120000      E     LCALL   LCD_Init
+                                           ; SOURCE LINE # 112
+0003 120000      E     LCALL   DS1302_Init
+                                           ; SOURCE LINE # 114
+0006 7BFF              MOV     R3,#0FFH
+0008 7A00        R     MOV     R2,#HIGH ?SC_3
+000A 7900        R     MOV     R1,#LOW ?SC_3
+000C 7D01              MOV     R5,#01H
+000E 7F01              MOV     R7,#01H
+0010 120000      E     LCALL   _LCD_ShowString
+                                           ; SOURCE LINE # 115
+0013 7BFF              MOV     R3,#0FFH
+0015 7A00        R     MOV     R2,#HIGH ?SC_12
+0017 7900        R     MOV     R1,#LOW ?SC_12
+0019 7D01              MOV     R5,#01H
+001B 7F02              MOV     R7,#02H
+001D 120000      E     LCALL   _LCD_ShowString
+                                           ; SOURCE LINE # 117
+0020 120000      E     LCALL   DS1302_SetTime
+0023         ?C0058:
+                                           ; SOURCE LINE # 119
+                                           ; SOURCE LINE # 120
+                                           ; SOURCE LINE # 121
+0023 120000      E     LCALL   Key
+0026 8F00        R     MOV     KeyNum,R7
+                                           ; SOURCE LINE # 122
+0028 E500        R     MOV     A,KeyNum
+002A B40116            CJNE    A,#01H,?C0060
+                                           ; SOURCE LINE # 123
+                                           ; SOURCE LINE # 124
+002D E500        R     MOV     A,MODE
+002F 7007              JNZ     ?C0061
+0031 750001      R     MOV     MODE,#01H
+0034 F500        R     MOV     TimeSetSelect,A
+0036 800B              SJMP    ?C0060
+0038         ?C0061:
+                                           ; SOURCE LINE # 125
+0038 E500        R     MOV     A,MODE
+003A B40106            CJNE    A,#01H,?C0060
+003D E4                CLR     A
+003E F500        R     MOV     MODE,A
+0040 120000      E     LCALL   DS1302_ReadTime
+                                           ; SOURCE LINE # 127
+0043         ?C0060:
+                                           ; SOURCE LINE # 128
+0043 E500        R     MOV     A,MODE
+0045 14                DEC     A
+0046 6008              JZ      ?C0066
+0048 04                INC     A
+0049 70D8              JNZ     ?C0058
+                                           ; SOURCE LINE # 129
+                                           ; SOURCE LINE # 130
+004B         ?C0065:
+004B 120000      R     LCALL   TimerShow
+004E 80D3              SJMP    ?C0058
+                                           ; SOURCE LINE # 131
+0050         ?C0066:
+0050 120000      R     LCALL   TimerSet
+0053 80CE              SJMP    ?C0058
+             ; FUNCTION main (END)
+
+             ; FUNCTION Timer0_Routine (BEGIN)
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 14  
+
+0000 C0E0              PUSH    ACC
+0002 C0D0              PUSH    PSW
+0004 75D000            MOV     PSW,#00H
+0007 C007              PUSH    AR7
+                                           ; SOURCE LINE # 135
+                                           ; SOURCE LINE # 138
+0009 758A66            MOV     TL0,#066H
+                                           ; SOURCE LINE # 139
+000C 758CFC            MOV     TH0,#0FCH
+                                           ; SOURCE LINE # 140
+000F 0500        R     INC     T0Count+01H
+0011 E500        R     MOV     A,T0Count+01H
+0013 7002              JNZ     ?C0072
+0015 0500        R     INC     T0Count
+0017         ?C0072:
+                                           ; SOURCE LINE # 141
+0017 C3                CLR     C
+0018 94F4              SUBB    A,#0F4H
+001A E500        R     MOV     A,T0Count
+001C 9401              SUBB    A,#01H
+001E 4012              JC      ?C0071
+                                           ; SOURCE LINE # 142
+                                           ; SOURCE LINE # 143
+0020 750000      R     MOV     T0Count,#00H
+0023 750000      R     MOV     T0Count+01H,#00H
+                                           ; SOURCE LINE # 144
+0026 B2A0              CPL     P2_0
+                                           ; SOURCE LINE # 145
+0028 E500        R     MOV     A,TimeSetFlashFlag
+002A 7F00              MOV     R7,#00H
+002C 7002              JNZ     ?C0069
+002E 7F01              MOV     R7,#01H
+0030         ?C0069:
+0030         ?C0070:
+0030 8F00        R     MOV     TimeSetFlashFlag,R7
+                                           ; SOURCE LINE # 146
+                                           ; SOURCE LINE # 148
+0032         ?C0071:
+0032 D007              POP     AR7
+0034 D0D0              POP     PSW
+0036 D0E0              POP     ACC
+0038 32                RETI    
+             ; FUNCTION Timer0_Routine (END)
+
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 15  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+DS1302_SetTime . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+Timer0_Routine . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  T0Count. . . . . . . . . . . . . . .  STATIC   DATA   U_INT    0000H  2
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+_LCD_ShowNum . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+P2_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A0H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+TimeSetSelect. . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0002H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+MODE . . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0003H  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+TimerShow. . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+Key. . . . . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+TimeSetFlashFlag . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0004H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+TimerSet . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+LCD_Init . . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+DS1302_ReadTime. . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+C51 COMPILER V9.54   MAIN                                                                  07/29/2023 23:24:57 PAGE 16  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+DS1302_Time. . . . . . . . . . . . . .  EXTERN   DATA   ARRAY    -----  -----
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+_LCD_ShowString. . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+DS1302_Init. . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+KeyNum . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0005H  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    969    ----
+   CONSTANT SIZE    =     21    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
