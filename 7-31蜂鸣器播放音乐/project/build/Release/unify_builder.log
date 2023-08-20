@@ -1,0 +1,63 @@
+[2023-07-31 20:57:26]	[done]
+	build successfully !
+
+[2023-07-31 21:09:07]	[done]
+	build successfully !
+
+[2023-07-31 21:49:51]	[done]
+	build successfully !
+
+[2023-07-31 21:50:44]	[done]
+	build successfully !
+
+[2023-07-31 21:51:03]	[done]
+	build successfully !
+
+[2023-07-31 21:52:35]	[done]
+	build successfully !
+
+[2023-07-31 21:56:18]	[done]
+	build successfully !
+
+[2023-07-31 21:57:31]	[done]
+	build successfully !
+
+[2023-07-31 22:22:49]	compilation failed at : "c:\Users\’‘Ω®ª™\Desktop\keilvs\7-31∑‰√˘∆˜≤•∑≈“Ù¿÷\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 24 OF .\SRC\MAIN.C: syntax error near ';'
+*** ERROR C141 IN LINE 25 OF .\SRC\MAIN.C: syntax error near '17'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2023-07-31 22:23:09]	[done]
+	build successfully !
+
+[2023-07-31 22:24:48]	[done]
+	build successfully !
+
+[2023-07-31 22:25:35]	[done]
+	build successfully !
+
+[2023-07-31 22:27:06]	[done]
+	build successfully !
+
+[2023-07-31 22:27:18]	[done]
+	build successfully !
+
+[2023-07-31 22:29:40]	[done]
+	build successfully !
+
+[2023-07-31 22:34:17]	[done]
+	build successfully !
+
+[2023-07-31 22:37:40]	[done]
+	build successfully !
+
+[2023-07-31 22:37:59]	[done]
+	build successfully !
+
