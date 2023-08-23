@@ -1,0 +1,156 @@
+[2023-08-02 10:31:11]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\8-2定时器扫描按键数码管\project\src\Nixie.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\Nixie.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\Nixie.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\Nixie.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C318 IN LINE 1 OF .\SRC\NIXIE.C: can't open file 'REGX52.H'
+*** ERROR C202 IN LINE 10 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 20 OF .\SRC\NIXIE.C: 'P0': undefined identifier
+*** ERROR C202 IN LINE 22 OF .\SRC\NIXIE.C: 'P0': undefined identifier
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  26 ERROR(S)
+
+[2023-08-02 10:31:22]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\8-2定时器扫描按键数码管\project\src\Nixie.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\Nixie.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\Nixie.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\Nixie.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 10 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 10 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 11 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 12 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 13 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 14 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 15 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 16 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\NIXIE.C: 'P2_4': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\NIXIE.C: 'P2_3': undefined identifier
+*** ERROR C202 IN LINE 17 OF .\SRC\NIXIE.C: 'P2_2': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  24 ERROR(S)
+
+[2023-08-02 10:32:11]	[done]
+	build successfully !
+
+[2023-08-02 10:40:36]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\8-2定时器扫描按键数码管\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 24 OF .\SRC\MAIN.C: 'P2_0': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2023-08-02 10:41:03]	[done]
+	build successfully !
+
+[2023-08-02 11:04:13]	[done]
+	build successfully !
+
+[2023-08-02 11:04:34]	[done]
+	build successfully !
+
+[2023-08-02 11:07:04]	[done]
+	build successfully !
+
+[2023-08-02 11:15:32]	[done]
+	build successfully !
+
+[2023-08-02 11:16:39]	[done]
+	build successfully !
+
+[2023-08-02 11:16:41]	[done]
+	build successfully !
+
+[2023-08-02 11:21:56]	[done]
+	build successfully !
+
+[2023-08-02 11:22:47]	[done]
+	build successfully !
+
+[2023-08-02 11:24:34]	[done]
+	build successfully !
+
+[2023-08-02 11:58:29]	[done]
+	build successfully !
+
+[2023-08-02 12:02:21]	[done]
+	build successfully !
+
+[2023-08-02 12:02:58]	[done]
+	build successfully !
+
+[2023-08-02 12:04:50]	[done]
+	build successfully !
+
+[2023-08-02 12:05:54]	[done]
+	build successfully !
+
+[2023-08-02 12:09:13]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\8-2定时器扫描按键数码管\project\src\AT24C02.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\AT24C02.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\AT24C02.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\AT24C02.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** WARNING C318 IN LINE 2 OF .\SRC\AT24C02.C: can't open file 'I2C.h'
+*** WARNING C206 IN LINE 10 OF .\SRC\AT24C02.C: 'I2C_Start': missing function-prototype
+*** WARNING C206 IN LINE 11 OF .\SRC\AT24C02.C: 'I2C_SendByte': missing function-prototype
+*** ERROR C267 IN LINE 11 OF .\SRC\AT24C02.C: 'I2C_SendByte': requires ANSI-style prototype
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  1 ERROR(S)
+
+[2023-08-02 12:09:45]	[done]
+	build successfully !
+
+[2023-08-02 12:13:55]	[done]
+	build successfully !
+
+[2023-08-02 12:19:43]	[done]
+	build successfully !
+
+[2023-08-02 12:19:46]	[done]
+	build successfully !
+
