@@ -1,0 +1,261 @@
+C51 COMPILER V9.54   MAIN                                                                  08/04/2023 23:22:50 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          #include"Delay.h"
+   3          #include"LCD1602.h"
+   4          #include"DS18B20.h"
+   5          
+   6          float T;
+   7          
+   8          void main()
+   9          {
+  10   1          DS18B20_Convert();
+  11   1          Delay(1000);
+  12   1          LCD_Init();
+  13   1          LCD_ShowString(1,1,"Temperature:");
+  14   1          while(1)
+  15   1          {
+  16   2              DS18B20_Convert();
+  17   2              T=DS18B20_ReadT();
+  18   2              if(T<0)
+  19   2              {
+  20   3                  LCD_ShowChar(2,1,'-');
+  21   3                  T=-T;
+  22   3              }
+  23   2              else
+  24   2              {
+  25   3                  LCD_ShowChar(2,1,'+');
+  26   3              }
+  27   2              LCD_ShowNum(2,2,T,3);
+  28   2              LCD_ShowChar(2,5,'.');
+  29   2              LCD_ShowNum(2,6,(unsigned long)(T*10000)%10000,4);
+  30   2          }
+  31   1      }
+C51 COMPILER V9.54   MAIN                                                                  08/04/2023 23:22:50 PAGE 2   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 8
+                                           ; SOURCE LINE # 9
+                                           ; SOURCE LINE # 10
+0000 120000      E     LCALL   DS18B20_Convert
+                                           ; SOURCE LINE # 11
+0003 7FE8              MOV     R7,#0E8H
+0005 7E03              MOV     R6,#03H
+0007 120000      E     LCALL   _Delay
+                                           ; SOURCE LINE # 12
+000A 120000      E     LCALL   LCD_Init
+                                           ; SOURCE LINE # 13
+000D 7BFF              MOV     R3,#0FFH
+000F 7A00        R     MOV     R2,#HIGH ?SC_0
+0011 7900        R     MOV     R1,#LOW ?SC_0
+0013 7D01              MOV     R5,#01H
+0015 7F01              MOV     R7,#01H
+0017 120000      E     LCALL   _LCD_ShowString
+001A         ?C0001:
+                                           ; SOURCE LINE # 14
+                                           ; SOURCE LINE # 15
+                                           ; SOURCE LINE # 16
+001A 120000      E     LCALL   DS18B20_Convert
+                                           ; SOURCE LINE # 17
+001D 120000      E     LCALL   DS18B20_ReadT
+0020 8F00        R     MOV     T+03H,R7
+0022 8E00        R     MOV     T+02H,R6
+0024 8D00        R     MOV     T+01H,R5
+0026 8C00        R     MOV     T,R4
+                                           ; SOURCE LINE # 18
+0028 E4                CLR     A
+0029 FF                MOV     R7,A
+002A FE                MOV     R6,A
+002B FD                MOV     R5,A
+002C FC                MOV     R4,A
+002D AB00        R     MOV     R3,T+03H
+002F AA00        R     MOV     R2,T+02H
+0031 A900        R     MOV     R1,T+01H
+0033 A800        R     MOV     R0,T
+0035 120000      E     LCALL   ?C?FPCMP3
+0038 501E              JNC     ?C0003
+                                           ; SOURCE LINE # 19
+                                           ; SOURCE LINE # 20
+003A 7B2D              MOV     R3,#02DH
+003C 7D01              MOV     R5,#01H
+003E 7F02              MOV     R7,#02H
+0040 120000      E     LCALL   _LCD_ShowChar
+                                           ; SOURCE LINE # 21
+0043 AF00        R     MOV     R7,T+03H
+0045 AE00        R     MOV     R6,T+02H
+0047 AD00        R     MOV     R5,T+01H
+0049 AC00        R     MOV     R4,T
+004B 120000      E     LCALL   ?C?FPNEG
+004E 8F00        R     MOV     T+03H,R7
+0050 8E00        R     MOV     T+02H,R6
+0052 8D00        R     MOV     T+01H,R5
+0054 8C00        R     MOV     T,R4
+                                           ; SOURCE LINE # 22
+0056 8009              SJMP    ?C0004
+C51 COMPILER V9.54   MAIN                                                                  08/04/2023 23:22:50 PAGE 3   
+
+0058         ?C0003:
+                                           ; SOURCE LINE # 24
+                                           ; SOURCE LINE # 25
+0058 7B2B              MOV     R3,#02BH
+005A 7D01              MOV     R5,#01H
+005C 7F02              MOV     R7,#02H
+005E 120000      E     LCALL   _LCD_ShowChar
+                                           ; SOURCE LINE # 26
+0061         ?C0004:
+                                           ; SOURCE LINE # 27
+0061 AF00        R     MOV     R7,T+03H
+0063 AE00        R     MOV     R6,T+02H
+0065 AD00        R     MOV     R5,T+01H
+0067 AC00        R     MOV     R4,T
+0069 120000      E     LCALL   ?C?CASTF
+006C AB07              MOV     R3,AR7
+006E AA06              MOV     R2,AR6
+0070 750003      E     MOV     ?_LCD_ShowNum?BYTE+04H,#03H
+0073 7D02              MOV     R5,#02H
+0075 7F02              MOV     R7,#02H
+0077 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 28
+007A 7B2E              MOV     R3,#02EH
+007C 7D05              MOV     R5,#05H
+007E 7F02              MOV     R7,#02H
+0080 120000      E     LCALL   _LCD_ShowChar
+                                           ; SOURCE LINE # 29
+0083 7F00              MOV     R7,#00H
+0085 7E40              MOV     R6,#040H
+0087 7D1C              MOV     R5,#01CH
+0089 7C46              MOV     R4,#046H
+008B AB00        R     MOV     R3,T+03H
+008D AA00        R     MOV     R2,T+02H
+008F A900        R     MOV     R1,T+01H
+0091 A800        R     MOV     R0,T
+0093 120000      E     LCALL   ?C?FPMUL
+0096 120000      E     LCALL   ?C?CASTF
+0099 E4                CLR     A
+009A 7B10              MOV     R3,#010H
+009C 7A27              MOV     R2,#027H
+009E F9                MOV     R1,A
+009F F8                MOV     R0,A
+00A0 120000      E     LCALL   ?C?ULDIV
+00A3 750004      E     MOV     ?_LCD_ShowNum?BYTE+04H,#04H
+00A6 7D06              MOV     R5,#06H
+00A8 7F02              MOV     R7,#02H
+00AA 120000      E     LCALL   _LCD_ShowNum
+                                           ; SOURCE LINE # 30
+00AD 020000      R     LJMP    ?C0001
+             ; FUNCTION main (END)
+
+C51 COMPILER V9.54   MAIN                                                                  08/04/2023 23:22:50 PAGE 4   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+_LCD_ShowNum . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+LCD_Init . . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+T. . . . . . . . . . . . . . . . . . .  PUBLIC   DATA   FLOAT    0000H  4
+_LCD_ShowString. . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+C51 COMPILER V9.54   MAIN                                                                  08/04/2023 23:22:50 PAGE 5   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+_LCD_ShowChar. . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+DS18B20_ReadT. . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+DS18B20_Convert. . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+_Delay . . . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    176    ----
+   CONSTANT SIZE    =     13    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
