@@ -1,0 +1,650 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          08/05/2023  12:11:09  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\AT24C02.O, .\BUILD\RELEASE\SRC\DS18B20.O, .\BUILD\RELEASE\SRC\DELAY.O, .\BU
+>> ILD\RELEASE\SRC\I2C.O, .\BUILD\RELEASE\SRC\KEY.O, .\BUILD\RELEASE\SRC\LCD1602.O, .\BUILD\RELEASE\SRC\ONEWIRE.O, .\BUI
+>> LD\RELEASE\SRC\TIMER0.O, .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\PROJECT PRINT (.\build\Release\project.map) RE
+>> MOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\AT24C02.O (AT24C02)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\DS18B20.O (DS18B20)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\DELAY.O (DELAY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\I2C.O (I2C)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\KEY.O (KEY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\LCD1602.O (LCD1602)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\ONEWIRE.O (ONEWIRE)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\TIMER0.O (TIMER0)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?FPMUL)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?FPDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?FPCMP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?FPNEG)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?FCAST)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?CASTF)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?IMUL)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?ULDIV)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C?LNEG)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\PROJECT (AT24C02)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   000A19H   CODE
+I:000000H   I:000000H   I:00007FH   000023H   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 2
+
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\PROJECT (AT24C02)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000014H   00000DH   BYTE   UNIT     DATA           ?DT?MAIN
+000015H   00001FH   00000BH   BYTE   UNIT     DATA           _DATA_GROUP_
+000020H   000022H   000003H   BYTE   UNIT     DATA           ?DT?KEY
+000023H   000023H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000009H   000007H   BYTE   UNIT     CODE           ?PR?I2C_STOP?I2C
+00000AH   00000AH   000001H   ---    ---      **GAP**
+00000BH   00000DH   000003H   BYTE   OFFS..   CODE           ?MAIN?0000B
+00000EH   00046CH   00045FH   BYTE   UNIT     CODE           ?C?LIB_CODE
+00046DH   000689H   00021DH   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+00068AH   0006E1H   000058H   BYTE   UNIT     CODE           ?PR?TIMER0_ROUTINE?MAIN
+0006E2H   00071BH   00003AH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWSIGNEDNUM?LCD1602
+00071CH   000754H   000039H   BYTE   UNIT     CODE           ?PR?KEY_LOOP?KEY
+000755H   000787H   000033H   BYTE   UNIT     CODE           ?PR?_LCD_POW?LCD1602
+000788H   0007B7H   000030H   BYTE   UNIT     CODE           ?PR?_AT24C02_READBYTE?AT24C02
+0007B8H   0007E3H   00002CH   BYTE   UNIT     CODE           ?PR?DS18B20_READT?DS18B20
+0007E4H   00080CH   000029H   BYTE   UNIT     CODE           ?PR?_I2C_SENDBYTE?I2C
+00080DH   000830H   000024H   BYTE   UNIT     CODE           ?PR?_AT24C02_WRITEBYTE?AT24C02
+000831H   000853H   000023H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWSTRING?LCD1602
+000854H   000871H   00001EH   BYTE   UNIT     CODE           ?PR?I2C_RECEIVEBYTE?I2C
+000872H   00088FH   00001EH   BYTE   UNIT     CODE           ?PR?_LCD_WRITEDATA?LCD1602
+000890H   0008ADH   00001EH   BYTE   UNIT     CODE           ?PR?ONEWIRE_INIT?ONEWIRE
+0008AEH   0008CAH   00001DH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWNUM?LCD1602
+0008CBH   0008E7H   00001DH   BYTE   UNIT     CODE           ?PR?ONEWIRE_RECEIVEBYTE?ONEWIRE
+0008E8H   000903H   00001CH   BYTE   UNIT     CODE           ?PR?ONEWIRE_RECEIVEBIT?ONEWIRE
+000904H   00091DH   00001AH   BYTE   UNIT     CODE           ?CO?MAIN
+00091EH   000936H   000019H   BYTE   UNIT     CODE           ?PR?_ONEWIRE_SENDBYTE?ONEWIRE
+000937H   00094DH   000017H   BYTE   UNIT     CODE           ?PR?TIMER0_INIT?TIMER0
+00094EH   000963H   000016H   BYTE   UNIT     CODE           ?PR?KEY_GETSTATE?KEY
+000964H   000979H   000016H   BYTE   UNIT     CODE           ?PR?_LCD_SETCURSOR?LCD1602
+00097AH   00098FH   000016H   BYTE   UNIT     CODE           ?PR?_ONEWIRE_SENDBIT?ONEWIRE
+000990H   0009A4H   000015H   BYTE   UNIT     CODE           ?PR?_DELAY?DELAY
+0009A5H   0009B8H   000014H   BYTE   UNIT     CODE           ?PR?LCD_INIT?LCD1602
+0009B9H   0009C7H   00000FH   BYTE   UNIT     CODE           ?PR?LCD_DELAY?LCD1602
+0009C8H   0009D4H   00000DH   BYTE   UNIT     CODE           ?PR?DS18B20_CONVERT?DS18B20
+0009D5H   0009E0H   00000CH   BYTE   UNIT     CODE           ?PR?I2C_RECEIVEACK?I2C
+0009E1H   0009ECH   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+0009EDH   0009F6H   00000AH   BYTE   UNIT     CODE           ?PR?_I2C_SENDACK?I2C
+0009F7H   000A00H   00000AH   BYTE   UNIT     CODE           ?PR?_LCD_WRITECOMMAND?LCD1602
+000A01H   000A0AH   00000AH   BYTE   UNIT     CODE           ?PR?_LCD_SHOWCHAR?LCD1602
+000A0BH   000A13H   000009H   BYTE   UNIT     CODE           ?PR?I2C_START?I2C
+000A14H   000A19H   000006H   BYTE   UNIT     CODE           ?PR?KEY?KEY
+
+* * * * * * * * *   R E M O V E D     S E G M E N T S   * * * * * * * *
+   *DEL*:           000039H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWHEXNUM?LCD1602
+   *DEL*:           000005H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWHEXNUM?LCD1602
+   *DEL*:           000038H   BYTE   UNIT     CODE           ?PR?_LCD_SHOWBINNUM?LCD1602
+   *DEL*:           000005H   BYTE   UNIT     DATA           ?DT?_LCD_SHOWBINNUM?LCD1602
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\PROJECT (AT24C02)
+
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 3
+
+
+FUNCTION/MODULE                   BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE       START  STOP  START  STOP
+=========================================================
+TIMER0_ROUTINE/MAIN              ----- -----  ----- -----
+  +--> KEY_LOOP/KEY
+
+KEY_LOOP/KEY                     ----- -----  ----- -----
+  +--> KEY_GETSTATE/KEY
+
+KEY_GETSTATE/KEY                 ----- -----  ----- -----
+
+*** NEW ROOT *******************
+
+?C_C51STARTUP                    ----- -----  ----- -----
+  +--> MAIN/MAIN
+
+MAIN/MAIN                        ----- -----  ----- -----
+  +--> DS18B20_CONVERT/DS18B20
+  +--> _DELAY/DELAY
+  +--> _AT24C02_READBYTE/AT24C02
+  +--> LCD_INIT/LCD1602
+  +--> ?CO?MAIN
+  +--> _LCD_SHOWSTRING/LCD1602
+  +--> _LCD_SHOWSIGNEDNUM/LCD1602
+  +--> TIMER0_INIT/TIMER0
+  +--> KEY/KEY
+  +--> DS18B20_READT/DS18B20
+  +--> _LCD_SHOWCHAR/LCD1602
+  +--> _LCD_SHOWNUM/LCD1602
+  +--> _AT24C02_WRITEBYTE/AT24C02
+
+DS18B20_CONVERT/DS18B20          ----- -----  ----- -----
+  +--> ONEWIRE_INIT/ONEWIRE
+  +--> _ONEWIRE_SENDBYTE/ONEWIRE
+
+ONEWIRE_INIT/ONEWIRE             ----- -----  ----- -----
+
+_ONEWIRE_SENDBYTE/ONEWIRE        ----- -----  ----- -----
+  +--> _ONEWIRE_SENDBIT/ONEWIRE
+
+_ONEWIRE_SENDBIT/ONEWIRE         ----- -----  ----- -----
+
+_DELAY/DELAY                     ----- -----  ----- -----
+
+_AT24C02_READBYTE/AT24C02        ----- -----  0015H 0016H
+  +--> I2C_START/I2C
+  +--> _I2C_SENDBYTE/I2C
+  +--> I2C_RECEIVEACK/I2C
+  +--> I2C_RECEIVEBYTE/I2C
+  +--> _I2C_SENDACK/I2C
+  +--> I2C_STOP/I2C
+
+I2C_START/I2C                    ----- -----  ----- -----
+
+_I2C_SENDBYTE/I2C                ----- -----  ----- -----
+
+I2C_RECEIVEACK/I2C               ----- -----  ----- -----
+
+I2C_RECEIVEBYTE/I2C              ----- -----  ----- -----
+
+_I2C_SENDACK/I2C                 ----- -----  ----- -----
+
+I2C_STOP/I2C                     ----- -----  ----- -----
+
+LCD_INIT/LCD1602                 ----- -----  ----- -----
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 4
+
+
+  +--> _LCD_WRITECOMMAND/LCD1602
+
+_LCD_WRITECOMMAND/LCD1602        ----- -----  ----- -----
+  +--> LCD_DELAY/LCD1602
+
+LCD_DELAY/LCD1602                ----- -----  ----- -----
+
+?CO?MAIN                         ----- -----  ----- -----
+
+_LCD_SHOWSTRING/LCD1602          ----- -----  0015H 0017H
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_LCD_SETCURSOR/LCD1602           ----- -----  ----- -----
+  +--> _LCD_WRITECOMMAND/LCD1602
+
+_LCD_WRITEDATA/LCD1602           ----- -----  ----- -----
+  +--> LCD_DELAY/LCD1602
+
+_LCD_SHOWSIGNEDNUM/LCD1602       ----- -----  0015H 001BH
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+  +--> _LCD_POW/LCD1602
+
+_LCD_POW/LCD1602                 ----- -----  001CH 001FH
+
+TIMER0_INIT/TIMER0               ----- -----  ----- -----
+
+KEY/KEY                          ----- -----  ----- -----
+
+DS18B20_READT/DS18B20            ----- -----  0015H 0015H
+  +--> ONEWIRE_INIT/ONEWIRE
+  +--> _ONEWIRE_SENDBYTE/ONEWIRE
+  +--> ONEWIRE_RECEIVEBYTE/ONEWIRE
+
+ONEWIRE_RECEIVEBYTE/ONEWIRE      ----- -----  ----- -----
+  +--> ONEWIRE_RECEIVEBIT/ONEWIRE
+
+ONEWIRE_RECEIVEBIT/ONEWIRE       ----- -----  ----- -----
+
+_LCD_SHOWCHAR/LCD1602            ----- -----  ----- -----
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_LCD_SHOWNUM/LCD1602             ----- -----  0015H 0019H
+  +--> _LCD_SETCURSOR/LCD1602
+  +--> _LCD_POW/LCD1602
+  +--> _LCD_WRITEDATA/LCD1602
+
+_AT24C02_WRITEBYTE/AT24C02       ----- -----  0015H 0017H
+  +--> I2C_START/I2C
+  +--> _I2C_SENDBYTE/I2C
+  +--> I2C_RECEIVEACK/I2C
+  +--> I2C_STOP/I2C
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\PROJECT (AT24C02)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowBinNum?BYTE
+*DEL*:00000000H   DATA     BYTE      ?_LCD_ShowHexNum?BYTE
+      00000015H   DATA     BYTE      ?_LCD_ShowNum?BYTE
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 5
+
+
+      00000015H   DATA     BYTE      ?_LCD_ShowSignedNum?BYTE
+      0100027CH   CODE     ---       ?C?CASTF
+      010002FDH   CODE     ---       ?C?CLDOPTR
+      00000000H   NUMBER   ---       ?C?CODESEG
+      01000248H   CODE     ---       ?C?FCASTC
+      01000243H   CODE     ---       ?C?FCASTI
+      0100023EH   CODE     ---       ?C?FCASTL
+      010001B6H   CODE     ---       ?C?FPCMP
+      010001B4H   CODE     ---       ?C?FPCMP3
+      01000117H   CODE     ---       ?C?FPDIV
+      010002B3H   CODE     ---       ?C?FPGETOPN2
+      0100000EH   CODE     ---       ?C?FPMUL
+      010002E8H   CODE     ---       ?C?FPNANRESULT
+      0100022DH   CODE     ---       ?C?FPNEG
+      010002F2H   CODE     ---       ?C?FPOVERFLOW
+      010002CAH   CODE     ---       ?C?FPRESULT
+      010002DEH   CODE     ---       ?C?FPRESULT2
+      010002EFH   CODE     ---       ?C?FPUNDERFLOW
+      0100032AH   CODE     ---       ?C?IMUL
+      0100045FH   CODE     ---       ?C?LNEG
+      0100033CH   CODE     ---       ?C?UIDIV
+      010003CDH   CODE     ---       ?C?ULDIV
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      0100046DH   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000788H   CODE     ---       _AT24C02_ReadByte
+      0100080DH   CODE     ---       _AT24C02_WriteByte
+      01000990H   CODE     ---       _Delay
+      010009EDH   CODE     ---       _I2C_SendAck
+      010007E4H   CODE     ---       _I2C_SendByte
+      01000761H   CODE     ---       _LCD_Pow
+      01000964H   CODE     ---       _LCD_SetCursor
+*DEL*:00000000H   CODE     ---       _LCD_ShowBinNum
+      01000A01H   CODE     ---       _LCD_ShowChar
+*DEL*:00000000H   CODE     ---       _LCD_ShowHexNum
+      010008AEH   CODE     ---       _LCD_ShowNum
+      010006E2H   CODE     ---       _LCD_ShowSignedNum
+      01000831H   CODE     ---       _LCD_ShowString
+      010009F7H   CODE     ---       _LCD_WriteCommand
+      01000886H   CODE     ---       _LCD_WriteData
+      0100097AH   CODE     ---       _OneWire_SendBit
+      0100091EH   CODE     ---       _OneWire_SendByte
+      010009C8H   CODE     ---       DS18B20_Convert
+      010007B8H   CODE     ---       DS18B20_ReadT
+      010009D5H   CODE     ---       I2C_ReceiveAck
+      01000854H   CODE     ---       I2C_ReceiveByte
+      01000A0BH   CODE     ---       I2C_Start
+      01000003H   CODE     ---       I2C_Stop
+      01000A14H   CODE     ---       Key
+      0100094EH   CODE     ---       Key_GetState
+      00000022H   DATA     BYTE      Key_KeyNumber
+      0100071CH   CODE     ---       Key_Loop
+      00000014H   DATA     BYTE      KeyNum
+      010009BFH   CODE     ---       LCD_Delay
+      010009A5H   CODE     ---       LCD_Init
+      0100046DH   CODE     ---       main
+      01000890H   CODE     ---       OneWire_Init
+      010008E8H   CODE     ---       OneWire_ReceiveBit
+      010008CBH   CODE     ---       OneWire_ReceiveByte
+      0000000FH   DATA     FLOAT     T
+      00000013H   DATA     CHAR      THigh
+      01000937H   CODE     ---       Timer0_Init
+      0100068AH   CODE     ---       Timer0_Routine
+      0000000AH   DATA     CHAR      TLow
+      0000000BH   DATA     FLOAT     Tshow
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 6
+
+
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\PROJECT (AT24C02)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       AT24C02
+      01000788H   PUBLIC    CODE     ---       _AT24C02_ReadByte
+      0100080DH   PUBLIC    CODE     ---       _AT24C02_WriteByte
+
+      0100080DH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000788H   BLOCK     CODE     ---       LVL=0
+      0100078AH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000016H   SYMBOL    DATA     VOID      Data
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       DS18B20
+      010007B8H   PUBLIC    CODE     ---       DS18B20_ReadT
+      010009C8H   PUBLIC    CODE     ---       DS18B20_Convert
+
+      010009C8H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010007B8H   BLOCK     CODE     ---       LVL=0
+      010007B8H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000015H   SYMBOL    DATA     VOID      TLSB
+      00000007H   SYMBOL    DATA     VOID      TMSB
+      00000006H   SYMBOL    DATA     VOID      Temp
+      00000004H   SYMBOL    DATA     VOID      T
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       DELAY
+      01000990H   PUBLIC    CODE     ---       _Delay
+
+      01000990H   BLOCK     CODE     ---       LVL=0
+      01000990H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      00000004H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       I2C
+      010009D5H   PUBLIC    CODE     ---       I2C_ReceiveAck
+      010009EDH   PUBLIC    CODE     ---       _I2C_SendAck
+      01000854H   PUBLIC    CODE     ---       I2C_ReceiveByte
+      010007E4H   PUBLIC    CODE     ---       _I2C_SendByte
+      01000003H   PUBLIC    CODE     ---       I2C_Stop
+      01000A0BH   PUBLIC    CODE     ---       I2C_Start
+
+      01000A0BH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010007E4H   BLOCK     CODE     ---       LVL=0
+      010007E6H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 7
+
+
+
+      01000854H   BLOCK     CODE     ---       LVL=0
+      01000854H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      Byte
+      00000006H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010009EDH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010009D5H   BLOCK     CODE     ---       LVL=0
+      010009D5H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      AckBit
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       KEY
+      00000022H   PUBLIC    DATA     BYTE      Key_KeyNumber
+      0100071CH   PUBLIC    CODE     ---       Key_Loop
+      0100094EH   PUBLIC    CODE     ---       Key_GetState
+      01000A14H   PUBLIC    CODE     ---       Key
+
+      01000A14H   BLOCK     CODE     ---       LVL=0
+      01000A14H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      Temp
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100094EH   BLOCK     CODE     ---       LVL=0
+      0100094EH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      KeyNumer
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100071CH   BLOCK     CODE     ---       LVL=0
+      0100071CH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000020H   SYMBOL    DATA     VOID      NowState
+      00000021H   SYMBOL    DATA     VOID      LastState
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       LCD1602
+      00000015H   PUBLIC    DATA     BYTE      ?_LCD_ShowSignedNum?BYTE
+      010006E2H   PUBLIC    CODE     ---       _LCD_ShowSignedNum
+      00000015H   PUBLIC    DATA     BYTE      ?_LCD_ShowNum?BYTE
+      010008AEH   PUBLIC    CODE     ---       _LCD_ShowNum
+      01000761H   PUBLIC    CODE     ---       _LCD_Pow
+      01000831H   PUBLIC    CODE     ---       _LCD_ShowString
+      01000A01H   PUBLIC    CODE     ---       _LCD_ShowChar
+      010009A5H   PUBLIC    CODE     ---       LCD_Init
+      01000964H   PUBLIC    CODE     ---       _LCD_SetCursor
+      01000886H   PUBLIC    CODE     ---       _LCD_WriteData
+      010009F7H   PUBLIC    CODE     ---       _LCD_WriteCommand
+      010009BFH   PUBLIC    CODE     ---       LCD_Delay
+
+      010009B9H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010009BFH   BLOCK     CODE     ---       LVL=0
+      010009BFH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 8
+
+
+
+      010009F7H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000872H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000886H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000964H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010009A5H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000A01H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000831H   BLOCK     CODE     ---       LVL=0
+      01000837H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000755H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000761H   BLOCK     CODE     ---       LVL=0
+      01000769H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      Result
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010008AEH   BLOCK     CODE     ---       LVL=0
+      010008B2H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000002H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010006E2H   BLOCK     CODE     ---       LVL=0
+      010006E2H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000002H   SYMBOL    DATA     VOID      i
+      0000001AH   SYMBOL    DATA     VOID      Number1
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+      00000002H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      SingleNumber
+      00000002H   SYMBOL    DATA     VOID      i
+
+      ---         MODULE    ---      ---       ONEWIRE
+      010008CBH   PUBLIC    CODE     ---       OneWire_ReceiveByte
+      0100091EH   PUBLIC    CODE     ---       _OneWire_SendByte
+      010008E8H   PUBLIC    CODE     ---       OneWire_ReceiveBit
+      0100097AH   PUBLIC    CODE     ---       _OneWire_SendBit
+      01000890H   PUBLIC    CODE     ---       OneWire_Init
+
+      01000890H   BLOCK     CODE     ---       LVL=0
+      01000890H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      AckBit
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 9
+
+
+      0100097AH   BLOCK     CODE     ---       LVL=0
+      0100097AH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000006H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010008E8H   BLOCK     CODE     ---       LVL=0
+      010008E8H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      Bit
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100091EH   BLOCK     CODE     ---       LVL=0
+      01000920H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000004H   SYMBOL    DATA     VOID      i
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010008CBH   BLOCK     CODE     ---       LVL=0
+      010008CBH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000004H   SYMBOL    DATA     VOID      i
+      00000005H   SYMBOL    DATA     VOID      Byte
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       TIMER0
+      01000937H   PUBLIC    CODE     ---       Timer0_Init
+
+      01000937H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       MAIN
+      00000014H   PUBLIC    DATA     BYTE      KeyNum
+      00000013H   PUBLIC    DATA     CHAR      THigh
+      0000000FH   PUBLIC    DATA     FLOAT     T
+      0000000BH   PUBLIC    DATA     FLOAT     Tshow
+      0000000AH   PUBLIC    DATA     CHAR      TLow
+      0100068AH   PUBLIC    CODE     ---       Timer0_Routine
+      0100046DH   PUBLIC    CODE     ---       main
+
+      0100046DH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100068AH   BLOCK     CODE     ---       LVL=0
+      010006A7H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000008H   SYMBOL    DATA     VOID      T0Count
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C?FPMUL
+      0100000EH   PUBLIC    CODE     ---       ?C?FPMUL
+
+      ---         MODULE    ---      ---       ?C?FPDIV
+      01000117H   PUBLIC    CODE     ---       ?C?FPDIV
+
+      ---         MODULE    ---      ---       ?C?FPCMP
+      010001B6H   PUBLIC    CODE     ---       ?C?FPCMP
+      010001B4H   PUBLIC    CODE     ---       ?C?FPCMP3
+
+      ---         MODULE    ---      ---       ?C?FPNEG
+      0100022DH   PUBLIC    CODE     ---       ?C?FPNEG
+
+      ---         MODULE    ---      ---       ?C?FCAST
+      01000248H   PUBLIC    CODE     ---       ?C?FCASTC
+LX51 LINKER/LOCATER V4.66.41.0                                                        08/05/2023  12:11:09  PAGE 10
+
+
+      01000243H   PUBLIC    CODE     ---       ?C?FCASTI
+      0100023EH   PUBLIC    CODE     ---       ?C?FCASTL
+
+      ---         MODULE    ---      ---       ?C?CASTF
+      0100027CH   PUBLIC    CODE     ---       ?C?CASTF
+
+      ---         MODULE    ---      ---       ?C?FPGETOPN
+      010002B3H   PUBLIC    CODE     ---       ?C?FPGETOPN2
+      010002E8H   PUBLIC    CODE     ---       ?C?FPNANRESULT
+      010002F2H   PUBLIC    CODE     ---       ?C?FPOVERFLOW
+      010002CAH   PUBLIC    CODE     ---       ?C?FPRESULT
+      010002DEH   PUBLIC    CODE     ---       ?C?FPRESULT2
+      010002EFH   PUBLIC    CODE     ---       ?C?FPUNDERFLOW
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C?CLDOPTR
+      010002FDH   PUBLIC    CODE     ---       ?C?CLDOPTR
+
+      ---         MODULE    ---      ---       ?C?IMUL
+      0100032AH   PUBLIC    CODE     ---       ?C?IMUL
+
+      ---         MODULE    ---      ---       ?C?UIDIV
+      0100033CH   PUBLIC    CODE     ---       ?C?UIDIV
+
+      ---         MODULE    ---      ---       ?C?ULDIV
+      010003CDH   PUBLIC    CODE     ---       ?C?ULDIV
+
+      ---         MODULE    ---      ---       ?C?LNEG
+      0100045FH   PUBLIC    CODE     ---       ?C?LNEG
+
+Program Size: data=36.0 xdata=0 const=0 code=2585
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

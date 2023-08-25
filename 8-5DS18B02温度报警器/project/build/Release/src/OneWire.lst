@@ -1,0 +1,385 @@
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE ONEWIRE
+OBJECT MODULE PLACED IN .\build\Release\src\OneWire.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\ONEWIRE.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\
+                    -OneWire.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build
+                    -\Release\src\OneWire.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          
+   3          sbit OneWire_DQ=P3^7;
+   4          
+   5          unsigned char OneWire_Init(void)
+   6          {
+   7   1          unsigned char i;
+   8   1          unsigned char AckBit;
+   9   1          EA=0;
+  10   1          OneWire_DQ=1;
+  11   1          OneWire_DQ=0;
+  12   1      
+  13   1          i = 227;while (--i);       //Delay  500us
+  14   1          OneWire_DQ=1;
+  15   1          i = 29;while (--i);       //delay  70us
+  16   1          AckBit=OneWire_DQ;
+  17   1          i = 227;while (--i);       //Delay  500us
+  18   1          EA=1;
+  19   1          return AckBit;
+  20   1      }
+  21          
+  22          void OneWire_SendBit(unsigned char Bit)
+  23          {
+  24   1          unsigned char i;   
+  25   1          EA=0;
+  26   1          OneWire_DQ=0;    
+  27   1          
+  28   1          i = 3;while (--i);      //Delay  10us
+  29   1          OneWire_DQ=Bit;
+  30   1          i = 22;while (--i);      //Delay  50us
+  31   1          OneWire_DQ=1;
+  32   1          EA=1;
+  33   1      }
+  34          
+  35          unsigned char OneWire_ReceiveBit(void)
+  36          {
+  37   1          unsigned char i;
+  38   1          unsigned char Bit;
+  39   1          EA=0;
+  40   1          OneWire_DQ=0;
+  41   1          i = 1;while (--i);     //Delay  5us
+  42   1          OneWire_DQ=1;
+  43   1          i = 1;while (--i);     //Delay  5us
+  44   1          Bit=OneWire_DQ;
+  45   1          i = 22;while (--i);      //Delay  50us
+  46   1          EA=1;
+  47   1          return Bit;
+  48   1      }
+  49          
+  50          
+  51          
+  52          void OneWire_SendByte(unsigned char Byte)
+  53          {
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 2   
+
+  54   1          unsigned char i;
+  55   1          for ( i = 0; i < 8; i++)
+  56   1          {
+  57   2             OneWire_SendBit(Byte&(0x01<<i));
+  58   2          }
+  59   1          
+  60   1      }
+  61          
+  62          unsigned char OneWire_ReceiveByte(void)
+  63          {
+  64   1          unsigned char i;
+  65   1          unsigned char Byte=0x00;
+  66   1          for ( i = 0; i < 8; i++)
+  67   1          {
+  68   2              if(OneWire_ReceiveBit()){Byte|=(0x01<<i);}
+  69   2          }
+  70   1          return Byte;
+  71   1      }
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 3   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION OneWire_Init (BEGIN)
+                                           ; SOURCE LINE # 5
+                                           ; SOURCE LINE # 6
+                                           ; SOURCE LINE # 9
+0000 C2AF              CLR     EA
+                                           ; SOURCE LINE # 10
+0002 D2B7              SETB    OneWire_DQ
+                                           ; SOURCE LINE # 11
+0004 C2B7              CLR     OneWire_DQ
+                                           ; SOURCE LINE # 13
+;---- Variable 'i' assigned to Register 'R7' ----
+0006 7FE3              MOV     R7,#0E3H
+0008         ?C0001:
+0008 DFFE              DJNZ    R7,?C0001
+000A         ?C0002:
+                                           ; SOURCE LINE # 14
+000A D2B7              SETB    OneWire_DQ
+                                           ; SOURCE LINE # 15
+000C 7F1D              MOV     R7,#01DH
+000E         ?C0003:
+000E DFFE              DJNZ    R7,?C0003
+0010         ?C0004:
+                                           ; SOURCE LINE # 16
+0010 A2B7              MOV     C,OneWire_DQ
+0012 E4                CLR     A
+0013 33                RLC     A
+;---- Variable 'AckBit' assigned to Register 'R6' ----
+0014 FE                MOV     R6,A
+                                           ; SOURCE LINE # 17
+0015 7FE3              MOV     R7,#0E3H
+0017         ?C0005:
+0017 DFFE              DJNZ    R7,?C0005
+0019         ?C0006:
+                                           ; SOURCE LINE # 18
+0019 D2AF              SETB    EA
+                                           ; SOURCE LINE # 19
+001B AF06              MOV     R7,AR6
+                                           ; SOURCE LINE # 20
+001D         ?C0007:
+001D 22                RET     
+             ; FUNCTION OneWire_Init (END)
+
+             ; FUNCTION _OneWire_SendBit (BEGIN)
+                                           ; SOURCE LINE # 22
+;---- Variable 'Bit' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 23
+                                           ; SOURCE LINE # 25
+0000 C2AF              CLR     EA
+                                           ; SOURCE LINE # 26
+0002 C2B7              CLR     OneWire_DQ
+                                           ; SOURCE LINE # 28
+;---- Variable 'i' assigned to Register 'R6' ----
+0004 7E03              MOV     R6,#03H
+0006         ?C0008:
+0006 DEFE              DJNZ    R6,?C0008
+0008         ?C0009:
+                                           ; SOURCE LINE # 29
+0008 EF                MOV     A,R7
+0009 24FF              ADD     A,#0FFH
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 4   
+
+000B 92B7              MOV     OneWire_DQ,C
+                                           ; SOURCE LINE # 30
+000D 7E16              MOV     R6,#016H
+000F         ?C0010:
+000F DEFE              DJNZ    R6,?C0010
+0011         ?C0011:
+                                           ; SOURCE LINE # 31
+0011 D2B7              SETB    OneWire_DQ
+                                           ; SOURCE LINE # 32
+0013 D2AF              SETB    EA
+                                           ; SOURCE LINE # 33
+0015 22                RET     
+             ; FUNCTION _OneWire_SendBit (END)
+
+             ; FUNCTION OneWire_ReceiveBit (BEGIN)
+                                           ; SOURCE LINE # 35
+                                           ; SOURCE LINE # 36
+                                           ; SOURCE LINE # 39
+0000 C2AF              CLR     EA
+                                           ; SOURCE LINE # 40
+0002 C2B7              CLR     OneWire_DQ
+                                           ; SOURCE LINE # 41
+;---- Variable 'i' assigned to Register 'R7' ----
+0004 7F01              MOV     R7,#01H
+0006         ?C0013:
+0006 DFFE              DJNZ    R7,?C0013
+0008         ?C0014:
+                                           ; SOURCE LINE # 42
+0008 D2B7              SETB    OneWire_DQ
+                                           ; SOURCE LINE # 43
+000A 7F01              MOV     R7,#01H
+000C         ?C0015:
+000C DFFE              DJNZ    R7,?C0015
+000E         ?C0016:
+                                           ; SOURCE LINE # 44
+000E A2B7              MOV     C,OneWire_DQ
+0010 E4                CLR     A
+0011 33                RLC     A
+;---- Variable 'Bit' assigned to Register 'R6' ----
+0012 FE                MOV     R6,A
+                                           ; SOURCE LINE # 45
+0013 7F16              MOV     R7,#016H
+0015         ?C0017:
+0015 DFFE              DJNZ    R7,?C0017
+0017         ?C0018:
+                                           ; SOURCE LINE # 46
+0017 D2AF              SETB    EA
+                                           ; SOURCE LINE # 47
+0019 AF06              MOV     R7,AR6
+                                           ; SOURCE LINE # 48
+001B         ?C0019:
+001B 22                RET     
+             ; FUNCTION OneWire_ReceiveBit (END)
+
+             ; FUNCTION _OneWire_SendByte (BEGIN)
+                                           ; SOURCE LINE # 52
+;---- Variable 'Byte' assigned to Register 'R5' ----
+0000 AD07              MOV     R5,AR7
+                                           ; SOURCE LINE # 53
+                                           ; SOURCE LINE # 55
+;---- Variable 'i' assigned to Register 'R4' ----
+0002 E4                CLR     A
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 5   
+
+0003 FC                MOV     R4,A
+0004         ?C0020:
+                                           ; SOURCE LINE # 56
+                                           ; SOURCE LINE # 57
+0004 7401              MOV     A,#01H
+0006 A804              MOV     R0,AR4
+0008 08                INC     R0
+0009 8002              SJMP    ?C0030
+000B         ?C0029:
+000B C3                CLR     C
+000C 33                RLC     A
+000D         ?C0030:
+000D D8FC              DJNZ    R0,?C0029
+000F 5D                ANL     A,R5
+0010 FF                MOV     R7,A
+0011 120000      R     LCALL   _OneWire_SendBit
+                                           ; SOURCE LINE # 58
+0014 0C                INC     R4
+0015 BC08EC            CJNE    R4,#08H,?C0020
+                                           ; SOURCE LINE # 60
+0018         ?C0023:
+0018 22                RET     
+             ; FUNCTION _OneWire_SendByte (END)
+
+             ; FUNCTION OneWire_ReceiveByte (BEGIN)
+                                           ; SOURCE LINE # 62
+                                           ; SOURCE LINE # 63
+                                           ; SOURCE LINE # 65
+;---- Variable 'Byte' assigned to Register 'R5' ----
+0000 E4                CLR     A
+0001 FD                MOV     R5,A
+                                           ; SOURCE LINE # 66
+;---- Variable 'i' assigned to Register 'R4' ----
+0002 FC                MOV     R4,A
+0003         ?C0024:
+                                           ; SOURCE LINE # 67
+                                           ; SOURCE LINE # 68
+0003 120000      R     LCALL   OneWire_ReceiveBit
+0006 EF                MOV     A,R7
+0007 600D              JZ      ?C0026
+0009 7401              MOV     A,#01H
+000B A804              MOV     R0,AR4
+000D 08                INC     R0
+000E 8002              SJMP    ?C0032
+0010         ?C0031:
+0010 C3                CLR     C
+0011 33                RLC     A
+0012         ?C0032:
+0012 D8FC              DJNZ    R0,?C0031
+0014 4205              ORL     AR5,A
+                                           ; SOURCE LINE # 69
+0016         ?C0026:
+0016 0C                INC     R4
+0017 BC08E9            CJNE    R4,#08H,?C0024
+001A         ?C0025:
+                                           ; SOURCE LINE # 70
+001A AF05              MOV     R7,AR5
+                                           ; SOURCE LINE # 71
+001C         ?C0028:
+001C 22                RET     
+             ; FUNCTION OneWire_ReceiveByte (END)
+
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 6   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+OneWire_ReceiveBit . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  Bit. . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+OneWire_DQ . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+OneWire_Init . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  AckBit . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+_OneWire_SendByte. . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Byte . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0004H  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+_OneWire_SendBit . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Bit. . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+C51 COMPILER V9.54   ONEWIRE                                                               08/05/2023 12:11:08 PAGE 7   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+OneWire_ReceiveByte. . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0004H  1
+  Byte . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    134    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
