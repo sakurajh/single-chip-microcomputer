@@ -1,0 +1,3 @@
+tool: KEIL_C51
+fileName: projectc.map
+elfName: projectc

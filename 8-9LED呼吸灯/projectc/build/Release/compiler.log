@@ -1,0 +1,14 @@
+>>> cc
+
+
+
+>>> ld
+
+
+LX51 LINKER/LOCATER V4.66.41.0 - SN: K1DZC-GDGGZC
+COPYRIGHT ARM Germany GmbH 1995 - 2015
+@c:\Users\ÕÔ½¨»ª\Desktop\keilvs\8.9LEDºôÎüµÆ\projectc\build\Release\projectc.lnp .\build\Release\src\main.o TO .\build\Release\projectc
+PRINT(.\build\Release\projectc.map) REMOVEUNUSED
+
+Program Size: data=9.0 xdata=0 const=0 code=83
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
