@@ -1,0 +1,210 @@
+C51 COMPILER V9.54   TIMER0                                                                08/11/2023 15:15:38 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE TIMER0
+OBJECT MODULE PLACED IN .\build\Release\src\Timer0.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\TIMER0.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\T
+                    -imer0.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\R
+                    -elease\src\Timer0.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          
+   3          
+   4          
+   5          void Timer0_Init()
+   6          {
+   7   1      //    TMOD=0x01;  //0000 0001
+   8   1          TMOD &= 0xF0;       //设置定时器模式
+   9   1          TMOD |= 0x01;       //设置定时器模式
+  10   1          TL0 = 0x9C;     //设置定时初值
+  11   1          TH0 = 0xFF;     //设置定时初值
+  12   1          TF0 = 0;        //清除TF0标志
+  13   1          TR0 = 0;        //定时器0不开始计时
+  14   1      }
+  15          
+  16          
+  17          void Timer0_SetCounter(unsigned int Value)
+  18          {
+  19   1          TH0=Value/256;
+  20   1          TL0=Value%256;
+  21   1      }
+  22          
+  23          unsigned int Timer0_GetCounter(void)
+  24          {
+  25   1          return (TH0<<8)|TL0;
+  26   1      }
+  27          
+  28          
+  29          void Timer0_Run(unsigned char Flag)
+  30          {
+  31   1          TR0=Flag;
+  32   1      }
+C51 COMPILER V9.54   TIMER0                                                                08/11/2023 15:15:38 PAGE 2   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION Timer0_Init (BEGIN)
+                                           ; SOURCE LINE # 5
+                                           ; SOURCE LINE # 6
+                                           ; SOURCE LINE # 8
+0000 5389F0            ANL     TMOD,#0F0H
+                                           ; SOURCE LINE # 9
+0003 438901            ORL     TMOD,#01H
+                                           ; SOURCE LINE # 10
+0006 758A9C            MOV     TL0,#09CH
+                                           ; SOURCE LINE # 11
+0009 758CFF            MOV     TH0,#0FFH
+                                           ; SOURCE LINE # 12
+000C C28D              CLR     TF0
+                                           ; SOURCE LINE # 13
+000E C28C              CLR     TR0
+                                           ; SOURCE LINE # 14
+0010 22                RET     
+             ; FUNCTION Timer0_Init (END)
+
+             ; FUNCTION _Timer0_SetCounter (BEGIN)
+                                           ; SOURCE LINE # 17
+;---- Variable 'Value' assigned to Register 'R4/R5' ----
+0000 AD07              MOV     R5,AR7
+0002 AC06              MOV     R4,AR6
+                                           ; SOURCE LINE # 18
+                                           ; SOURCE LINE # 19
+0004 8C8C              MOV     TH0,R4
+                                           ; SOURCE LINE # 20
+0006 AF05              MOV     R7,AR5
+0008 8F8A              MOV     TL0,R7
+                                           ; SOURCE LINE # 21
+000A 22                RET     
+             ; FUNCTION _Timer0_SetCounter (END)
+
+             ; FUNCTION Timer0_GetCounter (BEGIN)
+                                           ; SOURCE LINE # 23
+                                           ; SOURCE LINE # 24
+                                           ; SOURCE LINE # 25
+0000 AF8C              MOV     R7,TH0
+0002 EF                MOV     A,R7
+0003 FE                MOV     R6,A
+0004 AD8A              MOV     R5,TL0
+0006 ED                MOV     A,R5
+0007 FF                MOV     R7,A
+                                           ; SOURCE LINE # 26
+0008         ?C0003:
+0008 22                RET     
+             ; FUNCTION Timer0_GetCounter (END)
+
+             ; FUNCTION _Timer0_Run (BEGIN)
+                                           ; SOURCE LINE # 29
+;---- Variable 'Flag' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 30
+                                           ; SOURCE LINE # 31
+0000 EF                MOV     A,R7
+0001 24FF              ADD     A,#0FFH
+0003 928C              MOV     TR0,C
+                                           ; SOURCE LINE # 32
+0005 22                RET     
+C51 COMPILER V9.54   TIMER0                                                                08/11/2023 15:15:38 PAGE 3   
+
+             ; FUNCTION _Timer0_Run (END)
+
+C51 COMPILER V9.54   TIMER0                                                                08/11/2023 15:15:38 PAGE 4   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+Timer0_GetCounter. . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+_Timer0_SetCounter . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Value. . . . . . . . . . . . . . . .  * REG *  DATA   U_INT    0004H  2
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+Timer0_Init. . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+_Timer0_Run. . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  Flag . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+C51 COMPILER V9.54   TIMER0                                                                08/11/2023 15:15:38 PAGE 5   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     43    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

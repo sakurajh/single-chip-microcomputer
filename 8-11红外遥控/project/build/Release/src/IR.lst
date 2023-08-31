@@ -1,0 +1,691 @@
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE IR
+OBJECT MODULE PLACED IN .\build\Release\src\IR.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\IR.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\IR.ls
+                    -t) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\s
+                    -rc\IR.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          #include"Timer0.h"
+   3          #include"Int0.h"
+   4          
+   5          unsigned int IR_Time;
+   6          unsigned char IR_State;
+   7          
+   8          unsigned  long IR_Data[4];
+   9          unsigned char IR_pData;
+  10          
+  11          unsigned char IR_DataFlag;
+  12          unsigned char IR_RepeatFlag;
+  13          unsigned char IR_Address;
+  14          unsigned char IR_Command;
+  15          
+  16          
+  17          /**
+  18            * @brief  红外遥控初始化
+  19            * @param  无
+  20            * @retval 无
+  21            */
+  22          void IR_Init(void)
+  23          {
+  24   1          Timer0_Init();
+  25   1          Int0_Init();
+  26   1      }
+  27          
+  28          /**
+  29            * @brief  红外遥控获取收到数据帧标志位
+  30            * @param  无
+  31            * @retval 是否收到数据帧，1为收到，0为未收到
+  32            */
+  33          unsigned char IR_GetDataFlag(void)
+  34          {
+  35   1          if(IR_DataFlag)
+  36   1          {
+  37   2              IR_DataFlag=0;
+  38   2              return 1;
+  39   2          }
+  40   1          return 0;
+  41   1      }
+  42          
+  43          /**
+  44            * @brief  红外遥控获取收到连发帧标志位
+  45            * @param  无
+  46            * @retval 是否收到连发帧，1为收到，0为未收到
+  47            */
+  48          unsigned char IR_GetRepeatFlag(void)
+  49          {
+  50   1          if(IR_RepeatFlag)
+  51   1          {
+  52   2              IR_RepeatFlag=0;
+  53   2              return 1;
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 2   
+
+  54   2          }
+  55   1          return 0;
+  56   1      }
+  57          
+  58          /**
+  59            * @brief  红外遥控获取收到的地址数据
+  60            * @param  无
+  61            * @retval 收到的地址数据
+  62            */
+  63          unsigned char IR_GetAddress(void)
+  64          {
+  65   1          return IR_Address;
+  66   1      }
+  67          
+  68          /**
+  69            * @brief  红外遥控获取收到的命令数据
+  70            * @param  无
+  71            * @retval 收到的命令数据
+  72            */
+  73          unsigned char IR_GetCommand(void)
+  74          {
+  75   1          return IR_Command;
+  76   1      }
+  77          
+  78          //外部中断0中断函数，下降沿触发执行
+  79          void Int0_Routine(void) interrupt 0
+  80          {
+  81   1          if(IR_State==0)             //状态0，空闲状态
+  82   1          {
+  83   2              Timer0_SetCounter(0);   //定时计数器清0
+  84   2              Timer0_Run(1);          //定时器启动
+  85   2              IR_State=1;             //置状态为1
+  86   2          }
+  87   1          else if(IR_State==1)        //状态1，等待Start信号或Repeat信号
+  88   1          {
+  89   2              IR_Time=Timer0_GetCounter();    //获取上一次中断到此次中断的时间
+  90   2              Timer0_SetCounter(0);   //定时计数器清0
+  91   2              //如果计时为13.5ms，则接收到了Start信号（判定值在12MHz晶振下为13500，在11.0592MHz晶振下为12442）
+  92   2              if(IR_Time>12442-500 && IR_Time<12442+500)
+  93   2              {
+  94   3                  IR_State=2;         //置状态为2
+  95   3              }
+  96   2              //如果计时为11.25ms，则接收到了Repeat信号（判定值在12MHz晶振下为11250，在11.0592MHz晶振下为10368）
+  97   2              else if(IR_Time>10368-500 && IR_Time<10368+500)
+  98   2              {
+  99   3                  IR_RepeatFlag=1;    //置收到连发帧标志位为1
+ 100   3                  Timer0_Run(0);      //定时器停止
+ 101   3                  IR_State=0;         //置状态为0
+ 102   3              }
+ 103   2              else                    //接收出错
+ 104   2              {
+ 105   3                  IR_State=1;         //置状态为1
+ 106   3              }
+ 107   2          }
+ 108   1          else if(IR_State==2)        //状态2，接收数据
+ 109   1          {
+ 110   2              IR_Time=Timer0_GetCounter();    //获取上一次中断到此次中断的时间
+ 111   2              Timer0_SetCounter(0);   //定时计数器清0
+ 112   2              //如果计时为1120us，则接收到了数据0（判定值在12MHz晶振下为1120，在11.0592MHz晶振下为1032）
+ 113   2              if(IR_Time>1032-500 && IR_Time<1032+500)
+ 114   2              {
+ 115   3                  IR_Data[IR_pData/8]&=~(0x01<<(IR_pData%8)); //数据对应位清0
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 3   
+
+ 116   3                  IR_pData++;         //数据位置指针自增
+ 117   3              }
+ 118   2              //如果计时为2250us，则接收到了数据1（判定值在12MHz晶振下为2250，在11.0592MHz晶振下为2074）
+ 119   2              else if(IR_Time>2074-500 && IR_Time<2074+500)
+ 120   2              {
+ 121   3                  IR_Data[IR_pData/8]|=(0x01<<(IR_pData%8));  //数据对应位置1
+ 122   3                  IR_pData++;         //数据位置指针自增
+ 123   3              }
+ 124   2              else                    //接收出错
+ 125   2              {
+ 126   3                  IR_pData=0;         //数据位置指针清0
+ 127   3                  IR_State=1;         //置状态为1
+ 128   3              }
+ 129   2              if(IR_pData>=32)        //如果接收到了32位数据
+ 130   2              {
+ 131   3                  IR_pData=0;         //数据位置指针清0
+ 132   3                  if((IR_Data[0]==~IR_Data[1]) && (IR_Data[2]==~IR_Data[3]))  //数据验证
+ 133   3                  {
+ 134   4                      IR_Address=IR_Data[0];  //转存数据
+ 135   4                      IR_Command=IR_Data[2];
+ 136   4                      IR_DataFlag=1;  //置收到连发帧标志位为1
+ 137   4                  }
+ 138   3                  Timer0_Run(0);      //定时器停止
+ 139   3                  IR_State=0;         //置状态为0
+ 140   3              }
+ 141   2          }
+ 142   1      }
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 4   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION IR_Init (BEGIN)
+                                           ; SOURCE LINE # 22
+                                           ; SOURCE LINE # 23
+                                           ; SOURCE LINE # 24
+0000 120000      E     LCALL   Timer0_Init
+                                           ; SOURCE LINE # 25
+0003 020000      E     LJMP    Int0_Init
+             ; FUNCTION IR_Init (END)
+
+             ; FUNCTION IR_GetDataFlag (BEGIN)
+                                           ; SOURCE LINE # 33
+                                           ; SOURCE LINE # 34
+                                           ; SOURCE LINE # 35
+0000 E500        R     MOV     A,IR_DataFlag
+0002 6006              JZ      ?C0002
+                                           ; SOURCE LINE # 36
+                                           ; SOURCE LINE # 37
+0004 E4                CLR     A
+0005 F500        R     MOV     IR_DataFlag,A
+                                           ; SOURCE LINE # 38
+0007 7F01              MOV     R7,#01H
+0009 22                RET     
+                                           ; SOURCE LINE # 39
+000A         ?C0002:
+                                           ; SOURCE LINE # 40
+000A 7F00              MOV     R7,#00H
+                                           ; SOURCE LINE # 41
+000C         ?C0003:
+000C 22                RET     
+             ; FUNCTION IR_GetDataFlag (END)
+
+             ; FUNCTION IR_GetRepeatFlag (BEGIN)
+                                           ; SOURCE LINE # 48
+                                           ; SOURCE LINE # 49
+                                           ; SOURCE LINE # 50
+0000 E500        R     MOV     A,IR_RepeatFlag
+0002 6006              JZ      ?C0004
+                                           ; SOURCE LINE # 51
+                                           ; SOURCE LINE # 52
+0004 E4                CLR     A
+0005 F500        R     MOV     IR_RepeatFlag,A
+                                           ; SOURCE LINE # 53
+0007 7F01              MOV     R7,#01H
+0009 22                RET     
+                                           ; SOURCE LINE # 54
+000A         ?C0004:
+                                           ; SOURCE LINE # 55
+000A 7F00              MOV     R7,#00H
+                                           ; SOURCE LINE # 56
+000C         ?C0005:
+000C 22                RET     
+             ; FUNCTION IR_GetRepeatFlag (END)
+
+             ; FUNCTION IR_GetAddress (BEGIN)
+                                           ; SOURCE LINE # 63
+                                           ; SOURCE LINE # 64
+                                           ; SOURCE LINE # 65
+0000 AF00        R     MOV     R7,IR_Address
+                                           ; SOURCE LINE # 66
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 5   
+
+0002         ?C0006:
+0002 22                RET     
+             ; FUNCTION IR_GetAddress (END)
+
+             ; FUNCTION IR_GetCommand (BEGIN)
+                                           ; SOURCE LINE # 73
+                                           ; SOURCE LINE # 74
+                                           ; SOURCE LINE # 75
+0000 AF00        R     MOV     R7,IR_Command
+                                           ; SOURCE LINE # 76
+0002         ?C0007:
+0002 22                RET     
+             ; FUNCTION IR_GetCommand (END)
+
+             ; FUNCTION Int0_Routine (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0F0              PUSH    B
+0004 C083              PUSH    DPH
+0006 C082              PUSH    DPL
+0008 C0D0              PUSH    PSW
+000A 75D000            MOV     PSW,#00H
+000D C000              PUSH    AR0
+000F C001              PUSH    AR1
+0011 C002              PUSH    AR2
+0013 C003              PUSH    AR3
+0015 C004              PUSH    AR4
+0017 C005              PUSH    AR5
+0019 C006              PUSH    AR6
+001B C007              PUSH    AR7
+                                           ; SOURCE LINE # 79
+                                           ; SOURCE LINE # 81
+001D E500        R     MOV     A,IR_State
+001F 700C              JNZ     ?C0008
+                                           ; SOURCE LINE # 82
+                                           ; SOURCE LINE # 83
+0021 FF                MOV     R7,A
+0022 FE                MOV     R6,A
+0023 120000      E     LCALL   _Timer0_SetCounter
+                                           ; SOURCE LINE # 84
+0026 7F01              MOV     R7,#01H
+0028 120000      E     LCALL   _Timer0_Run
+                                           ; SOURCE LINE # 85
+                                           ; SOURCE LINE # 86
+002B 8049              SJMP    ?C0028
+002D         ?C0008:
+                                           ; SOURCE LINE # 87
+002D E500        R     MOV     A,IR_State
+002F 6401              XRL     A,#01H
+0031 7049              JNZ     ?C0010
+                                           ; SOURCE LINE # 88
+                                           ; SOURCE LINE # 89
+0033 120000      E     LCALL   Timer0_GetCounter
+0036 8E00        R     MOV     IR_Time,R6
+0038 8F00        R     MOV     IR_Time+01H,R7
+                                           ; SOURCE LINE # 90
+003A E4                CLR     A
+003B FF                MOV     R7,A
+003C FE                MOV     R6,A
+003D 120000      E     LCALL   _Timer0_SetCounter
+                                           ; SOURCE LINE # 92
+0040 D3                SETB    C
+0041 E500        R     MOV     A,IR_Time+01H
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 6   
+
+0043 94A6              SUBB    A,#0A6H
+0045 E500        R     MOV     A,IR_Time
+0047 942E              SUBB    A,#02EH
+0049 4010              JC      ?C0011
+004B E500        R     MOV     A,IR_Time+01H
+004D 948E              SUBB    A,#08EH
+004F E500        R     MOV     A,IR_Time
+0051 9432              SUBB    A,#032H
+0053 5006              JNC     ?C0011
+                                           ; SOURCE LINE # 93
+                                           ; SOURCE LINE # 94
+0055 750002      R     MOV     IR_State,#02H
+                                           ; SOURCE LINE # 95
+0058 020000      R     LJMP    ?C0023
+005B         ?C0011:
+                                           ; SOURCE LINE # 97
+005B D3                SETB    C
+005C E500        R     MOV     A,IR_Time+01H
+005E 948C              SUBB    A,#08CH
+0060 E500        R     MOV     A,IR_Time
+0062 9426              SUBB    A,#026H
+0064 4010              JC      ?C0013
+0066 E500        R     MOV     A,IR_Time+01H
+0068 9474              SUBB    A,#074H
+006A E500        R     MOV     A,IR_Time
+006C 942A              SUBB    A,#02AH
+006E 5006              JNC     ?C0013
+                                           ; SOURCE LINE # 98
+                                           ; SOURCE LINE # 99
+0070 750001      R     MOV     IR_RepeatFlag,#01H
+                                           ; SOURCE LINE # 100
+                                           ; SOURCE LINE # 101
+                                           ; SOURCE LINE # 102
+0073 020000      R     LJMP    ?C0029
+0076         ?C0013:
+                                           ; SOURCE LINE # 104
+                                           ; SOURCE LINE # 105
+0076         ?C0028:
+0076 750001      R     MOV     IR_State,#01H
+                                           ; SOURCE LINE # 106
+                                           ; SOURCE LINE # 107
+0079 020000      R     LJMP    ?C0023
+007C         ?C0010:
+                                           ; SOURCE LINE # 108
+007C E500        R     MOV     A,IR_State
+007E 6402              XRL     A,#02H
+0080 6003              JZ      $ + 5H
+0082 020000      R     LJMP    ?C0023
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 110
+0085 120000      E     LCALL   Timer0_GetCounter
+0088 8E00        R     MOV     IR_Time,R6
+008A 8F00        R     MOV     IR_Time+01H,R7
+                                           ; SOURCE LINE # 111
+008C E4                CLR     A
+008D FF                MOV     R7,A
+008E FE                MOV     R6,A
+008F 120000      E     LCALL   _Timer0_SetCounter
+                                           ; SOURCE LINE # 113
+0092 D3                SETB    C
+0093 E500        R     MOV     A,IR_Time+01H
+0095 9414              SUBB    A,#014H
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 7   
+
+0097 E500        R     MOV     A,IR_Time
+0099 9402              SUBB    A,#02H
+009B 405B              JC      ?C0017
+009D E500        R     MOV     A,IR_Time+01H
+009F 94FC              SUBB    A,#0FCH
+00A1 E500        R     MOV     A,IR_Time
+00A3 9405              SUBB    A,#05H
+00A5 5051              JNC     ?C0017
+                                           ; SOURCE LINE # 114
+                                           ; SOURCE LINE # 115
+00A7 E500        R     MOV     A,IR_pData
+00A9 13                RRC     A
+00AA 13                RRC     A
+00AB 13                RRC     A
+00AC 541F              ANL     A,#01FH
+00AE 25E0              ADD     A,ACC
+00B0 25E0              ADD     A,ACC
+00B2 2400        R     ADD     A,#LOW IR_Data
+00B4 F8                MOV     R0,A
+00B5 C000              PUSH    AR0
+00B7 120000      E     LCALL   ?C?LLDIDATA
+00BA C004              PUSH    AR4
+00BC C005              PUSH    AR5
+00BE C006              PUSH    AR6
+00C0 C007              PUSH    AR7
+00C2 E500        R     MOV     A,IR_pData
+00C4 5407              ANL     A,#07H
+00C6 FF                MOV     R7,A
+00C7 7401              MOV     A,#01H
+00C9 7E00              MOV     R6,#00H
+00CB A807              MOV     R0,AR7
+00CD 08                INC     R0
+00CE 8005              SJMP    ?C0025
+00D0         ?C0024:
+00D0 C3                CLR     C
+00D1 33                RLC     A
+00D2 CE                XCH     A,R6
+00D3 33                RLC     A
+00D4 CE                XCH     A,R6
+00D5         ?C0025:
+00D5 D8F9              DJNZ    R0,?C0024
+00D7 F4                CPL     A
+00D8 FF                MOV     R7,A
+00D9 EE                MOV     A,R6
+00DA F4                CPL     A
+00DB AB07              MOV     R3,AR7
+00DD FA                MOV     R2,A
+00DE 33                RLC     A
+00DF 95E0              SUBB    A,ACC
+00E1 F9                MOV     R1,A
+00E2 F8                MOV     R0,A
+00E3 D007              POP     AR7
+00E5 D006              POP     AR6
+00E7 D005              POP     AR5
+00E9 D004              POP     AR4
+00EB EF                MOV     A,R7
+00EC 5B                ANL     A,R3
+00ED FF                MOV     R7,A
+00EE EE                MOV     A,R6
+00EF 5A                ANL     A,R2
+00F0 FE                MOV     R6,A
+00F1 ED                MOV     A,R5
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 8   
+
+00F2 59                ANL     A,R1
+00F3 FD                MOV     R5,A
+00F4 EC                MOV     A,R4
+00F5 58                ANL     A,R0
+                                           ; SOURCE LINE # 116
+                                           ; SOURCE LINE # 117
+00F6 8061              SJMP    ?C0030
+00F8         ?C0017:
+                                           ; SOURCE LINE # 119
+00F8 D3                SETB    C
+00F9 E500        R     MOV     A,IR_Time+01H
+00FB 9426              SUBB    A,#026H
+00FD E500        R     MOV     A,IR_Time
+00FF 9406              SUBB    A,#06H
+0101 4060              JC      ?C0019
+0103 E500        R     MOV     A,IR_Time+01H
+0105 940E              SUBB    A,#0EH
+0107 E500        R     MOV     A,IR_Time
+0109 940A              SUBB    A,#0AH
+010B 5056              JNC     ?C0019
+                                           ; SOURCE LINE # 120
+                                           ; SOURCE LINE # 121
+010D E500        R     MOV     A,IR_pData
+010F 13                RRC     A
+0110 13                RRC     A
+0111 13                RRC     A
+0112 541F              ANL     A,#01FH
+0114 25E0              ADD     A,ACC
+0116 25E0              ADD     A,ACC
+0118 2400        R     ADD     A,#LOW IR_Data
+011A F8                MOV     R0,A
+011B C000              PUSH    AR0
+011D 120000      E     LCALL   ?C?LLDIDATA
+0120 C004              PUSH    AR4
+0122 C005              PUSH    AR5
+0124 C006              PUSH    AR6
+0126 C007              PUSH    AR7
+0128 E500        R     MOV     A,IR_pData
+012A 5407              ANL     A,#07H
+012C FF                MOV     R7,A
+012D 7401              MOV     A,#01H
+012F 7E00              MOV     R6,#00H
+0131 A807              MOV     R0,AR7
+0133 08                INC     R0
+0134 8005              SJMP    ?C0027
+0136         ?C0026:
+0136 C3                CLR     C
+0137 33                RLC     A
+0138 CE                XCH     A,R6
+0139 33                RLC     A
+013A CE                XCH     A,R6
+013B         ?C0027:
+013B D8F9              DJNZ    R0,?C0026
+013D FB                MOV     R3,A
+013E AA06              MOV     R2,AR6
+0140 EA                MOV     A,R2
+0141 33                RLC     A
+0142 95E0              SUBB    A,ACC
+0144 F9                MOV     R1,A
+0145 F8                MOV     R0,A
+0146 D007              POP     AR7
+0148 D006              POP     AR6
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 9   
+
+014A D005              POP     AR5
+014C D004              POP     AR4
+014E EF                MOV     A,R7
+014F 4B                ORL     A,R3
+0150 FF                MOV     R7,A
+0151 EE                MOV     A,R6
+0152 4A                ORL     A,R2
+0153 FE                MOV     R6,A
+0154 ED                MOV     A,R5
+0155 49                ORL     A,R1
+0156 FD                MOV     R5,A
+0157 EC                MOV     A,R4
+0158 48                ORL     A,R0
+0159         ?C0030:
+0159 FC                MOV     R4,A
+015A D000              POP     AR0
+015C 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 122
+015F 0500        R     INC     IR_pData
+                                           ; SOURCE LINE # 123
+0161 8006              SJMP    ?C0018
+0163         ?C0019:
+                                           ; SOURCE LINE # 125
+                                           ; SOURCE LINE # 126
+0163 750000      R     MOV     IR_pData,#00H
+                                           ; SOURCE LINE # 127
+0166 750001      R     MOV     IR_State,#01H
+                                           ; SOURCE LINE # 128
+0169         ?C0018:
+                                           ; SOURCE LINE # 129
+0169 E500        R     MOV     A,IR_pData
+016B C3                CLR     C
+016C 9420              SUBB    A,#020H
+016E 4046              JC      ?C0023
+                                           ; SOURCE LINE # 130
+                                           ; SOURCE LINE # 131
+0170 750000      R     MOV     IR_pData,#00H
+                                           ; SOURCE LINE # 132
+0173 AF00        R     MOV     R7,IR_Data+07H
+0175 AE00        R     MOV     R6,IR_Data+06H
+0177 AD00        R     MOV     R5,IR_Data+05H
+0179 AC00        R     MOV     R4,IR_Data+04H
+017B 120000      E     LCALL   ?C?LNOT
+017E AB00        R     MOV     R3,IR_Data+03H
+0180 AA00        R     MOV     R2,IR_Data+02H
+0182 A900        R     MOV     R1,IR_Data+01H
+0184 A800        R     MOV     R0,IR_Data
+0186 C3                CLR     C
+0187 120000      E     LCALL   ?C?ULCMP
+018A 7022              JNZ     ?C0022
+018C AF00        R     MOV     R7,IR_Data+0FH
+018E AE00        R     MOV     R6,IR_Data+0EH
+0190 AD00        R     MOV     R5,IR_Data+0DH
+0192 AC00        R     MOV     R4,IR_Data+0CH
+0194 120000      E     LCALL   ?C?LNOT
+0197 AB00        R     MOV     R3,IR_Data+0BH
+0199 AA00        R     MOV     R2,IR_Data+0AH
+019B A900        R     MOV     R1,IR_Data+09H
+019D A800        R     MOV     R0,IR_Data+08H
+019F C3                CLR     C
+01A0 120000      E     LCALL   ?C?ULCMP
+01A3 7009              JNZ     ?C0022
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 10  
+
+                                           ; SOURCE LINE # 133
+                                           ; SOURCE LINE # 134
+01A5 850000      R     MOV     IR_Address,IR_Data+03H
+                                           ; SOURCE LINE # 135
+01A8 850000      R     MOV     IR_Command,IR_Data+0BH
+                                           ; SOURCE LINE # 136
+01AB 750001      R     MOV     IR_DataFlag,#01H
+                                           ; SOURCE LINE # 137
+01AE         ?C0022:
+                                           ; SOURCE LINE # 138
+01AE         ?C0029:
+01AE E4                CLR     A
+01AF FF                MOV     R7,A
+01B0 120000      E     LCALL   _Timer0_Run
+                                           ; SOURCE LINE # 139
+01B3 750000      R     MOV     IR_State,#00H
+                                           ; SOURCE LINE # 140
+                                           ; SOURCE LINE # 141
+                                           ; SOURCE LINE # 142
+01B6         ?C0023:
+01B6 D007              POP     AR7
+01B8 D006              POP     AR6
+01BA D005              POP     AR5
+01BC D004              POP     AR4
+01BE D003              POP     AR3
+01C0 D002              POP     AR2
+01C2 D001              POP     AR1
+01C4 D000              POP     AR0
+01C6 D0D0              POP     PSW
+01C8 D082              POP     DPL
+01CA D083              POP     DPH
+01CC D0F0              POP     B
+01CE D0E0              POP     ACC
+01D0 32                RETI    
+             ; FUNCTION Int0_Routine (END)
+
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 11  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+IR_GetRepeatFlag . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+IR_State . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0000H  1
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+IR_Time. . . . . . . . . . . . . . . .  PUBLIC   DATA   U_INT    0001H  2
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+IR_Init. . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+IR_GetDataFlag . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+Timer0_GetCounter. . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+Int0_Routine . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+_Timer0_SetCounter . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+Timer0_Init. . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IR_Command . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0003H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+IR_Address . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0004H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+_Timer0_Run. . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+C51 COMPILER V9.54   IR                                                                    08/11/2023 15:15:38 PAGE 12  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+Int0_Init. . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+IR_RepeatFlag. . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0005H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+IR_GetCommand. . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+IR_GetAddress. . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+IR_pData . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0006H  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+IR_DataFlag. . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0007H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+IR_Data. . . . . . . . . . . . . . . .  PUBLIC   DATA   ARRAY    0008H  16
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    506    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     24    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
