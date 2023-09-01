@@ -1,0 +1,86 @@
+[2023-08-11 15:21:23]	link failed !, exit code: 2
+   at unify_builder.Program.Main(String[] args_)
+---
+
+LX51 LINKER/LOCATER V4.66.41.0 - SN: K1DZC-GDGGZC
+COPYRIGHT ARM Germany GmbH 1995 - 2015
+@c:\Users\赵建华\Desktop\keilvs\8-11-2红外遥控电机调速\project\build\Release\project.lnp .\build\Release\src\Delay.o,.\build\Release\src\Key.o,.\build\Release\src\Nixie.o,.\build\Release\src\Timer1.o,.\build\Release\src\main.o TO .\build\Release\project
+PRINT(.\build\Release\project.map) REMOVEUNUSED
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  Timer0_Init
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  Timer0_Init
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+    ADDRESS: 1000118H
+
+Program Size: data=38.0 xdata=0 const=0 code=431
+LX51 RUN COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+
+[2023-08-11 15:21:29]	[done]
+	build successfully !
+
+[2023-08-11 15:28:15]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\8-11-2红外遥控电机调速\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C132 IN LINE 7 OF .\SRC\MAIN.C: 'KeyNum': not in formal parameter list
+*** ERROR C244 IN LINE 7 OF .\SRC\MAIN.C: 'Speed': can't initialize, bad type or class
+*** ERROR C131 IN LINE 7 OF .\SRC\MAIN.C: 'Speed': duplicate function-parameter
+*** ERROR C132 IN LINE 10 OF .\SRC\MAIN.C: 'main': not in formal parameter list
+*** ERROR C141 IN LINE 10 OF .\SRC\MAIN.C: syntax error near '{'
+*** ERROR C132 IN LINE 11 OF .\SRC\MAIN.C: 'Motor_Init': not in formal parameter list
+*** ERROR C141 IN LINE 12 OF .\SRC\MAIN.C: syntax error near 'while'
+*** ERROR C141 IN LINE 12 OF .\SRC\MAIN.C: syntax error near '1'
+*** ERROR C141 IN LINE 15 OF .\SRC\MAIN.C: syntax error near 'if'
+*** ERROR C141 IN LINE 15 OF .\SRC\MAIN.C: syntax error near '==', expected ')'
+*** ERROR C129 IN LINE 17 OF .\SRC\MAIN.C: missing ';' before '++'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  11 ERROR(S)
+
+[2023-08-11 15:28:43]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\8-11-2红外遥控电机调速\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.compileByMulThread(Int32 thrNum, CmdInfo[] cmds_, List`1 errLogs)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C132 IN LINE 7 OF .\SRC\MAIN.C: 'KeyNum': not in formal parameter list
+*** ERROR C131 IN LINE 7 OF .\SRC\MAIN.C: 'Speed': duplicate function-parameter
+*** ERROR C132 IN LINE 10 OF .\SRC\MAIN.C: 'main': not in formal parameter list
+*** ERROR C141 IN LINE 10 OF .\SRC\MAIN.C: syntax error near '{'
+*** ERROR C132 IN LINE 11 OF .\SRC\MAIN.C: 'Motor_Init': not in formal parameter list
+*** ERROR C141 IN LINE 12 OF .\SRC\MAIN.C: syntax error near 'while'
+*** ERROR C141 IN LINE 12 OF .\SRC\MAIN.C: syntax error near '1'
+*** ERROR C141 IN LINE 15 OF .\SRC\MAIN.C: syntax error near 'if'
+*** ERROR C141 IN LINE 15 OF .\SRC\MAIN.C: syntax error near '==', expected ')'
+*** ERROR C129 IN LINE 17 OF .\SRC\MAIN.C: missing ';' before '++'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  10 ERROR(S)
+
+[2023-08-11 15:28:54]	[done]
+	build successfully !
+
+[2023-08-11 15:33:17]	[done]
+	build successfully !
+
+[2023-08-11 15:33:28]	[done]
+	build successfully !
+
+[2023-08-11 16:09:42]	[done]
+	build successfully !
+
+[2023-08-11 16:14:56]	[done]
+	build successfully !
+
+[2023-08-11 16:16:51]	[done]
+	build successfully !
+

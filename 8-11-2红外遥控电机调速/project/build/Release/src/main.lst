@@ -1,0 +1,228 @@
+C51 COMPILER V9.54   MAIN                                                                  08/11/2023 16:16:51 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          #include<REG51.H>
+   2          #include"Delay.h"
+   3          #include"Key.h"
+   4          #include"Nixie.h"
+   5          #include"Motor.h"
+   6          #include"IR.h"
+   7          
+   8          unsigned char Command,Speed;
+   9          
+  10          void main()
+  11          {
+  12   1          Motor_Init();
+  13   1          IR_Init();
+  14   1          while(1)
+  15   1          {
+  16   2              
+  17   2              if(IR_GetDataFlag())
+  18   2              {
+  19   3                  Command=IR_GetCommand();
+  20   3      
+  21   3                  if(Command==IR_0){Speed=0;}
+  22   3                  if(Command==IR_1){Speed=1;}
+  23   3                  if(Command==IR_2){Speed=2;}
+  24   3                  if(Command==IR_3){Speed=3;}
+  25   3              
+  26   3                  if(Speed==0){Motor_SetSpeed(0);}
+  27   3                  if(Speed==1){Motor_SetSpeed(50);}
+  28   3                  if(Speed==2){Motor_SetSpeed(75);}
+  29   3                  if(Speed==3){Motor_SetSpeed(100);}
+  30   3              }
+  31   2              Nixie_Scan(1,Speed);
+  32   2          }
+  33   1      }
+  34          
+C51 COMPILER V9.54   MAIN                                                                  08/11/2023 16:16:51 PAGE 2   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 10
+                                           ; SOURCE LINE # 11
+                                           ; SOURCE LINE # 12
+0000 120000      E     LCALL   Motor_Init
+                                           ; SOURCE LINE # 13
+0003 120000      E     LCALL   IR_Init
+0006         ?C0001:
+                                           ; SOURCE LINE # 14
+                                           ; SOURCE LINE # 15
+                                           ; SOURCE LINE # 17
+0006 120000      E     LCALL   IR_GetDataFlag
+0009 EF                MOV     A,R7
+000A 604B              JZ      ?C0003
+                                           ; SOURCE LINE # 18
+                                           ; SOURCE LINE # 19
+000C 120000      E     LCALL   IR_GetCommand
+000F 8F00        R     MOV     Command,R7
+                                           ; SOURCE LINE # 21
+0011 E500        R     MOV     A,Command
+0013 B41603            CJNE    A,#016H,?C0004
+0016 E4                CLR     A
+0017 F500        R     MOV     Speed,A
+0019         ?C0004:
+                                           ; SOURCE LINE # 22
+0019 E500        R     MOV     A,Command
+001B B40C03            CJNE    A,#0CH,?C0005
+001E 750001      R     MOV     Speed,#01H
+0021         ?C0005:
+                                           ; SOURCE LINE # 23
+0021 E500        R     MOV     A,Command
+0023 B41803            CJNE    A,#018H,?C0006
+0026 750002      R     MOV     Speed,#02H
+0029         ?C0006:
+                                           ; SOURCE LINE # 24
+0029 E500        R     MOV     A,Command
+002B B45E03            CJNE    A,#05EH,?C0007
+002E 750003      R     MOV     Speed,#03H
+0031         ?C0007:
+                                           ; SOURCE LINE # 26
+0031 E500        R     MOV     A,Speed
+0033 7004              JNZ     ?C0008
+0035 FF                MOV     R7,A
+0036 120000      E     LCALL   _Motor_SetSpeed
+0039         ?C0008:
+                                           ; SOURCE LINE # 27
+0039 E500        R     MOV     A,Speed
+003B B40105            CJNE    A,#01H,?C0009
+003E 7F32              MOV     R7,#032H
+0040 120000      E     LCALL   _Motor_SetSpeed
+0043         ?C0009:
+                                           ; SOURCE LINE # 28
+0043 E500        R     MOV     A,Speed
+0045 B40205            CJNE    A,#02H,?C0010
+0048 7F4B              MOV     R7,#04BH
+004A 120000      E     LCALL   _Motor_SetSpeed
+004D         ?C0010:
+                                           ; SOURCE LINE # 29
+004D E500        R     MOV     A,Speed
+C51 COMPILER V9.54   MAIN                                                                  08/11/2023 16:16:51 PAGE 3   
+
+004F B40305            CJNE    A,#03H,?C0003
+0052 7F64              MOV     R7,#064H
+0054 120000      E     LCALL   _Motor_SetSpeed
+                                           ; SOURCE LINE # 30
+0057         ?C0003:
+                                           ; SOURCE LINE # 31
+0057 E500        R     MOV     A,Speed
+0059 FD                MOV     R5,A
+005A 7C00              MOV     R4,#00H
+005C 7F01              MOV     R7,#01H
+005E 120000      E     LCALL   _Nixie_Scan
+                                           ; SOURCE LINE # 32
+0061 80A3              SJMP    ?C0001
+             ; FUNCTION main (END)
+
+C51 COMPILER V9.54   MAIN                                                                  08/11/2023 16:16:51 PAGE 4   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+Motor_Init . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+IR_Init. . . . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+IR_GetDataFlag . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+_Motor_SetSpeed. . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+Command. . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0000H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+C51 COMPILER V9.54   MAIN                                                                  08/11/2023 16:16:51 PAGE 5   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+IR_GetCommand. . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+_Nixie_Scan. . . . . . . . . . . . . .  EXTERN   CODE   PROC     -----  -----
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+Speed. . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0001H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     99    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

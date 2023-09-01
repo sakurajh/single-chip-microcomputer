@@ -1,0 +1,1 @@
+.\src\Int0.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\Int0.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\Int0.o)
