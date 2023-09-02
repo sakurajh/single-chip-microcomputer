@@ -1,0 +1,409 @@
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MATRXKEY
+OBJECT MODULE PLACED IN .\build\Release\src\MatrxKey.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MATRXKEY.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src
+                    -\MatrxKey.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\bui
+                    -ld\Release\src\MatrxKey.o)
+
+line level    source
+
+   1          #include <REG51.h>
+   2           sbit P1_1=P1^1;
+   3           sbit P1_0=P1^0;
+   4           sbit P1_2=P1^2;
+   5           sbit P1_3=P1^3;
+   6           sbit P1_4=P1^4;
+   7           sbit P1_5=P1^5;
+   8           sbit P1_6=P1^6;
+   9           sbit P1_7=P1^7;
+  10          
+  11          
+  12          
+  13          void Delay(unsigned int xms)
+  14          {
+  15   1          unsigned char i, j;
+  16   1          while(xms--)
+  17   1          {
+  18   2              i = 11;
+  19   2              j = 190;
+  20   2              do
+  21   2              {
+  22   3                  while (--j);
+  23   3              } while (--i);
+  24   2          }
+  25   1      }
+  26           
+  27              
+  28              
+  29          unsigned char MatrixKey()//如果按键按下不放，程序会停留在此函数，松手的一瞬间，
+  30          {                         //返回按键键码，没有按键按下时，返回0
+  31   1          unsigned char KeyNumber=0;//KeyNumber 按下按键的键码值
+  32   1          
+  33   1          P1=0xFF;
+  34   1          P1_3=0;
+  35   1          if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=1;}
+  36   1          if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=5;}
+  37   1          if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=9;}
+  38   1          if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=13;}
+  39   1          
+  40   1          P1=0xFF;
+  41   1          P1_2=0;
+  42   1          if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=2;}
+  43   1          if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=6;}
+  44   1          if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=10;}
+  45   1          if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=14;}
+  46   1          
+  47   1          P1=0xFF;
+  48   1          P1_1=0;
+  49   1          if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=3;}
+  50   1          if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=7;}
+  51   1          if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=11;}
+  52   1          if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=15;}
+  53   1          
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 2   
+
+  54   1          P1=0xFF;
+  55   1          P1_0=0;
+  56   1          if(P1_7==0){Delay(20);while(P1_7==0);Delay(20);KeyNumber=4;}
+  57   1          if(P1_6==0){Delay(20);while(P1_6==0);Delay(20);KeyNumber=8;}
+  58   1          if(P1_5==0){Delay(20);while(P1_5==0);Delay(20);KeyNumber=12;}
+  59   1          if(P1_4==0){Delay(20);while(P1_4==0);Delay(20);KeyNumber=16;}
+  60   1          
+  61   1          return KeyNumber;
+  62   1      }
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 3   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION L?0059 (BEGIN)
+0000         L?0060:
+0000 7F14              MOV     R7,#014H
+0002 7E00              MOV     R6,#00H
+             ; FUNCTION _Delay (BEGIN)
+                                           ; SOURCE LINE # 13
+;---- Variable 'xms' assigned to Register 'R6/R7' ----
+                                           ; SOURCE LINE # 14
+0004         ?C0001:
+                                           ; SOURCE LINE # 16
+0004 EF                MOV     A,R7
+0005 1F                DEC     R7
+0006 AC06              MOV     R4,AR6
+0008 7001              JNZ     ?C0058
+000A 1E                DEC     R6
+000B         ?C0058:
+000B 4C                ORL     A,R4
+000C 600A              JZ      ?C0008
+                                           ; SOURCE LINE # 17
+                                           ; SOURCE LINE # 18
+;---- Variable 'i' assigned to Register 'R5' ----
+000E 7D0B              MOV     R5,#0BH
+                                           ; SOURCE LINE # 19
+;---- Variable 'j' assigned to Register 'R4' ----
+0010 7CBE              MOV     R4,#0BEH
+                                           ; SOURCE LINE # 21
+0012         ?C0006:
+                                           ; SOURCE LINE # 22
+0012 DCFE              DJNZ    R4,?C0006
+0014         ?C0007:
+                                           ; SOURCE LINE # 23
+0014         ?C0003:
+0014 DDFC              DJNZ    R5,?C0006
+                                           ; SOURCE LINE # 24
+0016 80EC              SJMP    ?C0001
+                                           ; SOURCE LINE # 25
+0018         ?C0008:
+0018 22                RET     
+             ; FUNCTION _Delay (END)
+
+             ; FUNCTION MatrixKey (BEGIN)
+                                           ; SOURCE LINE # 29
+                                           ; SOURCE LINE # 30
+                                           ; SOURCE LINE # 31
+;---- Variable 'KeyNumber' assigned to Register 'R3' ----
+0000 E4                CLR     A
+0001 FB                MOV     R3,A
+                                           ; SOURCE LINE # 33
+0002 7590FF            MOV     P1,#0FFH
+                                           ; SOURCE LINE # 34
+0005 C293              CLR     P1_3
+                                           ; SOURCE LINE # 35
+0007 20970E            JB      P1_7,?C0009
+000A 7F14              MOV     R7,#014H
+000C FE                MOV     R6,A
+000D 120000      R     LCALL   _Delay
+0010         ?C0010:
+0010 3097FD            JNB     P1_7,?C0010
+0013         ?C0011:
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 4   
+
+0013 120000      R     LCALL   L?0059
+0016 7B01              MOV     R3,#01H
+0018         ?C0009:
+                                           ; SOURCE LINE # 36
+0018 20960B            JB      P1_6,?C0012
+001B 120000      R     LCALL   L?0059
+001E         ?C0013:
+001E 3096FD            JNB     P1_6,?C0013
+0021         ?C0014:
+0021 120000      R     LCALL   L?0060
+0024 7B05              MOV     R3,#05H
+0026         ?C0012:
+                                           ; SOURCE LINE # 37
+0026 20950B            JB      P1_5,?C0015
+0029 120000      R     LCALL   L?0060
+002C         ?C0016:
+002C 3095FD            JNB     P1_5,?C0016
+002F         ?C0017:
+002F 120000      R     LCALL   L?0060
+0032 7B09              MOV     R3,#09H
+0034         ?C0015:
+                                           ; SOURCE LINE # 38
+0034 20940B            JB      P1_4,?C0018
+0037 120000      R     LCALL   L?0060
+003A         ?C0019:
+003A 3094FD            JNB     P1_4,?C0019
+003D         ?C0020:
+003D 120000      R     LCALL   L?0060
+0040 7B0D              MOV     R3,#0DH
+0042         ?C0018:
+                                           ; SOURCE LINE # 40
+0042 7590FF            MOV     P1,#0FFH
+                                           ; SOURCE LINE # 41
+0045 C292              CLR     P1_2
+                                           ; SOURCE LINE # 42
+0047 20970B            JB      P1_7,?C0021
+004A 120000      R     LCALL   L?0060
+004D         ?C0022:
+004D 3097FD            JNB     P1_7,?C0022
+0050         ?C0023:
+0050 120000      R     LCALL   L?0060
+0053 7B02              MOV     R3,#02H
+0055         ?C0021:
+                                           ; SOURCE LINE # 43
+0055 20960B            JB      P1_6,?C0024
+0058 120000      R     LCALL   L?0060
+005B         ?C0025:
+005B 3096FD            JNB     P1_6,?C0025
+005E         ?C0026:
+005E 120000      R     LCALL   L?0060
+0061 7B06              MOV     R3,#06H
+0063         ?C0024:
+                                           ; SOURCE LINE # 44
+0063 20950B            JB      P1_5,?C0027
+0066 120000      R     LCALL   L?0060
+0069         ?C0028:
+0069 3095FD            JNB     P1_5,?C0028
+006C         ?C0029:
+006C 120000      R     LCALL   L?0060
+006F 7B0A              MOV     R3,#0AH
+0071         ?C0027:
+                                           ; SOURCE LINE # 45
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 5   
+
+0071 20940B            JB      P1_4,?C0030
+0074 120000      R     LCALL   L?0060
+0077         ?C0031:
+0077 3094FD            JNB     P1_4,?C0031
+007A         ?C0032:
+007A 120000      R     LCALL   L?0060
+007D 7B0E              MOV     R3,#0EH
+007F         ?C0030:
+                                           ; SOURCE LINE # 47
+007F 7590FF            MOV     P1,#0FFH
+                                           ; SOURCE LINE # 48
+0082 C291              CLR     P1_1
+                                           ; SOURCE LINE # 49
+0084 20970B            JB      P1_7,?C0033
+0087 120000      R     LCALL   L?0060
+008A         ?C0034:
+008A 3097FD            JNB     P1_7,?C0034
+008D         ?C0035:
+008D 120000      R     LCALL   L?0060
+0090 7B03              MOV     R3,#03H
+0092         ?C0033:
+                                           ; SOURCE LINE # 50
+0092 20960B            JB      P1_6,?C0036
+0095 120000      R     LCALL   L?0060
+0098         ?C0037:
+0098 3096FD            JNB     P1_6,?C0037
+009B         ?C0038:
+009B 120000      R     LCALL   L?0060
+009E 7B07              MOV     R3,#07H
+00A0         ?C0036:
+                                           ; SOURCE LINE # 51
+00A0 20950B            JB      P1_5,?C0039
+00A3 120000      R     LCALL   L?0060
+00A6         ?C0040:
+00A6 3095FD            JNB     P1_5,?C0040
+00A9         ?C0041:
+00A9 120000      R     LCALL   L?0060
+00AC 7B0B              MOV     R3,#0BH
+00AE         ?C0039:
+                                           ; SOURCE LINE # 52
+00AE 20940B            JB      P1_4,?C0042
+00B1 120000      R     LCALL   L?0060
+00B4         ?C0043:
+00B4 3094FD            JNB     P1_4,?C0043
+00B7         ?C0044:
+00B7 120000      R     LCALL   L?0060
+00BA 7B0F              MOV     R3,#0FH
+00BC         ?C0042:
+                                           ; SOURCE LINE # 54
+00BC 7590FF            MOV     P1,#0FFH
+                                           ; SOURCE LINE # 55
+00BF C290              CLR     P1_0
+                                           ; SOURCE LINE # 56
+00C1 20970B            JB      P1_7,?C0045
+00C4 120000      R     LCALL   L?0060
+00C7         ?C0046:
+00C7 3097FD            JNB     P1_7,?C0046
+00CA         ?C0047:
+00CA 120000      R     LCALL   L?0060
+00CD 7B04              MOV     R3,#04H
+00CF         ?C0045:
+                                           ; SOURCE LINE # 57
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 6   
+
+00CF 20960B            JB      P1_6,?C0048
+00D2 120000      R     LCALL   L?0060
+00D5         ?C0049:
+00D5 3096FD            JNB     P1_6,?C0049
+00D8         ?C0050:
+00D8 120000      R     LCALL   L?0060
+00DB 7B08              MOV     R3,#08H
+00DD         ?C0048:
+                                           ; SOURCE LINE # 58
+00DD 20950B            JB      P1_5,?C0051
+00E0 120000      R     LCALL   L?0060
+00E3         ?C0052:
+00E3 3095FD            JNB     P1_5,?C0052
+00E6         ?C0053:
+00E6 120000      R     LCALL   L?0060
+00E9 7B0C              MOV     R3,#0CH
+00EB         ?C0051:
+                                           ; SOURCE LINE # 59
+00EB 20940B            JB      P1_4,?C0054
+00EE 120000      R     LCALL   L?0060
+00F1         ?C0055:
+00F1 3094FD            JNB     P1_4,?C0055
+00F4         ?C0056:
+00F4 120000      R     LCALL   L?0060
+00F7 7B10              MOV     R3,#010H
+00F9         ?C0054:
+                                           ; SOURCE LINE # 61
+00F9 AF03              MOV     R7,AR3
+                                           ; SOURCE LINE # 62
+00FB         ?C0057:
+00FB 22                RET     
+             ; FUNCTION MatrixKey (END)
+
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 7   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+P1_0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+P1_1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+P1_2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0092H  1
+P1_3 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0093H  1
+P1_4 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0094H  1
+P1_5 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0095H  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+P1_6 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0096H  1
+P1_7 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0097H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+MatrixKey. . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  KeyNumber. . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0003H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+C51 COMPILER V9.54   MATRXKEY                                                              07/21/2023 21:39:20 PAGE 8   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+_Delay . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0004H  -----
+  xms. . . . . . . . . . . . . . . . .  * REG *  DATA   U_INT    0006H  2
+  i. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+  j. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0004H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    277    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

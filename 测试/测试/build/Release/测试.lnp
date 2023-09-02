@@ -1,0 +1,2 @@
+.\build\Release\src\LCD1602.o,.\build\Release\src\MatrxKey.o,.\build\Release\src\main.o TO .\build\Release\≤‚ ‘
+PRINT(.\build\Release\≤‚ ‘.map) REMOVEUNUSED

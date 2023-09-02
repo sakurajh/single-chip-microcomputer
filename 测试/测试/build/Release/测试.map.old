@@ -1,0 +1,181 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          07/21/2023  21:38:27  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\MATRXKEY.O, .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\���� PRINT (.\bui
+>> ld\Release\����.map) REMOVEUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\MATRXKEY.O (MATRXKEY)
+         COMMENT TYPE 0: C51 V9.54
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\���� (MATRXKEY)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   000157H   CODE
+I:000000H   I:000000H   I:00007FH   000009H   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\���� (MATRXKEY)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000008H   000001H   BYTE   UNIT     DATA           ?DT?MAIN
+000009H   000009H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   0000FEH   0000FCH   BYTE   UNIT     CODE           ?PR?MATRIXKEY?MATRXKEY
+0000FFH   000126H   000028H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000127H   00013FH   000019H   BYTE   UNIT     CODE           ?PR?_DELAY?MATRXKEY
+000140H   00014BH   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+00014CH   000156H   00000BH   BYTE   UNIT     CODE           ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\���� (MATRXKEY)
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/MAIN
+
+MAIN/MAIN                   ----- -----  ----- -----
+  +--> ?CO?MAIN
+  +--> MATRIXKEY/MATRXKEY
+
+?CO?MAIN                    ----- -----  ----- -----
+
+MATRIXKEY/MATRXKEY          ----- -----  ----- -----
+  +--> _DELAY/MATRXKEY
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/21/2023  21:38:27  PAGE 2
+
+
+_DELAY/MATRXKEY             ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\���� (MATRXKEY)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      *EXTERN*    DATA     BYTE      ?_LCD_ShowNum?BYTE
+      00000000H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      010000FFH   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      0100012BH   CODE     ---       _Delay
+      *EXTERN*    CODE     ---       _LCD_ShowNum
+      *EXTERN*    CODE     ---       _LCD_ShowString
+      00000008H   DATA     BYTE      KeyNum
+      *EXTERN*    CODE     ---       LCD_Init
+      010000FFH   CODE     ---       main
+      01000003H   CODE     ---       MatrixKey
+
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   ?_LCD_ShowNum?BYTE
+   _LCD_ShowNum
+   _LCD_ShowString
+   LCD_Init
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\���� (MATRXKEY)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MATRXKEY
+      01000003H   PUBLIC    CODE     ---       MatrixKey
+      0100012BH   PUBLIC    CODE     ---       _Delay
+
+      01000127H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100012BH   BLOCK     CODE     ---       LVL=0
+      0100012BH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      i
+      00000004H   SYMBOL    DATA     VOID      j
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      01000003H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000003H   SYMBOL    DATA     VOID      KeyNumber
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       MAIN
+      00000008H   PUBLIC    DATA     BYTE      KeyNum
+      010000FFH   PUBLIC    CODE     ---       main
+
+      010000FFH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+LX51 LINKER/LOCATER V4.66.41.0                                                        07/21/2023  21:38:27  PAGE 3
+
+
+
+
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _LCD_ShowNum
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_LCD_ShowNum?BYTE
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  LCD_Init
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+
+*** ERROR L127: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _LCD_ShowString
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  LCD_Init
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+    ADDRESS: 1000100H
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _LCD_ShowString
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+    ADDRESS: 100010DH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_LCD_ShowNum?BYTE
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+    ADDRESS: 100011CH
+
+*** ERROR L128: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _LCD_ShowNum
+    MODULE:  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+    ADDRESS: 1000123H
+
+Program Size: data=10.0 xdata=0 const=0 code=343
+LX51 RUN COMPLETE.  0 WARNING(S),  8 ERROR(S)
