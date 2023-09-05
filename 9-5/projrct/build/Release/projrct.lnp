@@ -1,0 +1,2 @@
+.\build\Release\src\main.o TO .\build\Release\projrct
+PRINT(.\build\Release\projrct.map) REMOVEUNUSED
