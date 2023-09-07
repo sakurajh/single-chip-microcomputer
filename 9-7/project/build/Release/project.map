@@ -1,0 +1,132 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          09/07/2023  13:25:06  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\PROJECT PRINT (.\build\Release\project.map) REMOV
+>> EUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   0000BAH   CODE
+I:000000H   I:000000H   I:00007FH   00000AH   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000009H   000002H   BYTE   UNIT     DATA           ?DT?MAIN
+00000AH   00000AH   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000005H   000003H   BYTE   OFFS..   CODE           ?MAIN?00003
+000006H   00004EH   000049H   BYTE   UNIT     CODE           ?PR?INT_0?MAIN
+00004FH   000084H   000036H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+000085H   00009CH   000018H   BYTE   UNIT     CODE           ?PR?DELAY0_5S1?MAIN
+00009DH   0000ADH   000011H   BYTE   UNIT     CODE           ?PR?_DELAY_T1?MAIN
+0000AEH   0000B9H   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\PROJECT (MAIN)
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+INT_0/MAIN                  ----- -----  ----- -----
+  +--> _DELAY_T1/MAIN
+
+_DELAY_T1/MAIN              ----- -----  ----- -----
+  +--> DELAY0_5S1/MAIN
+
+DELAY0_5S1/MAIN             ----- -----  ----- -----
+
+*** NEW ROOT **************
+
+?C_C51STARTUP               ----- -----  ----- -----
+  +--> MAIN/MAIN
+
+LX51 LINKER/LOCATER V4.66.41.0                                                        09/07/2023  13:25:06  PAGE 2
+
+
+MAIN/MAIN                   ----- -----  ----- -----
+  +--> _DELAY_T1/MAIN
+  +--> DELAY0_5S1/MAIN
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000000H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      0100004FH   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      0100009DH   CODE     ---       _delay_t1
+      01000085H   CODE     ---       delay0_5s1
+      01000006H   CODE     ---       int_0
+      0100004FH   CODE     ---       main
+      00000008H   DATA     BYTE      t0
+      00000009H   DATA     BYTE      t1
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      00000009H   PUBLIC    DATA     BYTE      t1
+      00000008H   PUBLIC    DATA     BYTE      t0
+      0100004FH   PUBLIC    CODE     ---       main
+      01000006H   PUBLIC    CODE     ---       int_0
+      0100009DH   PUBLIC    CODE     ---       _delay_t1
+      01000085H   PUBLIC    CODE     ---       delay0_5s1
+
+      01000085H   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100009DH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000006H   BLOCK     CODE     ---       LVL=0
+      01000019H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000006H   SYMBOL    DATA     VOID      i
+      00000005H   SYMBOL    DATA     VOID      j
+      00000004H   SYMBOL    DATA     VOID      k
+      00000003H   SYMBOL    DATA     VOID      l
+      00000002H   SYMBOL    DATA     VOID      m
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      0100004FH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+Program Size: data=11.0 xdata=0 const=0 code=186
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
