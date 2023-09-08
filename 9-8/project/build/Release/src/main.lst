@@ -1,0 +1,646 @@
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <intrins.h>
+   3          unsigned char i;
+   4          unsigned char b;
+   5          void delay(unsigned char n)
+   6          {
+   7   1          unsigned char l;
+   8   1          for(l = 0;l < n;l++);
+   9   1      }
+  10          
+  11          void delays()
+  12          {
+  13   1          unsigned char j;
+  14   1          for(j = 0; j < 20; j++)
+  15   1          {
+  16   2              TH1 = (65536 - 50000)/256;
+  17   2              TL1 = (65536 - 50000)%256;
+  18   2              TR1 = 1;
+  19   2              while(!TF1);
+  20   2              TF1 = 0;
+  21   2          }
+  22   1      }
+  23          
+  24          void LED()
+  25          {
+  26   1          unsigned char num[] = {0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80};
+  27   1          unsigned char j;
+  28   1          for(j = 0; j< 100; j++)
+  29   1          {
+  30   2              P2 = 0xfe;
+  31   2              for(i = 0; i < 4; i++)
+  32   2              {           
+  33   3                  P0 = num[i];            
+  34   3                  delay(200);
+  35   3                  P2 = _crol_(P2,1);
+  36   3              }
+  37   2          }
+  38   1          for(j = 0; j< 100; j++)
+  39   1          {
+  40   2              P2 = 0xfe;
+  41   2              for(i = 4; i < 8; i++)
+  42   2              {           
+  43   3                  P0 = num[i];            
+  44   3                  delay(200);
+  45   3                  P2 = _crol_(P2,1);
+  46   3              }
+  47   2          }   
+  48   1      }
+  49          
+  50          void LEDI()
+  51          {
+  52   1          unsigned char code num[4][4] = {{0xa4,0xb0,0x99,0xf9},{0xb0,0x99,0xf9,0xa4},{0x99,0xf9,0xa4,0xb0},{0xf9,0
+             -xa4,0xb0,0x99}};
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 2   
+
+  53   1          unsigned char j, k, l;
+  54   1          for(j = 0; j < 4; j++)
+  55   1          {
+  56   2              for(l = 0;l < 100;l++)
+  57   2              {
+  58   3                  P2 = 0xfe;
+  59   3                  for(k = 0; k < 4;k++)
+  60   3                  {               
+  61   4                      P0 = num[j][k];
+  62   4                      delay(200);
+  63   4                      P2 = _crol_(P2,1);
+  64   4                  }
+  65   3              }
+  66   2          }   
+  67   1      }
+  68          
+  69          void LEDT()
+  70          {
+  71   1          unsigned char code num[4][4] = {{0x82,0xf8,0x80,0x92},{0xf8,0x80,0x92,0x82},{0x80,0x92,0x82,0xf8},{0x92,0
+             -x82,0xf8,0x80}};
+  72   1          unsigned char j, k, l;
+  73   1          for(j = 0; j < 4; j++)
+  74   1          {
+  75   2              for(l = 0;l < 100;l++)
+  76   2              {
+  77   3                  P2 = 0xfe;
+  78   3                  for(k = 0; k < 4;k++)
+  79   3                  {               
+  80   4                      P0 = num[j][k];
+  81   4                      delay(200);
+  82   4                      P2 = _crol_(P2,1);
+  83   4                  }
+  84   3              }
+  85   2          }
+  86   1      }
+  87          
+  88          void int_0() interrupt 0
+  89          {
+  90   1              if(b != 0)
+  91   1              b = 0;
+  92   1              else if(i < 4 && b == 0)
+  93   1              {
+  94   2                  b = 1;
+  95   2              }
+  96   1              else if(i >= 4 && b == 0)
+  97   1              {
+  98   2                  b = 2;
+  99   2              }   
+ 100   1      }
+ 101          
+ 102          
+ 103          void main()
+ 104          {
+ 105   1          TMOD = 0x10;    
+ 106   1          EA =1;
+ 107   1          EX0 = 1;
+ 108   1          IT0 = 1;
+ 109   1          while(1)
+ 110   1          {
+ 111   2              if( b == 0)
+ 112   2              {
+ 113   3                  LED();
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 3   
+
+ 114   3              }
+ 115   2              else if(b == 1)
+ 116   2                  LEDI();
+ 117   2              else
+ 118   2                  LEDT();
+ 119   2          }
+ 120   1      }
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 4   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION L?0065 (BEGIN)
+0000 F583              MOV     DPH,A
+0002 E582              MOV     A,DPL
+0004 2B                ADD     A,R3
+0005 F582              MOV     DPL,A
+0007 E4                CLR     A
+0008 3583              ADDC    A,DPH
+000A F583              MOV     DPH,A
+000C E4                CLR     A
+000D 93                MOVC    A,@A+DPTR
+000E         L?0066:
+000E F580              MOV     P0,A
+0010 7FC8              MOV     R7,#0C8H
+             ; FUNCTION _delay (BEGIN)
+                                           ; SOURCE LINE # 5
+;---- Variable 'n' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 6
+                                           ; SOURCE LINE # 8
+;---- Variable 'l' assigned to Register 'R6' ----
+0012 E4                CLR     A
+0013 FE                MOV     R6,A
+0014         ?C0001:
+0014 EE                MOV     A,R6
+0015 C3                CLR     C
+0016 9F                SUBB    A,R7
+0017 5003              JNC     ?C0004
+0019 0E                INC     R6
+001A 80F8              SJMP    ?C0001
+                                           ; SOURCE LINE # 9
+001C         ?C0004:
+001C 22                RET     
+             ; FUNCTION _delay (END)
+
+             ; FUNCTION delays (BEGIN)
+                                           ; SOURCE LINE # 11
+                                           ; SOURCE LINE # 12
+                                           ; SOURCE LINE # 14
+;---- Variable 'j' assigned to Register 'R7' ----
+0000 E4                CLR     A
+0001 FF                MOV     R7,A
+0002         ?C0005:
+                                           ; SOURCE LINE # 15
+                                           ; SOURCE LINE # 16
+0002 758D3C            MOV     TH1,#03CH
+                                           ; SOURCE LINE # 17
+0005 758BB0            MOV     TL1,#0B0H
+                                           ; SOURCE LINE # 18
+0008 D28E              SETB    TR1
+000A         ?C0008:
+                                           ; SOURCE LINE # 19
+000A 308FFD            JNB     TF1,?C0008
+000D         ?C0009:
+                                           ; SOURCE LINE # 20
+000D C28F              CLR     TF1
+                                           ; SOURCE LINE # 21
+000F 0F                INC     R7
+0010 BF14EF            CJNE    R7,#014H,?C0005
+                                           ; SOURCE LINE # 22
+0013         ?C0010:
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 5   
+
+0013 22                RET     
+             ; FUNCTION delays (END)
+
+             ; FUNCTION LED (BEGIN)
+                                           ; SOURCE LINE # 24
+                                           ; SOURCE LINE # 25
+                                           ; SOURCE LINE # 26
+0000 7800        R     MOV     R0,#LOW num
+0002 7C00        R     MOV     R4,#HIGH num
+0004 7D00              MOV     R5,#00H
+0006 7BFF              MOV     R3,#0FFH
+0008 7A00        R     MOV     R2,#HIGH _?ix1000
+000A 7900        R     MOV     R1,#LOW _?ix1000
+000C 7E00              MOV     R6,#00H
+000E 7F08              MOV     R7,#08H
+0010 120000      E     LCALL   ?C?COPY
+                                           ; SOURCE LINE # 28
+;---- Variable 'j' assigned to Register 'R5' ----
+0013 E4                CLR     A
+0014 FD                MOV     R5,A
+0015         ?C0011:
+                                           ; SOURCE LINE # 29
+                                           ; SOURCE LINE # 30
+0015 75A0FE            MOV     P2,#0FEH
+                                           ; SOURCE LINE # 31
+0018 E4                CLR     A
+0019 F500        R     MOV     i,A
+001B         ?C0014:
+                                           ; SOURCE LINE # 32
+                                           ; SOURCE LINE # 33
+001B 7400        R     MOV     A,#LOW num
+001D 2500        R     ADD     A,i
+001F F8                MOV     R0,A
+0020 E6                MOV     A,@R0
+                                           ; SOURCE LINE # 34
+0021 120000      R     LCALL   L?0066
+                                           ; SOURCE LINE # 35
+0024 AFA0              MOV     R7,P2
+0026 7801              MOV     R0,#01H
+0028 EF                MOV     A,R7
+0029 08                INC     R0
+002A 8001              SJMP    ?C0058
+002C         ?C0057:
+002C 23                RL      A
+002D         ?C0058:
+002D D8FD              DJNZ    R0,?C0057
+002F F5A0              MOV     P2,A
+                                           ; SOURCE LINE # 36
+0031 0500        R     INC     i
+0033 E500        R     MOV     A,i
+0035 C3                CLR     C
+0036 9404              SUBB    A,#04H
+0038 40E1              JC      ?C0014
+                                           ; SOURCE LINE # 37
+003A         ?C0013:
+003A 0D                INC     R5
+003B BD64D7            CJNE    R5,#064H,?C0011
+003E         ?C0012:
+                                           ; SOURCE LINE # 38
+003E E4                CLR     A
+003F FD                MOV     R5,A
+0040         ?C0017:
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 6   
+
+                                           ; SOURCE LINE # 39
+                                           ; SOURCE LINE # 40
+0040 75A0FE            MOV     P2,#0FEH
+                                           ; SOURCE LINE # 41
+0043 750004      R     MOV     i,#04H
+0046         ?C0020:
+                                           ; SOURCE LINE # 42
+                                           ; SOURCE LINE # 43
+0046 7400        R     MOV     A,#LOW num
+0048 2500        R     ADD     A,i
+004A F8                MOV     R0,A
+004B E6                MOV     A,@R0
+                                           ; SOURCE LINE # 44
+004C 120000      R     LCALL   L?0066
+                                           ; SOURCE LINE # 45
+004F AFA0              MOV     R7,P2
+0051 7801              MOV     R0,#01H
+0053 EF                MOV     A,R7
+0054 08                INC     R0
+0055 8001              SJMP    ?C0060
+0057         ?C0059:
+0057 23                RL      A
+0058         ?C0060:
+0058 D8FD              DJNZ    R0,?C0059
+005A F5A0              MOV     P2,A
+                                           ; SOURCE LINE # 46
+005C 0500        R     INC     i
+005E E500        R     MOV     A,i
+0060 C3                CLR     C
+0061 9408              SUBB    A,#08H
+0063 40E1              JC      ?C0020
+                                           ; SOURCE LINE # 47
+0065         ?C0019:
+0065 0D                INC     R5
+0066 BD64D7            CJNE    R5,#064H,?C0017
+                                           ; SOURCE LINE # 48
+0069         ?C0023:
+0069 22                RET     
+             ; FUNCTION LED (END)
+
+             ; FUNCTION LEDI (BEGIN)
+                                           ; SOURCE LINE # 50
+                                           ; SOURCE LINE # 51
+                                           ; SOURCE LINE # 54
+;---- Variable 'j' assigned to Register 'R5' ----
+0000 E4                CLR     A
+0001 FD                MOV     R5,A
+0002         ?C0024:
+                                           ; SOURCE LINE # 55
+                                           ; SOURCE LINE # 56
+;---- Variable 'l' assigned to Register 'R4' ----
+0002 E4                CLR     A
+0003 FC                MOV     R4,A
+0004         ?C0027:
+                                           ; SOURCE LINE # 57
+                                           ; SOURCE LINE # 58
+0004 75A0FE            MOV     P2,#0FEH
+                                           ; SOURCE LINE # 59
+;---- Variable 'k' assigned to Register 'R3' ----
+0007 E4                CLR     A
+0008 FB                MOV     R3,A
+0009         ?C0030:
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 7   
+
+                                           ; SOURCE LINE # 60
+                                           ; SOURCE LINE # 61
+0009 ED                MOV     A,R5
+000A 25E0              ADD     A,ACC
+000C 25E0              ADD     A,ACC
+000E 2400        R     ADD     A,#LOW num
+0010 F582              MOV     DPL,A
+0012 E4                CLR     A
+0013 3400        R     ADDC    A,#HIGH num
+                                           ; SOURCE LINE # 62
+0015 120000      R     LCALL   L?0065
+                                           ; SOURCE LINE # 63
+0018 AFA0              MOV     R7,P2
+001A 7801              MOV     R0,#01H
+001C EF                MOV     A,R7
+001D 08                INC     R0
+001E 8001              SJMP    ?C0062
+0020         ?C0061:
+0020 23                RL      A
+0021         ?C0062:
+0021 D8FD              DJNZ    R0,?C0061
+0023 F5A0              MOV     P2,A
+                                           ; SOURCE LINE # 64
+0025 0B                INC     R3
+0026 BB04E0            CJNE    R3,#04H,?C0030
+                                           ; SOURCE LINE # 65
+0029         ?C0029:
+0029 0C                INC     R4
+002A BC64D7            CJNE    R4,#064H,?C0027
+                                           ; SOURCE LINE # 66
+002D         ?C0026:
+002D 0D                INC     R5
+002E BD04D1            CJNE    R5,#04H,?C0024
+                                           ; SOURCE LINE # 67
+0031         ?C0033:
+0031 22                RET     
+             ; FUNCTION LEDI (END)
+
+             ; FUNCTION LEDT (BEGIN)
+                                           ; SOURCE LINE # 69
+                                           ; SOURCE LINE # 70
+                                           ; SOURCE LINE # 73
+;---- Variable 'j' assigned to Register 'R5' ----
+0000 E4                CLR     A
+0001 FD                MOV     R5,A
+0002         ?C0034:
+                                           ; SOURCE LINE # 74
+                                           ; SOURCE LINE # 75
+;---- Variable 'l' assigned to Register 'R4' ----
+0002 E4                CLR     A
+0003 FC                MOV     R4,A
+0004         ?C0037:
+                                           ; SOURCE LINE # 76
+                                           ; SOURCE LINE # 77
+0004 75A0FE            MOV     P2,#0FEH
+                                           ; SOURCE LINE # 78
+;---- Variable 'k' assigned to Register 'R3' ----
+0007 E4                CLR     A
+0008 FB                MOV     R3,A
+0009         ?C0040:
+                                           ; SOURCE LINE # 79
+                                           ; SOURCE LINE # 80
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 8   
+
+0009 ED                MOV     A,R5
+000A 25E0              ADD     A,ACC
+000C 25E0              ADD     A,ACC
+000E 2400        R     ADD     A,#LOW num
+0010 F582              MOV     DPL,A
+0012 E4                CLR     A
+0013 3400        R     ADDC    A,#HIGH num
+                                           ; SOURCE LINE # 81
+0015 120000      R     LCALL   L?0065
+                                           ; SOURCE LINE # 82
+0018 AFA0              MOV     R7,P2
+001A 7801              MOV     R0,#01H
+001C EF                MOV     A,R7
+001D 08                INC     R0
+001E 8001              SJMP    ?C0064
+0020         ?C0063:
+0020 23                RL      A
+0021         ?C0064:
+0021 D8FD              DJNZ    R0,?C0063
+0023 F5A0              MOV     P2,A
+                                           ; SOURCE LINE # 83
+0025 0B                INC     R3
+0026 BB04E0            CJNE    R3,#04H,?C0040
+                                           ; SOURCE LINE # 84
+0029         ?C0039:
+0029 0C                INC     R4
+002A BC64D7            CJNE    R4,#064H,?C0037
+                                           ; SOURCE LINE # 85
+002D         ?C0036:
+002D 0D                INC     R5
+002E BD04D1            CJNE    R5,#04H,?C0034
+                                           ; SOURCE LINE # 86
+0031         ?C0043:
+0031 22                RET     
+             ; FUNCTION LEDT (END)
+
+             ; FUNCTION int_0 (BEGIN)
+0000 C0E0              PUSH    ACC
+0002 C0D0              PUSH    PSW
+                                           ; SOURCE LINE # 88
+                                           ; SOURCE LINE # 90
+0004 E500        R     MOV     A,b
+0006 6005              JZ      ?C0044
+                                           ; SOURCE LINE # 91
+0008 750000      R     MOV     b,#00H
+000B 801E              SJMP    ?C0049
+000D         ?C0044:
+                                           ; SOURCE LINE # 92
+000D E500        R     MOV     A,i
+000F C3                CLR     C
+0010 9404              SUBB    A,#04H
+0012 5009              JNC     ?C0046
+0014 E500        R     MOV     A,b
+0016 7005              JNZ     ?C0046
+                                           ; SOURCE LINE # 93
+                                           ; SOURCE LINE # 94
+0018 750001      R     MOV     b,#01H
+                                           ; SOURCE LINE # 95
+001B 800E              SJMP    ?C0049
+001D         ?C0046:
+                                           ; SOURCE LINE # 96
+001D E500        R     MOV     A,i
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 9   
+
+001F C3                CLR     C
+0020 9404              SUBB    A,#04H
+0022 4007              JC      ?C0049
+0024 E500        R     MOV     A,b
+0026 7003              JNZ     ?C0049
+                                           ; SOURCE LINE # 97
+                                           ; SOURCE LINE # 98
+0028 750002      R     MOV     b,#02H
+                                           ; SOURCE LINE # 99
+                                           ; SOURCE LINE # 100
+002B         ?C0049:
+002B D0D0              POP     PSW
+002D D0E0              POP     ACC
+002F 32                RETI    
+             ; FUNCTION int_0 (END)
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 103
+                                           ; SOURCE LINE # 104
+                                           ; SOURCE LINE # 105
+0000 758910            MOV     TMOD,#010H
+                                           ; SOURCE LINE # 106
+0003 D2AF              SETB    EA
+                                           ; SOURCE LINE # 107
+0005 D2A8              SETB    EX0
+                                           ; SOURCE LINE # 108
+0007 D288              SETB    IT0
+0009         ?C0050:
+                                           ; SOURCE LINE # 109
+                                           ; SOURCE LINE # 110
+                                           ; SOURCE LINE # 111
+0009 E500        R     MOV     A,b
+000B 7005              JNZ     ?C0052
+                                           ; SOURCE LINE # 112
+                                           ; SOURCE LINE # 113
+000D 120000      R     LCALL   LED
+                                           ; SOURCE LINE # 114
+0010 80F7              SJMP    ?C0050
+0012         ?C0052:
+                                           ; SOURCE LINE # 115
+0012 E500        R     MOV     A,b
+0014 B40105            CJNE    A,#01H,?C0054
+                                           ; SOURCE LINE # 116
+0017 120000      R     LCALL   LEDI
+001A 80ED              SJMP    ?C0050
+001C         ?C0054:
+                                           ; SOURCE LINE # 118
+001C 120000      R     LCALL   LEDT
+                                           ; SOURCE LINE # 119
+001F 80E8              SJMP    ?C0050
+             ; FUNCTION main (END)
+
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 10  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P2 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A0H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+T0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B4H  1
+AC . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D6H  1
+T1 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B5H  1
+delays . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  j. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+T2 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0090H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+_delay . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0012H  -----
+  n. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0007H  1
+  l. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0006H  1
+EXF2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CEH  1
+RD . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B7H  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0098H  1
+INT0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B2H  1
+CY . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D7H  1
+TI . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0099H  1
+INT1 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B3H  1
+LEDI . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  num. . . . . . . . . . . . . . . . .  STATIC   CODE   ARRAY    0008H  16
+  j. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+  k. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0003H  1
+  l. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0004H  1
+RCAP2H . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CBH  1
+PS . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BCH  1
+SP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0081H  1
+T2EX . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0091H  1
+OV . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D2H  1
+RCAP2L . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CAH  1
+main . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+C_T2 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C9H  1
+WR . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B6H  1
+LEDT . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  num. . . . . . . . . . . . . . . . .  STATIC   CODE   ARRAY    0018H  16
+  j. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+  k. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0003H  1
+  l. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0004H  1
+RCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CDH  1
+TCLK . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CCH  1
+SBUF . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0099H  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+IE0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0089H  1
+IE1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008BH  1
+B. . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F0H  1
+_?ix1000 . . . . . . . . . . . . . . .  STATIC   CODE   ARRAY    0000H  8
+CP_RL2 . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C8H  1
+ACC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E0H  1
+ET0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A9H  1
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 11  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+ET1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ABH  1
+TF0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008DH  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+TF1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008FH  1
+TF2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CFH  1
+RB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009AH  1
+TH0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008CH  1
+EX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00A8H  1
+IT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      0088H  1
+TH1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008DH  1
+TB8. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009BH  1
+EX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AAH  1
+IT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008AH  1
+TH2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CDH  1
+P. . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D0H  1
+SM0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009FH  1
+TL0. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008AH  1
+SM1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009EH  1
+TL1. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   008BH  1
+SM2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009DH  1
+TL2. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00CCH  1
+PT0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B9H  1
+LED. . . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  num. . . . . . . . . . . . . . . . .  AUTO     DATA   ARRAY    0000H  8
+  j. . . . . . . . . . . . . . . . . .  * REG *  DATA   U_CHAR   0005H  1
+PT1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BBH  1
+RS0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D3H  1
+PT2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BDH  1
+TR0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008CH  1
+RS1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D4H  1
+TR1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      008EH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+PX0. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B8H  1
+PX1. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00BAH  1
+int_0. . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+DPH. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0083H  1
+DPL. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0082H  1
+b. . . . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0000H  1
+EXEN2. . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CBH  1
+REN. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      009CH  1
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+i. . . . . . . . . . . . . . . . . . .  PUBLIC   DATA   U_CHAR   0001H  1
+RXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B0H  1
+TXD. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00B1H  1
+F0 . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00D5H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    339    ----
+   CONSTANT SIZE    =     40    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+C51 COMPILER V9.54   MAIN                                                                  09/08/2023 19:56:53 PAGE 12  
+
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
