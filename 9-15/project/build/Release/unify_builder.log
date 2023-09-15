@@ -1,0 +1,43 @@
+[2023-09-15 14:56:41]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-15\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 57 OF .\SRC\MAIN.C: syntax error near ''
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2023-09-15 14:57:28]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-15\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 57 OF .\SRC\MAIN.C: syntax error near ''
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+[2023-09-15 14:58:42]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-15\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 58 OF .\SRC\MAIN.C: syntax error near 'void'
+*** ERROR C202 IN LINE 60 OF .\SRC\MAIN.C: 'j': undefined identifier
+*** ERROR C202 IN LINE 61 OF .\SRC\MAIN.C: 'xms': undefined identifier
+*** ERROR C202 IN LINE 64 OF .\SRC\MAIN.C: 'j': undefined identifier
+*** ERROR C202 IN LINE 67 OF .\SRC\MAIN.C: 'j': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  5 ERROR(S)
+
+[2023-09-15 14:58:54]	[done]
+	build successfully !
+
+[2023-09-15 14:59:00]	[done]
+	build successfully !
+
