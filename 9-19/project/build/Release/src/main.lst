@@ -1,0 +1,114 @@
+C51 COMPILER V9.54   MAIN                                                                  09/19/2023 16:48:33 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          //实例32：用指针数组作为函数的参数显示多个字符串
+   2          
+   3          #include<reg51.h>    //包含51单片机寄存器定义的头文件
+   4          
+   5          
+   6          unsigned char code str1[]="TemperatureistestedbyDS18B20";//C语言中，字符串
+   7          
+   8          //是作为字符数组来处理的
+   9          
+  10          unsigned char code str2[]="Nowtemperatureis:";     //所以，字符串的名字就是
+  11          
+  12          //字符串的首地址
+  13          
+  14          unsigned char code str3[]="TheSystermisdesignedbyZhangSan";
+  15          
+  16          unsigned char code str4[]="Thedateis2008-9-30";
+  17          
+  18          unsigned char *p[]={str1,str2,str3,str4};//定义p[4]为指向4个字符串的字符型指针数组
+  19          
+  20          /**************************************************************
+  21          
+  22          函数功能：延时约150ms
+  23          
+  24          **************************************************************/
+  25          
+  26          void delay(void)
+  27          
+  28          {
+  29   1      
+  30   1      unsigned char m,n;
+  31   1      
+  32   1      for(m=0;m<200;m++)
+  33   1      
+  34   1      for(n=0;n<250;n++)
+  35   1      
+  36   1      ;
+  37   1      
+  38   1      }
+  39          
+  40          /**************************************************************
+  41          
+  42          函数功能：流水点亮P0口8位LED
+  43          
+  44          **************************************************************/
+  45          
+  46          void led_display(unsignedchar*x [])   //形参必须为指针数组
+*** ERROR C141 IN LINE 46 OF .\SRC\MAIN.C: syntax error near '*', expected ')'
+  47          
+  48          {
+  49   1      
+  50   1      unsigned char i,j;
+  51   1      
+  52   1      for(i=0;i<4;i++)//有4个字符串要显示
+C51 COMPILER V9.54   MAIN                                                                  09/19/2023 16:48:33 PAGE 2   
+
+  53   1      
+  54   1      {
+  55   2      
+  56   2      j=0;  //指向待显字符串的第0号元素
+  57   2      
+  58   2      while(*(x[i]+j)!='\0')//只要第i个字符串的第j号元素不是结束标志
+*** ERROR C202 IN LINE 58 OF .\SRC\MAIN.C: 'x': undefined identifier
+  59   2      {
+  60   3      
+  61   3      P0=*(x[i]+j);//取得该元素值送到P0口显示
+*** ERROR C202 IN LINE 61 OF .\SRC\MAIN.C: 'x': undefined identifier
+  62   3      
+  63   3      delay();  //调用延时函数
+  64   3      
+  65   3      j++;   //指向下一个元素
+  66   3      
+  67   3      }
+  68   2      
+  69   2      }
+  70   1      
+  71   1      }
+  72          
+  73          
+  74          /**************************************************************
+  75          
+  76          函数功能：主函数
+  77          
+  78          **************************************************************/
+  79          
+  80          void main(void)
+  81          
+  82          {
+  83   1      
+  84   1      unsigned char i;
+  85   1      
+  86   1      while(1)
+  87   1      
+  88   1      {
+  89   2      
+  90   2      for(i=0;i<4;i++)
+  91   2      
+  92   2      led_display(p);//将指针数组名作实际参数传递
+  93   2      
+  94   2      }
+  95   1      
+  96   1      }
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
