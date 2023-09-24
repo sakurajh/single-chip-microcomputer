@@ -1,0 +1,1 @@
+PRINT(.\build\Release\project.map) REMOVEUNUSED
