@@ -1,0 +1,103 @@
+[2023-09-26 21:23:16]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 31 OF .\SRC\MAIN.C: syntax error near '[', expected ')'
+*** ERROR C202 IN LINE 41 OF .\SRC\MAIN.C: 'a': undefined identifier
+*** ERROR C202 IN LINE 66 OF .\SRC\MAIN.C: 'Tab': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2023-09-26 21:23:40]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C202 IN LINE 5 OF .\SRC\MAIN.C: 'p': undefined identifier
+*** ERROR C141 IN LINE 33 OF .\SRC\MAIN.C: syntax error near '[', expected ')'
+*** ERROR C202 IN LINE 43 OF .\SRC\MAIN.C: 'a': undefined identifier
+*** ERROR C202 IN LINE 68 OF .\SRC\MAIN.C: 'Tab': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)
+
+[2023-09-26 21:23:57]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C231 IN LINE 5 OF .\SRC\MAIN.C: 'P0': redefinition
+*** ERROR C141 IN LINE 33 OF .\SRC\MAIN.C: syntax error near '[', expected ')'
+*** ERROR C202 IN LINE 43 OF .\SRC\MAIN.C: 'a': undefined identifier
+*** ERROR C202 IN LINE 68 OF .\SRC\MAIN.C: 'Tab': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  4 ERROR(S)
+
+[2023-09-26 21:24:52]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 32 OF .\SRC\MAIN.C: syntax error near 'a', expected ')'
+*** ERROR C202 IN LINE 42 OF .\SRC\MAIN.C: 'a': undefined identifier
+*** ERROR C202 IN LINE 67 OF .\SRC\MAIN.C: 'Tab': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2023-09-26 21:25:08]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 32 OF .\SRC\MAIN.C: syntax error near 'a', expected ')'
+*** ERROR C202 IN LINE 42 OF .\SRC\MAIN.C: 'a': undefined identifier
+*** ERROR C141 IN LINE 63 OF .\SRC\MAIN.C: syntax error near 'Tab'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  3 ERROR(S)
+
+[2023-09-26 21:25:19]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 32 OF .\SRC\MAIN.C: syntax error near 'a', expected ')'
+*** ERROR C202 IN LINE 42 OF .\SRC\MAIN.C: 'a': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2023-09-26 21:25:29]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 32 OF .\SRC\MAIN.C: syntax error near 'a', expected ')'
+*** ERROR C202 IN LINE 42 OF .\SRC\MAIN.C: 'a': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+[2023-09-26 21:25:34]	compilation failed at : "c:\Users\赵建华\Desktop\keilvs\9-26\project\src\main.c", exit code: 2
+command: 
+  "d:\keil\C51\BIN\C51.exe" .\src\main.c OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\main.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION='526') OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Release\src\main.o)
+   at unify_builder.Program.Main(String[] args_)
+---
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 32 OF .\SRC\MAIN.C: syntax error near 'a', expected ')'
+*** ERROR C202 IN LINE 42 OF .\SRC\MAIN.C: 'a': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+

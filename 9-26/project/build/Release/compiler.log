@@ -1,0 +1,11 @@
+>>> cc
+
+C51 COMPILER V9.54 - SN: K1DZC-GDGGZC
+COPYRIGHT Copyright (C) 2012 - 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+*** ERROR C141 IN LINE 32 OF .\SRC\MAIN.C: syntax error near 'a', expected ')'
+*** ERROR C202 IN LINE 42 OF .\SRC\MAIN.C: 'a': undefined identifier
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  2 ERROR(S)
+
+>>> ld
+
