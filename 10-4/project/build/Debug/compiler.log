@@ -1,0 +1,9 @@
+>>> cc
+
+In file included from .\src\main.c:3:
+C:/Users/赵建华/.eide/tools/sdcc/bin/../include/mcs51/reg51.h:32:2: warning: #warning This file (reg51.h) is obsolete, use one appropriate for your harware!
+C:/Users/赵建华/.eide/tools/sdcc/bin/../include/mcs51/reg51.h:33:2: warning: #warning Falling back to include <8052.h>
+.\src\main.c:19: warning 158: overflow in implicit constant conversion
+
+>>> ld
+

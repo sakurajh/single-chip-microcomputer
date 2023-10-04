@@ -1,0 +1,1 @@
+[{"directory":"c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project","file":"c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project\\src\\main.c","command":"\"C:\\Users\\赵建华\\.eide\\tools\\sdcc\\bin\\sdcc.exe\" -c --std-c99 -Isrc -Iinc -mmcs51 --opt-code-speed --iram-size 256 --xram-size 0 --code-size 8192 -MMD -o .\\build\\Debug\\src\\main.rel .\\src\\main.c"}]

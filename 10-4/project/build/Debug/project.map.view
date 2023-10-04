@@ -1,0 +1,3 @@
+tool: SDCC
+fileName: project.map
+elfName: project.ihx

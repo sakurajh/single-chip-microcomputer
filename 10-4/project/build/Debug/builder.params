@@ -1,0 +1,71 @@
+{
+    "name": "project",
+    "target": "Debug",
+    "toolchain": "SDCC",
+    "toolchainLocation": "C:\\Users\\赵建华\\.eide\\tools\\sdcc",
+    "toolchainCfgFile": "c:\\Users\\赵建华\\.vscode\\extensions\\cl.eide-3.13.2023060401\\res\\data\\models\\win32/sdcc.model.json",
+    "buildMode": "fast|multhread",
+    "showRepathOnLog": true,
+    "threadNum": 16,
+    "rootDir": "c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project",
+    "dumpPath": "build\\Debug",
+    "outDir": "build\\Debug",
+    "incDirs": [
+        "src",
+        "inc"
+    ],
+    "libDirs": [],
+    "defines": [],
+    "sourceList": [
+        "src/main.c"
+    ],
+    "sourceParams": {},
+    "sourceParamsMtime": 1696432475867.2122,
+    "options": {
+        "version": 3,
+        "beforeBuildTasks": [],
+        "afterBuildTasks": [],
+        "global": {
+            "device": "mcs51",
+            "optimize-type": "speed",
+            "misc-controls": "--iram-size 256 --xram-size 0 --code-size 8192"
+        },
+        "c/cpp-compiler": {
+            "language-c": "c99"
+        },
+        "asm-compiler": {
+            "$toolName": "sdas8051"
+        },
+        "linker": {
+            "$mainFileName": "main",
+            "output-format": "hex"
+        }
+    },
+    "env": {
+        "workspaceFolder": "c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project",
+        "workspaceFolderBasename": "project",
+        "OutDir": "c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project\\build\\Debug",
+        "OutDirRoot": "build",
+        "OutDirBase": "build\\Debug",
+        "ProjectName": "project",
+        "ConfigName": "Debug",
+        "ProjectRoot": "c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project",
+        "ExecutableName": "c:\\Users\\赵建华\\Desktop\\keilvs\\10-4\\project\\build\\Debug\\project",
+        "SYS_Platform": "win32",
+        "SYS_DirSep": "\\",
+        "SYS_DirSeparator": "\\",
+        "SYS_PathSep": ";",
+        "SYS_PathSeparator": ";",
+        "SYS_EOL": "\r\n",
+        "ToolchainRoot": "C:\\Users\\赵建华\\.eide\\tools\\sdcc"
+    },
+    "sha": {
+        "c/cpp-defines": "d751713988987e9331980363e24189ce",
+        "beforeBuildTasks": "d751713988987e9331980363e24189ce",
+        "afterBuildTasks": "d751713988987e9331980363e24189ce",
+        "global": "98a90160e5a47beb6286a076f62e62d2",
+        "c/cpp-compiler": "da5f97a8ee5c67c063f7044c46878c2c",
+        "asm-compiler": "ed0cbf2f00f079904d4f634eb986c327",
+        "linker": "d9e14929ad9416d382e45b49ec9fbdcf"
+    }
+}
