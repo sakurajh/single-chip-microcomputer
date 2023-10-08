@@ -1,0 +1,2 @@
+.\build\Release\src\main.o TO .\build\Release\peoject
+PRINT(.\build\Release\peoject.map) REMOVEUNUSED
