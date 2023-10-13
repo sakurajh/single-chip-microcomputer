@@ -1,0 +1,134 @@
+LX51 LINKER/LOCATER V4.66.41.0                                                          10/13/2023  22:42:47  PAGE 1
+
+
+LX51 LINKER/LOCATER V4.66.41.0, INVOKED BY:
+D:\KEIL\C51\BIN\LX51.EXE .\BUILD\RELEASE\SRC\MAIN.O TO .\BUILD\RELEASE\PROJECT PRINT (.\build\Release\project.map) REMOV
+>> EUNUSED
+
+
+CPU MODE:     8051 MODE
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\BUILD\RELEASE\SRC\MAIN.O (MAIN)
+         COMMENT TYPE 0: C51 V9.54
+  D:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+  D:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+         COMMENT TYPE 1: A51 / ASM51 Assembler
+
+
+ACTIVE MEMORY CLASSES OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+BASE        START       END         USED      MEMORY CLASS
+==========================================================
+C:000000H   C:000000H   C:00FFFFH   0000FEH   CODE
+C:000000H   C:000000H   C:00FFFFH   00001EH   CONST
+I:000000H   I:000000H   I:00007FH   000009H   DATA
+I:000000H   I:000000H   I:0000FFH   000001H   IDATA
+
+
+MEMORY MAP OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+
+START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
+=========================================================================
+
+* * * * * * * * * * *   D A T A   M E M O R Y   * * * * * * * * * * * * *
+000000H   000007H   000008H   ---    AT..     DATA           "REG BANK 0"
+000008H   000008H   000001H   BYTE   UNIT     DATA           ?DT?MAIN
+000009H   000009H   000001H   BYTE   UNIT     IDATA          ?STACK
+
+* * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
+000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
+000003H   000018H   000016H   BYTE   UNIT     CODE           ?PR?_DELAY_MS?MAIN
+000019H   00001AH   000002H   ---    ---      **GAP**
+00001BH   00001DH   000003H   BYTE   OFFS..   CODE           ?MAIN?0001B
+00001EH   0000A9H   00008CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+0000AAH   0000DCH   000033H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
+0000DDH   0000FBH   00001FH   BYTE   UNIT     CODE           ?PR?TIMER1?MAIN
+0000FCH   0000FFH   000004H   BYTE   UNIT     CODE           ?C_INITSEG
+000100H   00011DH   00001EH   BYTE   UNIT     CONST          ?CO?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\BUILD\RELEASE\PROJECT (MAIN)
+
+
+FUNCTION/MODULE              BIT_GROUP   DATA_GROUP 
+--> CALLED FUNCTION/MODULE  START  STOP  START  STOP
+====================================================
+TIMER1/MAIN                 ----- -----  ----- -----
+  +--> ?CO?MAIN
+
+?CO?MAIN                    ----- -----  ----- -----
+
+*** NEW ROOT **************
+
+?C_C51STARTUP               ----- -----  ----- -----
+LX51 LINKER/LOCATER V4.66.41.0                                                        10/13/2023  22:42:47  PAGE 2
+
+
+  +--> MAIN/MAIN
+  +--> ?C_INITSEG
+
+MAIN/MAIN                   ----- -----  ----- -----
+  +--> _DELAY_MS/MAIN
+
+_DELAY_MS/MAIN              ----- -----  ----- -----
+
+?C_INITSEG                  ----- -----  ----- -----
+
+
+
+PUBLIC SYMBOLS OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+
+      VALUE       CLASS    TYPE      PUBLIC SYMBOL NAME
+      =================================================
+      00000000H   NUMBER   ---       ?C?CODESEG
+      00000000H   NUMBER   ---       ?C?XDATASEG
+      01000065H   CODE     ---       ?C_START
+      01000000H   CODE     ---       ?C_STARTUP
+      01000003H   CODE     ---       _delay_ms
+      01000100H   CONST    ---       hight_list
+      00000008H   DATA     BYTE      i
+      0100010FH   CONST    ---       lower_list
+      010000AAH   CODE     ---       main
+      010000DDH   CODE     ---       Timer1
+
+
+
+SYMBOL TABLE OF MODULE:  .\BUILD\RELEASE\PROJECT (MAIN)
+
+      VALUE       REP       CLASS    TYPE      SYMBOL NAME
+      ====================================================
+      ---         MODULE    ---      ---       MAIN
+      00000008H   PUBLIC    DATA     BYTE      i
+      0100010FH   PUBLIC    CONST    ---       lower_list
+      01000100H   PUBLIC    CONST    ---       hight_list
+      010000AAH   PUBLIC    CODE     ---       main
+      010000DDH   PUBLIC    CODE     ---       Timer1
+      01000003H   PUBLIC    CODE     ---       _delay_ms
+
+      01000003H   BLOCK     CODE     ---       LVL=0
+      01000003H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000005H   SYMBOL    DATA     VOID      t
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010000DDH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      010000AAH   BLOCK     CODE     ---       LVL=0
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      ---         MODULE    ---      ---       ?C_STARTUP
+      01000000H   PUBLIC    CODE     ---       ?C_STARTUP
+
+      ---         MODULE    ---      ---       ?C_INIT
+      01000065H   PUBLIC    CODE     ---       ?C_START
+
+Program Size: data=10.0 xdata=0 const=30 code=254
+LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
