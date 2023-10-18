@@ -1,0 +1,556 @@
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\build\Release\src\main.o
+COMPILER INVOKED BY: d:\keil\C51\BIN\C51.exe .\SRC\MAIN.C OMF2 TABS(4) CODE NOCOND SYMBOLS PRINT(.\build\Release\src\mai
+                    -n.lst) INCDIR(d:/keil/C51/INC;src) DEFINE(__UVISION_VERSION=526) OPTIMIZE(8,SPEED) SMALL ROM(LARGE) OBJECT(.\build\Relea
+                    -se\src\main.o)
+
+line level    source
+
+   1          /*********************************************************************
+   2                      ¡¶ÏÄÀÏÊ¦Ê®ÌìÍæ×ªµ¥Æ¬»ú¡·ÏµÁĞµ¥Æ¬»ú½Ì³ÌÔ´´úÂë
+   3                       °®µç×ÓÍø³öÆ·          ÍøÕ¾£ºwww.loveele.com      
+   4          **********************************************************************
+   5          ³ÌĞòÃû³Æ£ºµÚ¾Å¿Î£ºIO¿ÚÊä³öÖ®ÊıÂë¹Ü¶¯Ì¬ÏÔÊ¾
+   6          ³ÌĞò°æ±¾£ºV1.0
+   7          ×÷    Õß: ÏÄÀ¤£¨ÏÄÀÏÊ¦£©     
+   8          ±àĞ´Ê±¼ä£º2019Äê010ÔÂ01ÈÕ  
+   9          Ó²¼şÖ§³Ö£º74HC573 Çı¶¯ÊıÂë¹Ü  
+  10          ½Ó¿ÚËµÃ÷:
+  11          ĞŞ¸ÄÈÕÖ¾£º
+  12              N0.1:
+  13          **********************************************************************/
+  14          /*
+  15          **********************************************************************
+  16          *                        Í·ÎÄ¼ş°üº¬/SFR¶¨Òå
+  17          **********************************************************************
+  18          */
+  19          #include<reg52.h>
+  20          
+  21          /*
+  22          **********************************************************************
+  23          *                       ±¾µØÊı¾İÀàĞÍ/ºê¶¨Òå
+  24          **********************************************************************
+  25          */
+  26          typedef signed char int8;         //8Î»ÓĞ·ûºÅ×Ö·ûĞÍ
+  27          typedef signed int int16;         //16Î»ÓĞ·ûºÅÕûĞÍ
+  28          typedef signed long int32;        //32Î»ÓĞ·ûºÅ³¤ÕûĞÍ
+  29          typedef unsigned char uint8;      //8Î»ÎŞ·ûºÅ×Ö·ûĞÍ
+  30          typedef unsigned int uint16;      //16Î»ÎŞ·ûºÅÕûĞÍ
+  31          typedef unsigned long uint32;     //32Î»ÎŞ·ûºÅ³¤ÕûĞÍ
+  32          
+  33          /*
+  34          **********************************************************************
+  35          *                        µ¥Æ¬»úIO¿ÚÎ»¶¨Òå
+  36          **********************************************************************
+  37          */
+  38          sbit DATA_A_595      = P1^0;  //74HC595 ´®ĞĞÊı¾İÊäÈëÒı½Å
+  39          sbit SHIFT_CLOCK_595 = P1^4;  //74HC595 ÒÆÎ»¼Ä´æÆ÷Ê±ÖÓĞÅºÅÊäÈëÒı½Å
+  40          sbit LATCH_CLOCK_595 = P2^3;  //74HC595 Ëø´æÆ÷Ê±ÖÓĞÅºÅÊäÈëÒı½Å
+  41          
+  42          sbit duanxuan = P2^5;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+  43          sbit weixuan  = P2^6;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+  44          /*
+  45          **********************************************************************
+  46          *                      ±¾µØÈ«¾Ö±äÁ¿/Êı×é¶¨Òå
+  47          **********************************************************************
+  48          */
+  49          uint8 zifu_test;  //×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í
+  50          uint8 code zifu[19]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x86,0x8e,0x89,
+             -0x7f,0xbf};  //¹²ÑôÊıÂë¹Ü±àÂë±í
+  51                                 
+  52          /*
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 2   
+
+  53          **********************************************************************
+  54          *                         º¯ÊıÔ­ĞÍÉùÃ÷
+  55          **********************************************************************
+  56          */
+  57          void delay(uint16 x_ms); //ÑÓ³Ù  x_ms*1  ºÁÃë
+  58          void write_byte_74hc595(uint8 dat);  //¸ø595Ğ¾Æ¬Ğ´Ò»×Ö½ÚÊı¾İº¯Êı
+  59          void delay_100us(uint16 x_100us); //ÑÓ³Ù  x_100*100  Î¢Ãë 
+  60          void Disp_smg_number(uint8 x_smg,uint8 count_smg,uint32 number,uint16 time);//°ÑÒ»¸öÈÎÒâµÄ°ËÎ»ÊıÒÔÄÚµÄÊ®½ø
+             -ÖÆÊı£¬Í¨¹ı¶¯Ì¬É¨ÃèÏÔÊ¾ÔÚÊıÂë¹ÜÉÏ£¬¿ÉÒÔÖ¸¶¨É¨ÃèÊ±¼ä
+  61          /*********************************************************************
+  62          *º¯ÊıÃû³Æ£ºmain
+  63          *º¯Êı¹¦ÄÜ£ºÖ÷º¯Êı
+  64          *º¯Êıµ÷ÓÃ£º
+  65          *²ÎÊıÁĞ±í£ºÎŞ
+  66          *·µ »Ø Öµ£ºÎŞ
+  67          *½á    ¹û£º
+  68          *±¸    ×¢£º
+  69          *********************************************************************/
+  70          void main(void)
+  71          {
+  72   1        P1=0XFF;
+  73   1        write_byte_74hc595(0X40);  //¸ø595Ğ¾Æ¬Ğ´Ò»×Ö½ÚÊı¾İº¯Êı
+  74   1        write_byte_74hc595(0X00);  //¸ø595Ğ¾Æ¬Ğ´Ò»×Ö½ÚÊı¾İº¯Êı  ¹Øµô595±»¿ØÖÆµÄËùÓĞ¹¦ÄÜ
+  75   1        zifu_test = 0;  //×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í
+  76   1        while(1)
+  77   1        {    
+  78   2      /***************************************************************************************************
+  79   2           //ÊıÂë¹ÜÏû¶·ÊÔÑé 
+  80   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+  81   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+  82   2            P0       =zifu[1];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+  83   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+  84   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+  85   2          
+  86   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+  87   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+  88   2            P0       =0X01;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+  89   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+  90   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+  91   2            delay(1000); //ÑÓ³Ù  x_ms*1  ºÁÃë
+  92   2          
+  93   2                duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+  94   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+  95   2            P0       =zifu[2];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+  96   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+  97   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+  98   2          
+  99   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 100   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 101   2            P0       =0X02;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 102   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 103   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 104   2            delay(1000); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 105   2            
+ 106   2                  duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 107   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 108   2            P0       =zifu[3];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 109   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 110   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 111   2          
+ 112   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 113   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 3   
+
+ 114   2            P0       =0X04;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 115   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 116   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 117   2            delay(1000); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 118   2            
+ 119   2                  duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 120   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 121   2            P0       =zifu[4];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 122   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 123   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 124   2          
+ 125   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 126   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 127   2            P0       =0X08;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 128   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 129   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 130   2            delay(1000); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 131   2      /********************************************************************************************/
+ 132   2      /**************************************************************************************** 
+ 133   2           //ÑéÖ¤Ó°×Ó²úÉúµÄÔ­Òò
+ 134   2           duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 135   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 136   2            P0       =zifu[1];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 137   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 138   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 139   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 140   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 141   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 142   2            P0       =0X01;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 143   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 144   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 145   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 146   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 147   2                duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 148   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 149   2            P0       =zifu[2];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 150   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 151   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 152   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 153   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 154   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 155   2            P0       =0X02;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 156   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 157   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 158   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 159   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 160   2                  duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 161   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 162   2            P0       =zifu[3];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 163   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 164   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 165   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 166   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 167   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 168   2            P0       =0X04;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 169   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 170   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 171   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 172   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 173   2                  duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 174   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 175   2            P0       =zifu[4];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 4   
+
+ 176   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 177   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 178   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 179   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 180   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 181   2            P0       =0X08;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 182   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 183   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 184   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë  
+ 185   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 186   2      //****************************************************************************************/      
+ 187   2            //ÊıÂë¹ÜÏûÓ° 
+ 188   2      /*      duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 189   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 190   2            P0       =zifu[1];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 191   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 192   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 193   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 194   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 195   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 196   2            P0       =0X01;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 197   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 198   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 199   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 200   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 201   2      //******************************************************************************************
+ 202   2          //ÏûÓ°
+ 203   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 204   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 205   2            P0       =0X00;          //ÊıÂë¹ÜÎ»Ñ¡ÇåÁã
+ 206   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 207   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡    
+ 208   2      //******************************************************************************************    
+ 209   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 210   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 211   2            P0       =zifu[2];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 212   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 213   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 214   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 215   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 216   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 217   2            P0       =0X02;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 218   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 219   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 220   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 221   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 222   2      //******************************************************************************************
+ 223   2          //ÏûÓ°
+ 224   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 225   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 226   2            P0       =0X00;          //ÊıÂë¹ÜÎ»Ñ¡ÇåÁã
+ 227   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 228   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡    
+ 229   2      //******************************************************************************************      
+ 230   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 231   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 232   2            P0       =zifu[3];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 233   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 234   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 235   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 236   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 237   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 5   
+
+ 238   2            P0       =0X04;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 239   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 240   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 241   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 242   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 243   2      //******************************************************************************************
+ 244   2          //ÏûÓ°
+ 245   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 246   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 247   2            P0       =0X00;          //ÊıÂë¹ÜÎ»Ñ¡ÇåÁã
+ 248   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 249   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡    
+ 250   2      //******************************************************************************************      
+ 251   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 252   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 253   2            P0       =zifu[4];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±àÂë±í 
+ 254   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 255   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 256   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 257   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 258   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 259   2            P0       =0X08;          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 260   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 261   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 262   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë  
+ 263   2            delay_100us(1); //ÑÓ³Ù  x_100*100  Î¢Ãë     
+ 264   2      //******************************************************************************************
+ 265   2          //ÏûÓ°
+ 266   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 267   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 268   2            P0       =0X00;          //ÊıÂë¹ÜÎ»Ñ¡ÇåÁã
+ 269   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 270   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡    
+ 271   2      //******************************************************************************************  
+ 272   2      */
+ 273   2        // Disp_smg_number(1,8,12345678,15);//ÊıÂë¹ÜÏÔÊ¾12375678 °ÑÈÎÒâÒ»¸ö°ËÎ»ÒÔÄÚµÄÊ®½øÖÆÊı£¬ÔÚÊıÂë¹ÜÉÏx×ø±êÈÎ
+             -ÒâÎ»ÖÃ£¬ÈÎÒâÉ¨ÃèÊ±¼ä£¬Í¨¹ı¶¯Ì¬É¨ÃèÏÔÊ¾
+ 274   2         Disp_smg_number(3,6,198866,15);//ÊıÂë¹ÜÏÔÊ¾198866 
+ 275   2        }
+ 276   1      }
+ 277          
+ 278          /*********************************************************************
+ 279          *º¯ÊıÃû³Æ£ºwrite_byte_74hc595
+ 280          *º¯Êı¹¦ÄÜ£º74HC595Ğ¾Æ¬Êı¾İÊäÈë
+ 281          *º¯Êıµ÷ÓÃ£ºwrite_byte_74hc595(uint8 dat); 
+ 282          *²ÎÊıÁĞ±í£ºdat
+ 283          *·µ »Ø Öµ£ºÎŞ
+ 284          *½á    ¹û£º°ÑÒ»¸ö×Ö½ÚÊı dat Ğ´µ½ 74HC595Ğ¾Æ¬µÄ°Ë¸öÊä³öÒı½ÅÉÏ
+ 285          *±¸    ×¢£ºdat Êı¾İ¶ÔÓ¦µÄ¹¦ÄÜ
+ 286                     ·äÃùÆ÷         0X04            ¼ÌµçÆ÷           0X80
+ 287                     Ê±ÖÓĞ¾Æ¬Æ¬Ñ¡   0X10            Á÷Ë®µÆ           0X40
+ 288          *********************************************************************/
+ 289          void write_byte_74hc595(uint8 dat)  //¸ø595Ğ¾Æ¬Ğ´Ò»×Ö½ÚÊı¾İº¯Êı
+ 290          {
+ 291   1        uint8 i; 
+ 292   1        for(i=0;i<8;i++)
+ 293   1         {
+ 294   2            DATA_A_595      =(dat<<i)&0x80;  //74HC595 ´®ĞĞÊı¾İÊäÈëÒı½Å
+ 295   2            SHIFT_CLOCK_595 = 0;  //74HC595 ÒÆÎ»¼Ä´æÆ÷Ê±ÖÓĞÅºÅÊäÈëÒı½Å
+ 296   2            SHIFT_CLOCK_595 = 1;  //74HC595 ÒÆÎ»¼Ä´æÆ÷Ê±ÖÓĞÅºÅÊäÈëÒı½Å
+ 297   2            
+ 298   2         }
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 6   
+
+ 299   1         LATCH_CLOCK_595 = 0;  //74HC595 Ëø´æÆ÷Ê±ÖÓĞÅºÅÊäÈëÒı½Å
+ 300   1         LATCH_CLOCK_595 = 1;  //74HC595 Ëø´æÆ÷Ê±ÖÓĞÅºÅÊäÈëÒı½Å
+ 301   1      }
+ 302          /*********************************************************************
+ 303          *º¯ÊıÃû³Æ£ºdelay
+ 304          *º¯Êı¹¦ÄÜ£ºÑÓÊ±º¯Êı
+ 305          *º¯Êıµ÷ÓÃ£ºdelay(uint16 x_ms); 
+ 306          *²ÎÊıÁĞ±í£ºx_ms
+ 307          *·µ »Ø Öµ£ºÎŞ
+ 308          *½á    ¹û£ºÑÓ³ÙÊ±¼ä=1* x_ms£¨ºÁÃë£©
+ 309          *±¸    ×¢£º
+ 310          *********************************************************************/
+ 311          void delay(uint16 x_ms) //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 312          {
+ 313   1         uint16 i,j;
+ 314   1        for(i=x_ms;i>0;i--)
+ 315   1           for(j=114;j>0;j--);
+ 316   1      
+ 317   1          
+ 318   1      }
+ 319          
+ 320          /*********************************************************************
+ 321          *º¯ÊıÃû³Æ£ºdelay_100us
+ 322          *º¯Êı¹¦ÄÜ£ºÑÓÊ±º¯Êı
+ 323          *º¯Êıµ÷ÓÃ£ºdelay(uint16 x_100us); 
+ 324          *²ÎÊıÁĞ±í£ºx_100us
+ 325          *·µ »Ø Öµ£ºÎŞ
+ 326          *½á    ¹û£ºÑÓ³ÙÊ±¼ä=100* x_100us£¨Î¢Ãë£©
+ 327          *±¸    ×¢£º
+ 328          *********************************************************************/
+ 329          void delay_100us(uint16 x_100us) //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 330          {
+ 331   1         uint16 i,j;
+ 332   1        for(i=x_100us;i>0;i--)
+ 333   1           for(j=11;j>0;j--);
+ 334   1      
+ 335   1          
+ 336   1      }
+ 337          
+ 338          /*********************************************************************
+ 339          *º¯ÊıÃû³Æ£º Disp_smg_number
+ 340          *º¯Êı¹¦ÄÜ£º °ÑÈÎÒâÒ»¸ö°ËÎ»ÒÔÄÚµÄÊ®½øÖÆÊı£¬ÔÚÊıÂë¹ÜÉÏx×ø±êÈÎÒâÎ»ÖÃ£¬ÈÎÒâÉ¨ÃèÊ±¼ä£¬Í¨¹ı¶¯Ì¬É¨ÃèÏÔÊ¾
+ 341          *º¯Êıµ÷ÓÃ£º void Disp_smg_number(uint8 x_smg,uint8 count_smg,uint32 number,uint16 time);
+ 342          *²ÎÊıÁĞ±í£º 
+ 343                       uint8 x_smg       ÊıÂë¹ÜĞ´ÈëÎ»ÖÃX×ø±ê     È¡Öµ·¶Î§1-8
+ 344                       uint8 count_smg   Ğ´Èë¼¸Î»Ê®½øÖÆÊı        È¡Öµ·¶Î§1-8
+ 345                       uint32 number     Ğ´ÈëµÄÊ®½øÖÆÊıÖµ        È¡Öµ·¶Î§0-99999999 
+ 346                       uint16 time       ¶¯Ì¬É¨ÃèÊ±¼ä            ÑÓ³ÙÊ±¼ä = time*100us  
+ 347          
+ 348          *·µ »Ø Öµ£ºÎŞ
+ 349          *½á    ¹û£º ÔÚ°ËÎ»ÊıÂë¹ÜÈÎÒâÎ»ÖÃÍ¨¶¯Ì¬É¨ÃèĞ´Ò»¸ö°ËÎ»ÒÔÄÚµÄÈÎÒâÊı
+ 350          *±¸    ×¢£º 
+ 351                                   ¹²ÑôÊıÂë¹Ü±àÂë±í
+ 352          Ê®Áù½øÖÆ£º0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x86,0x8e,0x89,0x7f,0xbf
+ 353          ÏÔÊ¾×Ö·û£º  0    1    2    3    4    5    6    7    8    9    A    b    C    D    E    F    H    .    -
+ 354          
+ 355                            ¹²ÑôÊıÂë¹Ü´Ó×óÖÁÓÒ£¬ÒÀ´ÎÎ»Ñ¡±àÂëÊı¾İ
+ 356          Ê®Áù½øÖÆ  £º  0X01    0X02    0X04    0X08    0X10    0X20    0X40    0X80
+ 357          ÊıÂë¹Ü±àºÅ:     1       2       3       4       5       6       7       8
+ 358          *********************************************************************/
+ 359          void Disp_smg_number(uint8 x_smg,uint8 count_smg,uint32 number,uint16 time)
+ 360          {
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 7   
+
+ 361   1      uint8 i;  
+ 362   1      uint8 number1[8]; //¶¨ÒåÒ»¸ö´æ´¢°ËÎ»ÊıµÄÃ¿Ò»Î»µÄÊı×ÖÓÃµÄÊı×é
+ 363   1      uint8 code zifu[19]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90,0x88,0x83,0xc6,0xa1,0x86,0x8e,0x89,
+             -0x7f,0xbf}; 
+ 364   1      uint8 code wei_dat[8]={0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};       //¶¨Òå°ËÎ»ÊıÂë¹ÜÎ»Ñ¡Êı¾İÊı×é
+ 365   1      
+ 366   1      number1[0] = number % 10;                      //¸ö        
+ 367   1      number1[1] = number % 100 / 10;                //Ê®   
+ 368   1      number1[2] = number % 1000 / 100;              //°Ù
+ 369   1      number1[3] = number % 10000 / 1000;            //Ç§
+ 370   1      number1[4] = number % 100000 / 10000;          //Íò 
+ 371   1      number1[5] = number % 1000000 / 100000;        //Ê®Íò
+ 372   1      number1[6] = number % 10000000 / 1000000;      //°ÙÍò 
+ 373   1      number1[7] = number % 100000000 / 10000000;     //Ç§Íò 
+ 374   1      for(i=0;i < count_smg;i++)
+ 375   1      {/*
+ 376   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 377   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 378   2            P0       =zifu[number1[count_smg-i-1]];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0     zifu_test×Ô¼Ó±äÁ¿  ²âÊÔÎÒÃÇ±
+             -àÂë±í 
+ 379   2            duanxuan = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 380   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡
+ 381   2           // delay(1); //ÑÓ³Ù  x_ms*1  ºÁÃë  ·Å´óÓ°×ÓÏÔÏÖ£¬ÑéÖ¤ÎÒÃÇµÄÀíÂÛ
+ 382   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 383   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 384   2            P0       =wei_dat[x_smg+i-1];          //ÊıÂë¹Ü¶ÎÂëÏÔÊ¾ 0
+ 385   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 386   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 387   2            //delay(4); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 388   2            delay_100us(time); //ÑÓ³Ù  x_100*100  Î¢Ãë
+ 389   2      //******************************************************************************************
+ 390   2          //ÏûÓ°
+ 391   2            duanxuan = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 ¶ÎÑ¡ 
+ 392   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡
+ 393   2            P0       =0X00;          //ÊıÂë¹ÜÎ»Ñ¡ÇåÁã
+ 394   2            weixuan  = 1;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡  
+ 395   2            weixuan  = 0;            //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74HC573 Î»Ñ¡    
+ 396   2      //******************************************************************************************  */  
+ 397   2      //********************************************************************  
+ 398   2          //ÊıÂë¹Ü¶ÎÑ¡Ğ´Èë
+ 399   2          duanxuan = 0;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡
+ 400   2          weixuan  = 0; //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 Î»Ñ¡ 
+ 401   2          P0=zifu[number1[count_smg-i-1]];       //ÊıÂë¹Ü¶ÎÑ¡ÏÔÊ¾0 ¶ÎÂëÊı¾İ 
+ 402   2          duanxuan = 1;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡   
+ 403   2          duanxuan = 0;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡ 
+ 404   2      //********************************************************************  
+ 405   2           
+ 406   2          //ÊıÂë¹ÜÎ»Ñ¡Ğ´Èë 
+ 407   2          duanxuan = 0;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡
+ 408   2          weixuan  = 0; //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 Î»Ñ¡ 
+ 409   2          P0=wei_dat[x_smg+i-1];       //ÊıÂë¹Ü¶ÎÑ¡ÏÔÊ¾0 ¶ÎÂëÊı¾İ 
+ 410   2          weixuan  = 1; //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 Î»Ñ¡   
+ 411   2          weixuan  = 0; //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 Î»Ñ¡
+ 412   2      //********************************************************************  
+ 413   2          delay_100us(time);   
+ 414   2          //delay(smg_time); //ÑÓ³Ù  x_ms*1  ºÁÃë
+ 415   2      //********************************************************************        
+ 416   2      
+ 417   2      //ÏûÓ°
+ 418   2          duanxuan = 0;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡
+ 419   2          weixuan  = 0; //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 Î»Ñ¡ 
+ 420   2          P0=0x00;       //ÊıÂë¹Ü¶ÎÑ¡ÏÔÊ¾0 ¶ÎÂëÊı¾İ 
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 8   
+
+ 421   2          weixuan  = 1;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡   
+ 422   2          weixuan  = 0;  //ÊıÂë¹ÜÇı¶¯Ğ¾Æ¬74hc573 ¶ÎÑ¡       
+ 423   2      //********************************************************************    
+ 424   2      }
+ 425   1      
+ 426   1      }
+ 427          -----------------------------------
+*** ERROR C141 IN LINE 427 OF .\SRC\MAIN.C: syntax error near '--'
+ 428          ?Öø×÷È¨¹é×÷ÕßËùÓĞ£ºÀ´×Ô51CTO²©¿Í×÷Õßchen_51ctoµÄÔ­´´×÷Æ·£¬ÇëÁªÏµ×÷Õß»ñÈ¡×ªÔØÊÚÈ¨£¬·ñÔò½«×·¾¿·¨ÂÉÔğÈÎ
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD6 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB9 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xE9 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD5 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xDF skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xCB skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF9 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD3 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD0 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA3 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xBA skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC0 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB2 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA9 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xBF skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xCD skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD5 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xDF skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB5 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xAD skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC6 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA3 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xAC skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xEB skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC1 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xAA skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xCF skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB5 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD5 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xDF skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xBB skipped
+C51 COMPILER V9.54   MAIN                                                                  10/18/2023 21:03:01 PAGE 9   
+
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF1 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA1 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xAA skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xCA skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xDA skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA3 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xAC skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF1 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF2 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xBD skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xAB skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xBE skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xBF skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xB7 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xA8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC2 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC9 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xD4 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xF0 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xC8 skipped
+*** ERROR C100 IN LINE 428 OF .\SRC\MAIN.C: unprintable character 0xCE skipped
+ 429          51µ¥Æ¬»ú-°¸Àı³ÌĞòÔ´Âë-±Ê¼Ç
+*** ERROR C100 IN LINE 429 OF .\SRC\MAIN.C: unprintable character 0xB5 skipped
+*** ERROR C100 IN LINE 429 OF .\SRC\MAIN.C: unprintable character 0xA5 skipped
+*** ERROR C100 IN LINE 429 OF .\SRC\MAIN.C: unprintable character 0xC6 skipped
+*** ERROR C100 IN LINE 429 OF .\SRC\MAIN.C: unprintable character 0xAC skipped
+*** ERROR C100 IN LINE 429 OF .\SRC\MAIN.C: unprintable character 0xBB skipped
+*** ERROR C100 IN LINE 429 OF .\SRC\MAIN.C: unprintable character 0xFA skipped
+*** ERROR C129 IN LINE 429 OF .\SRC\MAIN.C: missing ';' before '51'
+ 430          https://blog.51cto.com/chen8866/5922672
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  92 ERROR(S)
